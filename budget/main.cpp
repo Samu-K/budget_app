@@ -4,6 +4,8 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QString>
+#include <chrono>
+#include <ctime>
 
 using namespace std;
 
@@ -36,14 +38,26 @@ void setup_db(QString password) {
     db.open();
 }
 
+
 int main()
 {
     // Setup variables
-    int type;
     int amount;
-    time_t date;
+    cout << "Input given amount: ";
+    cin >> amount;
+    cin.clear();
+
+    time_t date = chrono::system_clock::to_time_t(chrono::system_clock::now());
+
     string vendor;
+    cout << "Input vendor: ";
+    cin >> vendor;
+    cin.clear();
+
     int category;
+    cout << "Input category: ";
+    cin >> category;
+    cin.clear();
 
     // Filepath to password
     string fp = "../keys/azure_pass.txt";
@@ -51,5 +65,14 @@ int main()
 
     // Setup our database
     setup_db(password);
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO expenses "
+                    "VALUES (:date,:amount,:vendor,:category)");
+    query.bindValue(":date",QString::fromStdString(ctime(&date)));
+    query.bindValue(":amount",amount);
+    query.bindValue(":vendor",QString::fromStdString(vendor));
+    query.bindValue(":category",category);
+    query.exec();
 
 }
