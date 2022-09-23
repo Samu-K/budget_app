@@ -1,17 +1,23 @@
-#include <iostream>
-#include <string>
-#include <fstream>
+// Include libraries for SQL
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QString>
 #include <QSqlError>
-#include <chrono>
-#include <ctime>
-#include <QCoreApplication>
+
+// Libraries for time and date
 #include <time.h>
+#include <ctime>
+#include <chrono>
+
+// Other useful libraries
+#include <QCoreApplication>
+#include <iostream>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
+// Setup helper functions
 QString fetch_password(string fp) {
     // We fetch the database password from file
     fstream keys;
@@ -27,10 +33,10 @@ QString fetch_password(string fp) {
     return pass;
 }
 
-void setup_db(QString password) {
-
+QSqlDatabase setup_db(QString password) {
     // Setup our database
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+
     // Construct the url
     QString db_url = QString("Driver={ODBC Driver 13 for SQL Server};Server=tcp:budgetdata.database.windows.net,1433;Database=budget;Uid=budgetaccess;Pwd={")
             + password
@@ -38,12 +44,34 @@ void setup_db(QString password) {
 
     //
     db.setDatabaseName(db_url);
-    db.setUserName("budgetaccess");
-    db.setPassword("So6X7dnFdN");
-
     db.open();
+
+    return db;
 }
 
+void insert_values(string date_str,int amount,string vendor,int category, int type_mod) {
+    // Init our query
+    QSqlQuery query;
+
+    // Our target table depends on previous input
+    if (type_mod == 1) {
+        query.prepare("INSERT INTO expenses "
+                        "VALUES (:date,:amount,:vendor,:category)");
+
+    } else if (type_mod == 2) {
+        query.prepare("INSERT INTO income "
+                        "VALUES (:date,:amount,:vendor,:category)");
+    }
+
+    // Add values to insert query
+    query.bindValue(":date",QString::fromStdString(date_str));
+    query.bindValue(":amount",amount);
+    query.bindValue(":vendor",QString::fromStdString(vendor));
+    query.bindValue(":category",category);
+
+    // Execute our query
+    query.exec();
+}
 
 int main(int argc, char *argv[])
 {
@@ -83,45 +111,14 @@ int main(int argc, char *argv[])
     string fp = "../../keys/azure_pass.txt";
     QString password = fetch_password(fp);
 
-    // Setup our database
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+    // Init our database
+    QSqlDatabase db = setup_db(password);
 
-    // Construct the url
-    QString db_url = QString("Driver={ODBC Driver 13 for SQL Server};Server=tcp:budgetdata.database.windows.net,1433;Database=budget;Uid=budgetaccess;Pwd={")
-            + password
-            + QString("};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;");
+    // Insert in values
+    insert_values(date_str,amount,vendor,category,type_mod);
 
-    //
-    db.setDatabaseName(db_url);
-    //db.setUserName("budgetaccess");
-    //db.setPassword(password);
-    db.open();
-
-    QString er = db.lastError().text();
-    string error_line = er.toStdString();
-
-    cout << "Error: \n" << error_line << endl;
-
-    QSqlQuery query;
-    if (type_mod == 1) {
-        query.prepare("INSERT INTO expenses "
-                        "VALUES (:date,:amount,:vendor,:category)");
-
-    } else if (type_mod == 2) {
-        query.prepare("INSERT INTO income "
-                        "VALUES (:date,:amount,:vendor,:category)");
-    }
-
-    query.bindValue(":date",QString::fromStdString(date_str));
-    query.bindValue(":amount",amount);
-    query.bindValue(":vendor",QString::fromStdString(vendor));
-    query.bindValue(":category",category);
-
-    query.exec();
-
-    QString qer = query.lastError().text();
-    string qerror_line = qer.toStdString();
-
-    cout << "Error: \n" << qerror_line << endl;
+    // Close connection
+    db.close();
+    QCoreApplication::quit();
 
 }
