@@ -73,8 +73,28 @@ void insert_values(string date_str,int amount,string vendor,int category, int ty
     query.exec();
 }
 
+string fetch_date() {
+    // Get the date from computer clock
+    time_t date = chrono::system_clock::to_time_t(chrono::system_clock::now());
+
+    // Setup cariables for strftime
+    tm * date_tm;
+    char date_str[100];
+    time(&date);
+    date_tm = localtime(&date);
+
+    // Format the date to be YYYY/MM/DD
+    // Result gets save to a string in date_str
+    strftime(date_str,50,"%Y-%m-%d",date_tm);
+
+    // Return the formatted string
+    return date_str;
+}
+
 int main(int argc, char *argv[])
 {
+    // Init core applicattion
+    // Will be expanded and changed when UI is created
     QCoreApplication a(argc,argv);
 
     // Setup variables
@@ -88,15 +108,6 @@ int main(int argc, char *argv[])
     cin >> amount;
     cin.clear();
 
-    time_t date = chrono::system_clock::to_time_t(chrono::system_clock::now());
-    tm * date_tm;
-    char date_str[100];
-
-    time(&date);
-    date_tm = localtime(&date);
-
-    strftime(date_str,50,"%Y-%m-%d",date_tm);
-
     string vendor;
     cout << "Input vendor: ";
     cin >> vendor;
@@ -106,6 +117,9 @@ int main(int argc, char *argv[])
     cout << "Input category: ";
     cin >> category;
     cin.clear();
+
+    // Setup date
+    string date_str = fetch_date();
 
     // Filepath to password
     string fp = "../../keys/azure_pass.txt";
