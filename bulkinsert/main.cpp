@@ -1,3 +1,4 @@
+// Imports
 #include <QCoreApplication>
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -78,26 +79,39 @@ int main(int argc, char *argv[])
     // Init our database
     QSqlDatabase db = setup_db(password);
 
+    // Read in our data
     std::ifstream file("../scripts/clean_income_fixed.txt");
     if (file.is_open()) {
+        // Read file line by line
         std::string line;
         while (std::getline(file, line)) {
+            // Helper variables
             size_t pos = 0;
             string token;
             int id = 0;
             string data[5];
+
+            // split the read lines
+            // using comma as delimiter
             while ((pos= line.find(",")) != string::npos) {
                 token = line.substr(0,pos);
                 line.erase(0,pos + 1);
+
+                // add values to an array
                 data[id] = token;
                 ++id;
             }
+            // final value
             data[id] = line;
 
+            // insert the values we read to database
             insert_values(data[1],stoi(data[3]),data[2],stoi(data[4]),2);
             }
+        // close file after reading
         file.close();
         }
 
-    return a.exec();
+    db.close();
+    a.closingDown();
+    return 0;
 }
