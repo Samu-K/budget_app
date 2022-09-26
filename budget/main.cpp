@@ -10,10 +10,13 @@
 #include <chrono>
 
 // Other useful libraries
-#include <QCoreApplication>
+#include <QApplication>
 #include <iostream>
 #include <string>
 #include <fstream>
+
+
+#include "mainwindow.h"
 
 using namespace std;
 
@@ -95,60 +98,23 @@ int main(int argc, char *argv[])
 {
     // Init core applicattion
     // Will be expanded and changed when UI is created
-    QCoreApplication a(argc,argv);
+    QApplication app(argc,argv);
+    MainWindow window;
+    window.show();
 
     // Setup date
-    string date_str = fetch_date();
+    //string date_str = fetch_date();
 
     // Filepath to password
-    string fp = "../../keys/azure_pass.txt";
-    QString password = fetch_password(fp);
+    //string fp = "../../keys/azure_pass.txt";
+    //QString password = fetch_password(fp);
 
     // Init our database
-    QSqlDatabase db = setup_db(password);
+    //QSqlDatabase db = setup_db(password);
 
-    // Setup variables
-    bool flag = true;
-
-    // We can keep inserting values
-    while (flag) {
-        int type_mod;
-        cout << "Give transaction type (1 = expense, 2=income): ";
-        cin >> type_mod;
-        cin.clear();
-
-        int amount;
-        cout << "Input given amount: ";
-        cin >> amount;
-        cin.clear();
-
-        string vendor;
-        cout << "Input vendor: ";
-        cin >> vendor;
-        cin.clear();
-
-        int category;
-        cout << "Input category: ";
-        cin >> category;
-        cin.clear();
-
-        // Insert in values
-        insert_values(date_str,amount,vendor,category,type_mod);
-
-        // Check if we continue
-        cout << "Continue? (y/n) ";
-        string cnt;
-        cin >> cnt;
-        cin.clear();
-
-        // Set flag to false if we stop
-        if (cnt == "n") {
-            flag = false;
-        }
-    }
 
     // Close connection
-    db.close();
-    QCoreApplication::quit();
+    //db.close();
+    return app.exec();
 
 }
