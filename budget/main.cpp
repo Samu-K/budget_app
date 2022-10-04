@@ -16,7 +16,7 @@
 #include <fstream>
 
 
-#include "mainwindow.h"
+#include "budget.h"
 
 using namespace std;
 
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
     // Init core applicattion
     // Will be expanded and changed when UI is created
     QApplication app(argc,argv);
-    MainWindow window;
+    Budget window;
     window.show();
 
     // Setup date
