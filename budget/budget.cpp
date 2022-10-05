@@ -18,13 +18,6 @@ Budget::~Budget()
     delete ui;
 }
 
-
-void Budget::on_cText_textChanged()
-{
-    string txt = ui -> cText -> toPlainText().toStdString();
-    cText_ = txt;
-}
-
 void Budget::on_aText_textChanged()
 {
     string txt = ui -> aText -> toPlainText().toStdString();
@@ -50,3 +43,10 @@ void Budget::on_submitButton_clicked()
     cout << "Vendor: " << vText_ << endl;
     cout << "Date: " << dText_ << endl;
 }
+
+void Budget::on_cSelect_itemPressed(QListWidgetItem *item)
+{
+    cout << item->text().toStdString() << endl;
+
+}
+
