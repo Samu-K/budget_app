@@ -6,6 +6,8 @@
 #include <QListWidgetItem>
 #include <string>
 
+#include <QSqlDatabase>
+
 struct trsData {
     std::string date, amount, vendor, category, type;
 };
@@ -22,7 +24,7 @@ public:
     Budget(QWidget *parent = nullptr);
     ~Budget();
 
-    void insert_values(std::string date_str,int amount,std::string vendor,int category, int type_mod);
+    void insert_values(std::string date_str,int amount,std::string vendor,int category, std::string type);
 
 private slots:
     void on_aText_textChanged();
@@ -32,10 +34,13 @@ private slots:
     void on_tSelect_itemPressed(QListWidgetItem *item);
     void on_dSelect_clicked(const QDate &date);
 
+    void closeEvent(QCloseEvent *event);
+
 private:
     Ui::MainWindow *ui;
 
     // vars
     trsData data_;
+    QSqlDatabase db_;
 };
 #endif // BUDGET_H

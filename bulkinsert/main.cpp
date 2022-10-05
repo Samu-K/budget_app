@@ -43,7 +43,7 @@ QSqlDatabase setup_db(QString password) {
     return db;
 }
 
-void insert_values(string date_str,int amount,string vendor,int category, int type_mod) {
+void insert_values(string date_str,float amount,string vendor,int category, int type_mod) {
     // Init our query
     QSqlQuery query;
 
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
     QSqlDatabase db = setup_db(password);
 
     // Read in our data
-    std::ifstream file("../scripts/clean_income_fixed.txt");
+    std::ifstream file("D:\\Coding\\budget_app\\scripts\\data\\clean_expenses_fixed.txt");
     if (file.is_open()) {
         // Read file line by line
         std::string line;
@@ -104,9 +104,9 @@ int main(int argc, char *argv[])
             // final value
             data[id] = line;
 
-            // insert the values we read to database
-            insert_values(data[1],stoi(data[3]),data[2],stoi(data[4]),2);
+            insert_values(data[1],stof(data[3]),data[2],stoi(data[4]),1);
             }
+
         // close file after reading
         file.close();
         }
