@@ -30,23 +30,39 @@ void Budget::on_vText_textChanged()
     vText_ = txt;
 }
 
-void Budget::on_dText_textChanged()
-{
-    string txt = ui -> dText -> toPlainText().toStdString();
-    dText_ = txt;
-}
+
 
 void Budget::on_submitButton_clicked()
 {
     cout << "Amount: " << aText_ << endl;
-    cout << "Category: " << cText_ << endl;
+    cout << "Category: " << cSelect_ << endl;
     cout << "Vendor: " << vText_ << endl;
-    cout << "Date: " << dText_ << endl;
+    cout << "Date: " << dSelect_ << endl;
+    cout << "Type: " << tSelect_ << endl;
+
+    ui -> vText->clear();
+    ui -> aText->clear();
+    ui -> cSelect->clearSelection();
+    ui ->tSelect->setCurrentRow(0);
+    ui -> dSelect->clearFocus();
 }
 
 void Budget::on_cSelect_itemPressed(QListWidgetItem *item)
 {
-    cout << item->text().toStdString() << endl;
+    string txt = item->text().toStdString();
+    cSelect_ = txt;
+}
 
+void Budget::on_tSelect_itemPressed(QListWidgetItem *item)
+{
+    string txt = item->text().toStdString();
+    tSelect_ = txt;
+}
+
+
+void Budget::on_dSelect_clicked(const QDate &date)
+{
+    string txt = date.toString().toStdString();
+    dSelect_ = txt;
 }
 

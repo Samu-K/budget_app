@@ -20,19 +20,38 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="label_5">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>10</height>
+           </size>
+          </property>
           <property name="text">
-           <string>Category</string>
+           <string>Type</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QListView" name="cSelect"/>
+         <widget class="QListWidget" name="tSelect">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>Expense</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Income</string>
+           </property>
+          </item>
+         </widget>
         </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
@@ -46,7 +65,46 @@
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>10</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Category</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QListWidget" name="cSelect">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>40</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>school</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>something</string>
+           </property>
+          </item>
+         </widget>
+        </item>
         <item>
          <widget class="QLabel" name="label_3">
           <property name="text">
@@ -55,9 +113,19 @@
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="vText"/>
+         <widget class="QPlainTextEdit" name="vText">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+         </widget>
         </item>
        </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2"/>
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -69,7 +137,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="dText"/>
+         <widget class="QCalendarWidget" name="dSelect"/>
         </item>
        </layout>
       </item>
