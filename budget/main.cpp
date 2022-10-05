@@ -15,7 +15,6 @@
 #include <string>
 #include <fstream>
 
-
 #include "budget.h"
 
 using namespace std;
@@ -52,48 +51,6 @@ QSqlDatabase setup_db(QString password) {
     return db;
 }
 
-void insert_values(string date_str,int amount,string vendor,int category, int type_mod) {
-    // Init our query
-    QSqlQuery query;
-
-    // Our target table depends on previous input
-    if (type_mod == 1) {
-        query.prepare("INSERT INTO expenses "
-                        "VALUES (:date,:amount,:vendor,:category)");
-
-    } else if (type_mod == 2) {
-        query.prepare("INSERT INTO income "
-                        "VALUES (:date,:amount,:vendor,:category)");
-    }
-
-    // Add values to insert query
-    query.bindValue(":date",QString::fromStdString(date_str));
-    query.bindValue(":amount",amount);
-    query.bindValue(":vendor",QString::fromStdString(vendor));
-    query.bindValue(":category",category);
-
-    // Execute our query
-    query.exec();
-}
-
-string fetch_date() {
-    // Get the date from computer clock
-    time_t date = chrono::system_clock::to_time_t(chrono::system_clock::now());
-
-    // Setup cariables for strftime
-    tm * date_tm;
-    char date_str[100];
-    time(&date);
-    date_tm = localtime(&date);
-
-    // Format the date to be YYYY/MM/DD
-    // Result gets save to a string in date_str
-    strftime(date_str,50,"%Y-%m-%d",date_tm);
-
-    // Return the formatted string
-    return date_str;
-}
-
 int main(int argc, char *argv[])
 {
     // Init core applicattion
@@ -111,7 +68,6 @@ int main(int argc, char *argv[])
 
     // Init our database
     //QSqlDatabase db = setup_db(password);
-
 
     // Close connection
     //db.close();
