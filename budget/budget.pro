@@ -10,10 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     budget.cpp \
+    database.cpp \
     main.cpp
 
 HEADERS += \
-    budget.h
+    budget.h \
+    database.hh
 
 FORMS += \
     budget.ui

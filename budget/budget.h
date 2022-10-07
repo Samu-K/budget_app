@@ -2,6 +2,7 @@
 #define BUDGET_H
 
 #include "QtCore/qdatetime.h"
+#include "database.hh"
 #include <QMainWindow>
 #include <QListWidgetItem>
 #include <string>
@@ -41,6 +42,7 @@ private:
 
     // vars
     trsData data_;
-    QSqlDatabase db_;
+    Database database_;
+    map<string,int> category_index_;
 };
 #endif // BUDGET_H
