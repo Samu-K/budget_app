@@ -1,7 +1,7 @@
 #ifndef DATABASE_HH
 #define DATABASE_HH
 
-#include <QString>
+// Include libraries for type declaration
 #include <QSqlDatabase>
 #include <map>
 #include <string>

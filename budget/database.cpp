@@ -1,8 +1,12 @@
 #include "database.hh"
+
+// include SQL related libraries
 #include <QSqlQuery>
+
+// handling for streams
 #include <fstream>
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -23,7 +27,14 @@ QString fetch_password(string fp) {
 }
 
 Database::Database(string password_fp)
+    /*
+     * Database handles all puts and fetches to our database
+     * Needs the path to a file containing the password
+     *
+     * This functionality will be changed in future versions
+    */
 {
+    // get password from file
     QString password = fetch_password(password_fp);
 
     // Setup our database
@@ -34,20 +45,31 @@ Database::Database(string password_fp)
             + password
             + QString("};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;");
 
+    // open our database
     db.setDatabaseName(db_url);
     db.open();
 
+    // store to variable
     db_ = db;
 }
 
 map<string,int> Database::fetch_categories()
+    /*
+     * Fetches all current categories
+     * logged into database
+     *
+     * Allows us to dynamically update list
+    */
 {
+    // helper vars
     QSqlQuery query;
     map<string,int> category_index;
 
+    // prepare and execute query
     query.prepare("SELECT * FROM categories");
     query.exec();
 
+    // go through query and store results to vector
     while (query.next()) {
         int index = query.value(0).toInt();
         QString catname = query.value(1).toString();
@@ -60,7 +82,11 @@ map<string,int> Database::fetch_categories()
 }
 
 
-void Database::insert_values(string date_str,int amount,string vendor,int category, string type) {
+void Database::insert_values(string date_str,int amount,string vendor,int category, string type)
+    /*
+     * Inserts the given values into our database
+    */
+{
     // Init our query
     QSqlQuery query;
 
@@ -85,6 +111,7 @@ void Database::insert_values(string date_str,int amount,string vendor,int catego
 }
 
 void Database::close() {
+    // closes our database
     db_.close();
 }
 
