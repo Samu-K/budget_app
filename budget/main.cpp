@@ -1,6 +1,7 @@
 // Include needed libraries
 #include <QApplication>
 #include "budget.h"
+#include "login.h"
 
 using namespace std;
 
@@ -12,7 +13,9 @@ int main(int argc, char *argv[])
 
     // init budget class
     Budget window;
-    window.show();
+    // init login
+    login login_window;
+    login_window.show();
 
     return app.exec();
 

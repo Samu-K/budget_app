@@ -15,8 +15,12 @@ public:
     explicit login(QWidget *parent = nullptr);
     ~login();
 
+private slots:
+    void on_plainTextEdit_textChanged();
+
 private:
     Ui::login *ui;
+
 };
 
 #endif // LOGIN_H
