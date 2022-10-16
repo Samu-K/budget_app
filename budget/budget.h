@@ -5,14 +5,8 @@
 #include "database.hh"
 
 // include qt libraries
-#include "QtCore/qdatetime.h"
 #include <QMainWindow>
 #include <QListWidgetItem>
-#include <QSqlDatabase>
-
-// handling for strings
-#include <string>
-
 
 // create structure to represent transaction data
 struct trsData {
