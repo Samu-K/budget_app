@@ -1,14 +1,20 @@
 #ifndef BUDGET_H
 #define BUDGET_H
 
-#include "QtCore/qdatetime.h"
+// include custom class
 #include "database.hh"
+
+// include qt libraries
+#include "QtCore/qdatetime.h"
 #include <QMainWindow>
 #include <QListWidgetItem>
-#include <string>
-
 #include <QSqlDatabase>
 
+// handling for strings
+#include <string>
+
+
+// create structure to represent transaction data
 struct trsData {
     std::string date, amount, vendor, category, type;
 };
@@ -17,6 +23,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+// setup the budget class
 class Budget : public QMainWindow
 {
     Q_OBJECT
@@ -24,8 +31,6 @@ class Budget : public QMainWindow
 public:
     Budget(QWidget *parent = nullptr);
     ~Budget();
-
-    void insert_values(std::string date_str,int amount,std::string vendor,int category, std::string type);
 
 private slots:
     void on_aText_textChanged();
