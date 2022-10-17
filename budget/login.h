@@ -2,6 +2,9 @@
 #define LOGIN_H
 
 #include <QDialog>
+#include <string>
+
+using namespace std;
 
 namespace Ui {
 class login;
@@ -16,10 +19,17 @@ public:
     ~login();
 
 private slots:
-    void on_plainTextEdit_textChanged();
+    void on_pText_textChanged();
+    void on_uText_textChanged();
+
+    void on_buttonBox_accepted();
 
 private:
     Ui::login *ui;
+
+    // vars
+    string pass_;
+    string uname_;
 
 };
 
