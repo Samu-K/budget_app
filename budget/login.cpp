@@ -27,11 +27,9 @@ void login::on_uText_textChanged()
     uname_ = txt;
 }
 
-
 void login::on_buttonBox_accepted()
 {
-    cout << "Input is:" << endl;
-    cout << "Password " << pass_ << endl;
-    cout << "Username " << uname_;
+    emit accepted();
+    this->accept();
 }
 

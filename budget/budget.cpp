@@ -2,6 +2,7 @@
 #include "budget.h"
 #include "ui_budget.h"
 #include "database.hh"
+#include "login.h"
 
 // Include libraries to handle strings
 #include <QString>
@@ -22,18 +23,29 @@ Budget::Budget(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    // set UI
+    ui->setupUi(this);
+
+    login *dialog = new login();
+
+    connect(dialog,&login::accepted, this, &Budget::onAccept);
+
+    dialog->show();
 
     // setup our database
     Database database_ = Database();
-
-    // set UI
-    ui->setupUi(this);
 
     // set "expense" as default value for type
     ui->tSelect->setCurrentRow(0);
 
     // get all categories and store
     map<string,int> category_index_ = database_.fetch_categories();
+}
+
+void Budget::onAccept()
+{
+    cout << "dialog closed" << endl;
+    this->show();
 }
 
 Budget::~Budget()
@@ -112,5 +124,6 @@ void Budget::on_dSelect_clicked(const QDate &date)
 void Budget::closeEvent(QCloseEvent *event) {
         database_.close();
 }
+
 
 

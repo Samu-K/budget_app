@@ -3,6 +3,7 @@
 
 // include custom class
 #include "database.hh"
+#include "login.h"
 
 // include qt libraries
 #include <QMainWindow>
@@ -35,6 +36,7 @@ private slots:
     void on_dSelect_clicked(const QDate &date);
 
     void closeEvent(QCloseEvent *event);
+    void onAccept();
 
 private:
     Ui::MainWindow *ui;
