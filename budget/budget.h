@@ -37,6 +37,8 @@ private slots:
 
     void closeEvent(QCloseEvent *event);
     void onAccept();
+public slots:
+    void onSubmitted(login_info user);
 
 private:
     Ui::MainWindow *ui;
@@ -45,5 +47,6 @@ private:
     trsData data_;
     Database database_;
     map<string,int> category_index_;
+    string pass_, uname_;
 };
 #endif // BUDGET_H

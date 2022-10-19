@@ -29,6 +29,12 @@ void login::on_uText_textChanged()
 
 void login::on_buttonBox_accepted()
 {
+    login_info user;
+
+    user.username = uname_;
+    user.password = pass_;
+    emit (submitted(user));
+
     emit accepted();
     this->accept();
 }

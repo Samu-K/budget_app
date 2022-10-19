@@ -10,23 +10,7 @@
 
 using namespace std;
 
-// Setup helper functions
-QString fetch_password(string fp) {
-    // We fetch the database password from file
-    fstream keys;
-    keys.open(fp,ios::in);
-    string tp;
-    while(getline(keys,tp)) {
-    };
-
-    // Turn the password into a qstring
-    // Database url will need it
-    QString pass = QString::fromStdString(tp);
-
-    return pass;
-}
-
-Database::Database(string password_fp)
+Database::Database()
     /*
      * Database handles all puts and fetches to our database
      * Needs the path to a file containing the password
@@ -34,15 +18,15 @@ Database::Database(string password_fp)
      * This functionality will be changed in future versions
     */
 {
-    // get password from file
-    QString password = fetch_password(password_fp);
+}
 
+void Database::db_connect(string pass, string uname) {
     // Setup our database
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
 
     // Construct the url
     QString db_url = QString("Driver={ODBC Driver 13 for SQL Server};Server=tcp:budgetdata.database.windows.net,1433;Database=budget;Uid=budgetaccess;Pwd={")
-            + password
+            + QString::fromStdString(pass)
             + QString("};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;");
 
     // open our database
@@ -52,7 +36,6 @@ Database::Database(string password_fp)
     // store to variable
     db_ = db;
 }
-
 map<string,int> Database::fetch_categories()
     /*
      * Fetches all current categories

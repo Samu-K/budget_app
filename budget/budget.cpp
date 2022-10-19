@@ -28,24 +28,33 @@ Budget::Budget(QWidget *parent)
 
     login *dialog = new login();
 
+    // connections for login
     connect(dialog,&login::accepted, this, &Budget::onAccept);
+    connect(dialog,&login::submitted,this,&Budget::onSubmitted);
 
     dialog->show();
-
-    // setup our database
-    Database database_ = Database();
 
     // set "expense" as default value for type
     ui->tSelect->setCurrentRow(0);
 
-    // get all categories and store
-    map<string,int> category_index_ = database_.fetch_categories();
+    // setup our database
+    Database database_ = Database();
 }
 
 void Budget::onAccept()
 {
-    cout << "dialog closed" << endl;
     this->show();
+}
+
+void Budget::onSubmitted(login_info user)
+{
+    string pass = user.password;
+    string uname = user.username;
+
+    database_.db_connect(pass,uname);
+
+    // get all categories and store
+    map<string,int> category_index_ = database_.fetch_categories();
 }
 
 Budget::~Budget()

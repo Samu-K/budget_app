@@ -12,11 +12,12 @@ using namespace std;
 class Database
 {
 public:
-    Database(string password_fp = "D:\\Coding\\budget_app\\keys\\azure_pass.txt");
+    Database();
 
     map<string,int> fetch_categories();
     void insert_values(string date_str,int amount,string vendor,int category, string type);
     void close();
+    void db_connect(string pass, string uname);
 
 private:
 

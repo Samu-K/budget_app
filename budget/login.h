@@ -6,6 +6,10 @@
 
 using namespace std;
 
+struct login_info {
+    string username, password;
+};
+
 namespace Ui {
 class login;
 }
@@ -24,6 +28,7 @@ public:
 
 signals:
     void accepted();
+    void submitted(login_info);
 
 private slots:
     void on_pText_textChanged();
