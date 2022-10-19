@@ -21,13 +21,19 @@ Database::Database()
 }
 
 void Database::db_connect(string pass, string uname) {
+    /*
+     * Connects to our database with the given password and username
+    */
+
     // Setup our database
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
 
     // Construct the url
-    QString db_url = QString("Driver={ODBC Driver 13 for SQL Server};Server=tcp:budgetdata.database.windows.net,1433;Database=budget;Uid=budgetaccess;Pwd={")
-            + QString::fromStdString(pass)
-            + QString("};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;");
+    QString db_url = QString("Driver={ODBC Driver 13 for SQL Server};Server=tcp:budgetdata.database.windows.net,1433;Database=budget;Uid={")
+                             + QString::fromStdString(uname)
+                             + QString("};Pwd={")
+                             + QString::fromStdString(pass)
+                             + QString("};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;Authentication=ActiveDirectoryPassword");
 
     // open our database
     db.setDatabaseName(db_url);

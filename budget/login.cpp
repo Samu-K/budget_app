@@ -15,6 +15,7 @@ login::~login()
     delete ui;
 }
 
+// automatic connections to handle text input
 void login::on_pText_textChanged()
 {
     string txt = ui->pText->toPlainText().toStdString();
@@ -28,12 +29,15 @@ void login::on_uText_textChanged()
 }
 
 void login::on_buttonBox_accepted()
+    /* Emit closing signal to Budget
+     * Also emit given username and password
+    */
 {
     login_info user;
 
     user.username = uname_;
     user.password = pass_;
-    emit (submitted(user));
+    emit submitted(user);
 
     emit accepted();
     this->accept();

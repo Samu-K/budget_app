@@ -26,12 +26,14 @@ Budget::Budget(QWidget *parent)
     // set UI
     ui->setupUi(this);
 
+    // create pointer to dialog widget
     login *dialog = new login();
 
     // connections for login
     connect(dialog,&login::accepted, this, &Budget::onAccept);
     connect(dialog,&login::submitted,this,&Budget::onSubmitted);
 
+    // show the dialog window
     dialog->show();
 
     // set "expense" as default value for type
@@ -42,11 +44,16 @@ Budget::Budget(QWidget *parent)
 }
 
 void Budget::onAccept()
+    // when dialog exits ok, we show mainwindow
 {
     this->show();
 }
 
 void Budget::onSubmitted(login_info user)
+    /* When login info has been given
+     * We use it to log into our database
+     * And also fetch categories from database
+    */
 {
     string pass = user.password;
     string uname = user.username;
