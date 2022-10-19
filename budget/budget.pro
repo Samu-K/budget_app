@@ -11,14 +11,17 @@ CONFIG += c++17
 SOURCES += \
     budget.cpp \
     database.cpp \
+    login.cpp \
     main.cpp
 
 HEADERS += \
     budget.h \
-    database.hh
+    database.hh \
+    login.h
 
 FORMS += \
-    budget.ui
+    budget.ui \
+    login.ui
 
 QT += sql
 
