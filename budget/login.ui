@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
+    <width>468</width>
     <height>308</height>
    </rect>
   </property>
@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Give Active Directory username and password</string>
+      <string>Connect with SQL Server Authentication</string>
      </property>
     </widget>
    </item>

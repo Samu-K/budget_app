@@ -38,6 +38,7 @@ Budget::Budget(QWidget *parent)
 
     // set "expense" as default value for type
     ui->tSelect->setCurrentRow(0);
+    data_.type = "Expense";
 
     // setup our database
     Database database_ = Database();

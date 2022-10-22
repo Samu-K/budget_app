@@ -77,26 +77,31 @@ void Database::insert_values(string date_str,int amount,string vendor,int catego
     */
 {
     // Init our query
-    QSqlQuery query;
+    QSqlQuery insert_query;
 
     // Our target table depends on previous input
     if (type == "Expense") {
-        query.prepare("INSERT INTO expenses "
+        insert_query.prepare("INSERT INTO expenses "
                         "VALUES (:date,:amount,:vendor,:category)");
 
     } else if (type == "Income") {
-        query.prepare("INSERT INTO income "
+        insert_query.prepare("INSERT INTO income "
                         "VALUES (:date,:amount,:vendor,:category)");
+    } else {
+        cout << "invalid type: " << type << endl;
+        return;
     }
 
     // Add values to insert query
-    query.bindValue(":date",QString::fromStdString(date_str));
-    query.bindValue(":amount",amount);
-    query.bindValue(":vendor",QString::fromStdString(vendor));
-    query.bindValue(":category",category);
+    insert_query.bindValue(":date",QString::fromStdString(date_str));
+    insert_query.bindValue(":amount",amount);
+    insert_query.bindValue(":vendor",QString::fromStdString(vendor));
+    insert_query.bindValue(":category",category);
+
+    cout << "Query" << insert_query.lastQuery().toStdString() << endl;
 
     // Execute our query
-    query.exec();
+    insert_query.exec();
 }
 
 void Database::close() {
