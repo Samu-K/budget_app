@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhDigitsOnly</set>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
@@ -134,21 +137,6 @@
            <height>16777215</height>
           </size>
          </property>
-         <item>
-          <property name="text">
-           <string>school</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>18</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>something</string>
-          </property>
-         </item>
         </widget>
        </item>
       </layout>
