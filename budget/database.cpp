@@ -71,11 +71,12 @@ map<string,int> Database::fetch_categories()
 }
 
 
-void Database::insert_values(string date_str,int amount,string vendor,int category, string type)
+void Database::insert_values(string date_str,string amount_str,string vendor,string category_str, string type)
     /*
      * Inserts the given values into our database
     */
 {
+
     // Init our query
     QSqlQuery insert_query;
 
@@ -92,13 +93,21 @@ void Database::insert_values(string date_str,int amount,string vendor,int catego
         return;
     }
 
+    // check if data is missing
+    if (date_str.empty() || amount_str.empty() || vendor.empty() || category_str.empty()) {
+        cout << "Missing information" << endl;
+        return;
+    }
+
+    // convert to proper values
+    int amount = stoi(amount_str);
+    int category = stoi(category_str);
+
     // Add values to insert query
     insert_query.bindValue(":date",QString::fromStdString(date_str));
     insert_query.bindValue(":amount",amount);
     insert_query.bindValue(":vendor",QString::fromStdString(vendor));
     insert_query.bindValue(":category",category);
-
-    cout << "Query" << insert_query.lastQuery().toStdString() << endl;
 
     // Execute our query
     insert_query.exec();

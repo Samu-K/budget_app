@@ -1,4 +1,5 @@
 #include "login.h"
+#include "qpushbutton.h"
 #include "ui_login.h"
 #include <iostream>
 
@@ -8,6 +9,8 @@ login::login(QWidget *parent) :
     ui(new Ui::login)
 {
     ui->setupUi(this);
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+
 }
 
 login::~login()
@@ -19,12 +22,30 @@ login::~login()
 void login::on_pText_textChanged()
 {
     string txt = ui->pText->toPlainText().toStdString();
+
+    // set ok button to enabled or disaled
+    // enabled if both password and username entered
+    // disable if one is missing
+    if (!txt.empty() && !uname_.empty()) {
+        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+    } else {
+        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    }
     pass_ = txt;
 }
 
 void login::on_uText_textChanged()
 {
     string txt = ui->uText->toPlainText().toStdString();
+
+    // set ok button to enabled or disaled
+    // enabled if both password and username entered
+    // disable if one is missing
+    if (!txt.empty() && !pass_.empty()) {
+        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+    } else {
+        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    }
     uname_ = txt;
 }
 

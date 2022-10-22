@@ -93,9 +93,9 @@ void Budget::on_submitButton_clicked()
     // send input to database
     database_.insert_values(
                 data_.date,
-                stoi(data_.amount),
+                data_.amount,
                 data_.vendor,
-                stoi(data_.category),
+                data_.category,
                 data_.type
 
     );
