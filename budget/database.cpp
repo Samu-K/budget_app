@@ -61,9 +61,9 @@ map<string,int> Database::fetch_categories()
     // go through query and store results to vector
     while (query.next()) {
         int index = query.value(0).toInt();
-        QString catname = query.value(1).toString();
+        string catname = query.value(1).toString().toStdString();
 
-        category_index[catname.toStdString()] = index;
+        category_index[catname] = index;
     }
 
     return category_index;
@@ -71,7 +71,7 @@ map<string,int> Database::fetch_categories()
 }
 
 
-void Database::insert_values(string date_str,string amount_str,string vendor,string category_str, string type)
+void Database::insert_values(string date_str,string amount_str,string vendor,int category, string type)
     /*
      * Inserts the given values into our database
     */
@@ -94,14 +94,13 @@ void Database::insert_values(string date_str,string amount_str,string vendor,str
     }
 
     // check if data is missing
-    if (date_str.empty() || amount_str.empty() || vendor.empty() || category_str.empty()) {
+    if (date_str.empty() || amount_str.empty() || vendor.empty()) {
         cout << "Missing information" << endl;
         return;
     }
 
     // convert to proper values
     int amount = stoi(amount_str);
-    int category = stoi(category_str);
 
     // Add values to insert query
     insert_query.bindValue(":date",QString::fromStdString(date_str));

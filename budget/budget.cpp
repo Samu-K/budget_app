@@ -31,7 +31,7 @@ Budget::Budget(QWidget *parent)
 
     // connections for login
     connect(dialog,&login::accepted, this, &Budget::onAccept);
-    connect(dialog,&login::submitted,this,&Budget::onSubmitted);
+    connect(dialog,&login::submitted,this, &Budget::onSubmitted);
 
     // show the dialog window
     dialog->show();
@@ -61,8 +61,16 @@ void Budget::onSubmitted(login_info user)
 
     database_.db_connect(pass,uname);
 
-    // get all categories and store
-    map<string,int> category_index_ = database_.fetch_categories();
+    // fetch and setup categories
+    category_index_ = database_.fetch_categories();
+    Budget::populate_category(category_index_);
+}
+
+void Budget::populate_category(map<string, int>& category_index)
+{
+    for (auto const& [name,id] : category_index) {
+        ui->cSelect->addItem(QString::fromStdString(name));
+    }
 }
 
 Budget::~Budget()
@@ -90,12 +98,14 @@ void Budget::on_submitButton_clicked()
      * Also sets all input back to default
     */
 {
+    int cat_id = category_index_[data_.category];
+
     // send input to database
     database_.insert_values(
                 data_.date,
                 data_.amount,
                 data_.vendor,
-                data_.category,
+                cat_id,
                 data_.type
 
     );
@@ -142,5 +152,9 @@ void Budget::closeEvent(QCloseEvent *event) {
         database_.close();
 }
 
-
+// close when finish button clicked
+void Budget::on_pushButton_clicked()
+{
+    Budget::close();
+}
 
