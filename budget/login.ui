@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>468</width>
-    <height>308</height>
+    <height>278</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,23 +33,51 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Username</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPlainTextEdit" name="uText"/>
+        <widget class="QPlainTextEdit" name="uText">
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="tabChangesFocus">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Password</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPlainTextEdit" name="pText"/>
+        <widget class="QPlainTextEdit" name="pText">
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="tabChangesFocus">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

@@ -37,11 +37,16 @@ private slots:
 
     void closeEvent(QCloseEvent *event);
     void onAccept();
+    void on_pushButton_clicked();
+
 public slots:
     void onSubmitted(login_info user);
 
 private:
     Ui::MainWindow *ui;
+
+    // funcs
+    void populate_category(map<string,int>& category_index);
 
     // vars
     trsData data_;
