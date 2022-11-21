@@ -21,18 +21,18 @@ df["date"] = df["date"].apply(lambda x: x.strftime("%Y-%m-%d"))
 df["category"] = df["category"].apply(lambda x: x.lower())
 
 # set amounts to euros
-df["amount"] = df["amount"].apply(lambda x: x.replace("$","").replace("€","").strip())
+df["amount"] = df["amount"].apply(lambda x: x.replace("$","").replace('"',"").replace("€","").replace(" ","").replace(",",".").strip())
 
 cats_to_change = {
         "vehicle maintenence": "utility",
         "electric scooters": "e-scooters",
-        "viny": "entertainment",
+        "vinyl": "entertainment",
         "debt": "payback",
         "gas": "utility",
         "gifts": "shopping",
-        "gym memberships": "subscription (gym etc)",
+        "gym memberships": "subscriptions (gym etc)",
         "cleaning supplies": "utility",
-        "insurance": "subscription (gym etc)",
+        "insurance": "subscriptions (gym etc)",
         "subscriptions": "subscriptions (non-essential)",
         "public transportation": "public transport",
         "internet": "utility",
@@ -43,7 +43,8 @@ cats_to_change = {
         "books": "entertainment",
         "loans": "loan",
         "support": "social benefits",
-        "clothing": "clothes"
+        "clothing": "clothes",
+        "investements": "investments"
 }
 
 cat_ids = {
@@ -66,7 +67,7 @@ cat_ids = {
         "payback":17,
         "other":18,
         "utility":19,
-        "subs (non-essential)":20,
+        "subscriptions (non-essential)":20,
         "e-scooters":21,
         "apartment":22,
         "eating out":23

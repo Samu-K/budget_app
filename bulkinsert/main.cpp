@@ -9,6 +9,7 @@
 #include <fstream>
 #include <QVariant>
 #include <QSqlError>
+#include <vector>
 
 using namespace std;
 
@@ -63,8 +64,7 @@ void insert_values(int id, string date_str,float amount,string vendor,int catego
     QSqlQuery query;
 
     // prep trs insert
-    query.prepare("INSERT INTO transaction"
-                    "VALUES (:trs_id,:trs_date,:amount,:vendor)");
+    query.prepare("INSERT INTO public.transaction VALUES (:trs_id,:trs_date,:amount,:vendor)");
 
     // Add values to insert query
     query.bindValue(":trs_id",id);
@@ -73,8 +73,16 @@ void insert_values(int id, string date_str,float amount,string vendor,int catego
     query.bindValue(":vendor",QString::fromStdString(vendor));
 
     // Execute trs insert
-    query.exec();
-    query.clear();
+    bool status = query.exec();
+    if (!status) {
+        cout << "Error with query: " << query.lastQuery().toStdString() << endl;
+        cout << query.lastError().text().toStdString() << endl;
+        query.clear();
+        return;
+    } else {
+        cout << "Added in " << to_string(id) << " : " << vendor << " : " << to_string(amount) << endl;
+        query.clear();
+    }
 
     // link trs to category
     query.prepare("INSERT INTO in_category"
@@ -83,7 +91,17 @@ void insert_values(int id, string date_str,float amount,string vendor,int catego
     query.bindValue(":trs_id",id);
     query.bindValue(":cat_id",category);
     query.exec();
-    query.clear();
+    if (!status) {
+        cout << "Error with query: " << query.lastQuery().toStdString() << endl;
+        cout << query.lastError().text().toStdString() << endl;
+        query.clear();
+        return;
+    } else {
+        cout << "Linked " << id << " to " << category << endl;
+        query.clear();
+    }
+    cout << endl;
+
 }
 
 
@@ -101,6 +119,8 @@ int main(int argc, char *argv[])
     // Read in our data
     std::ifstream file("../scripts/clean_expenses.txt");
     if (file.is_open()) {
+        db.transaction();
+
         // Read file line by line
         std::string line;
         while (std::getline(file, line)) {
@@ -108,7 +128,7 @@ int main(int argc, char *argv[])
             size_t pos = 0;
             string token;
             int id = 0;
-            string data[5];
+            vector<string> data;
 
             // split the read lines
             // using comma as delimiter
@@ -117,11 +137,14 @@ int main(int argc, char *argv[])
                 line.erase(0,pos + 1);
 
                 // add values to an array
-                data[id] = token;
+                data.push_back(token);
                 ++id;
             }
+            if (data[1] == "date") {
+                continue;
+            }
             // final value
-            data[id] = line;
+            data.push_back(line);
 
             insert_values(stoi(data[0]),data[1],stof(data[3]),data[2],stoi(data[4]));
             }
@@ -129,6 +152,17 @@ int main(int argc, char *argv[])
         // close file after reading
         file.close();
         }
+
+    string commit = "no";
+    cout << "Do you want to commit inserts? " << endl;
+    //cin >> commit;
+
+
+    if (commit == "yes") {
+        db.commit();
+    } else {
+        db.rollback();
+    }
 
     db.close();
     a.closingDown();
