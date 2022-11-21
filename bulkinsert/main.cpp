@@ -64,7 +64,8 @@ void insert_values(int id, string date_str,float amount,string vendor,int catego
     QSqlQuery query;
 
     // prep trs insert
-    query.prepare("INSERT INTO public.transaction VALUES (:trs_id,:trs_date,:amount,:vendor)");
+    query.prepare("INSERT INTO public.transaction "
+                  "VALUES (:trs_id,:trs_date,:amount,:vendor) ");
 
     // Add values to insert query
     query.bindValue(":trs_id",id);
@@ -73,32 +74,26 @@ void insert_values(int id, string date_str,float amount,string vendor,int catego
     query.bindValue(":vendor",QString::fromStdString(vendor));
 
     // Execute trs insert
-    bool status = query.exec();
-    if (!status) {
+    if (!query.exec()) {
         cout << "Error with query: " << query.lastQuery().toStdString() << endl;
         cout << query.lastError().text().toStdString() << endl;
-        query.clear();
         return;
     } else {
         cout << "Added in " << to_string(id) << " : " << vendor << " : " << to_string(amount) << endl;
-        query.clear();
     }
 
     // link trs to category
-    query.prepare("INSERT INTO in_category"
-                    "VALUE (:trs_id,:cat_id)");
+    query.prepare("INSERT INTO public.in_category "
+                    "VALUES (:trs_id,:cat_id) ");
 
     query.bindValue(":trs_id",id);
     query.bindValue(":cat_id",category);
-    query.exec();
-    if (!status) {
+    if (!query.exec()) {
         cout << "Error with query: " << query.lastQuery().toStdString() << endl;
         cout << query.lastError().text().toStdString() << endl;
-        query.clear();
         return;
     } else {
         cout << "Linked " << id << " to " << category << endl;
-        query.clear();
     }
     cout << endl;
 
@@ -153,9 +148,9 @@ int main(int argc, char *argv[])
         file.close();
         }
 
-    string commit = "no";
+    string commit;
     cout << "Do you want to commit inserts? " << endl;
-    //cin >> commit;
+    cin >> commit;
 
 
     if (commit == "yes") {
