@@ -3,4 +3,4 @@ build-*/
 DS*
 keys/
 sqltools*
-scripts/data/
+.venv

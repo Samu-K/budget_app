@@ -1,7 +1,9 @@
 #include "database.hh"
+#include "qvariant.h"
 
 // include SQL related libraries
 #include <QSqlQuery>
+#include <QSqlError>
 
 // handling for streams
 #include <fstream>
@@ -13,9 +15,6 @@ using namespace std;
 Database::Database()
     /*
      * Database handles all puts and fetches to our database
-     * Needs the path to a file containing the password
-     *
-     * This functionality will be changed in future versions
     */
 {
 }
@@ -33,11 +32,18 @@ void Database::db_connect(string pass, string uname) {
                              + QString::fromStdString(uname)
                              + QString("};Pwd={")
                              + QString::fromStdString(pass)
-                             + QString("};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;Authentication=ActiveDirectoryPassword");
+                             + QString("};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30");
 
     // open our database
     db.setDatabaseName(db_url);
-    db.open();
+    bool db_status = db.open();
+
+    if (!db_status) {
+        cout << "Connection to database failed" << endl;
+        cout << "Error: " << db.lastError().text().toStdString() << endl;
+    } else {
+        cout << "Connection to database succesfull" << endl;
+    }
 
     // store to variable
     db_ = db;

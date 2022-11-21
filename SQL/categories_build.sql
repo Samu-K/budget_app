@@ -1,65 +1,69 @@
-INSERT INTO categories
-VALUES ('groceries',1,'expense');
+INSERT INTO category
+VALUES (1,'groceries','expense');
 
-INSERT INTO categories
-VALUES ('school food',1,'expense');
+INSERT INTO category
+VALUES (2,'school food','expense');
 
-INSERT INTO categories
-VALUES ('clothes',0,'expense');
+INSERT INTO category
+VALUES (3,'clothes','expense');
 
-INSERT INTO categories
-VALUES ('rent',1,'expense');
+INSERT INTO category
+VALUES (4,'rent','expense');
 
-INSERT INTO categories
-VALUES ('electronics',0,'expense');
+INSERT INTO category
+VALUES (5,'electronics','expense');
 
-INSERT INTO categories
-VALUES ('work',1,'expense');
+INSERT INTO category
+VALUES (6,'work','expense');
 
-INSERT INTO categories
-VALUES ('going out',0,'expense');
+INSERT INTO category
+VALUES (7,'going out','expense');
 
-INSERT INTO categories
-VALUES ('subscriptions (gym etc)',1,'expense');
+INSERT INTO category
+VALUES (8,'subscriptions (gym etc)','expense');
 
-INSERT INTO categories
-VALUES ('public transport',0,'expense');
+INSERT INTO category
+VALUES (9,'public transport','expense');
 
-INSERT INTO categories
-VALUES ('travel',0,'expense');
+INSERT INTO category
+VALUES (10,'travel','expense');
 
-INSERT INTO categories
-VALUES ('shopping',0,'expense');
+INSERT INTO category
+VALUES (11,'shopping','expense');
 
-INSERT INTO categories
-VALUES ('investments',1,'expense');
+INSERT INTO category
+VALUES (12,'investments','expense');
 
-INSERT INTO categories
-VALUES ('entertainment',1,'expense');
+INSERT INTO category
+VALUES (13,'entertainment','expense');
 
-INSERT INTO categories
-VALUES ('salary',1,'income');
+INSERT INTO category
+VALUES (14,'salary','income');
 
-INSERT INTO categories
-VALUES ('loan',1,'income');
+INSERT INTO category
+VALUES (15,'loan','income');
 
-INSERT INTO categories
-VALUES ('social benefits',1,'income');
+INSERT INTO category
+VALUES (16,'social benefits','income');
 
-INSERT INTO categories
-VALUES ('payback',0,'income');
+INSERT INTO category
+VALUES (17,'payback','income');
 
-INSERT INTO categories
-VALUES ('other',0,'income');
+INSERT INTO category
+VALUES (18,'other','income');
 
-INSERT INTO categories
-VALUES ('utility',0,'expense');
+INSERT INTO category
+VALUES (19,'utility','expense');
 
-INSERT INTO categories
-VALUES ('subs (non-essential)',1,'expense');
+INSERT INTO category
+VALUES (20,'subs (non-essential)','expense');
 
-INSERT INTO categories
-VALUES ('e-scooters',1,'expense');
+INSERT INTO category
+VALUES (21,'e-scooters','expense');
 
-INSERT INTO categories
-VALUES ('apartment',1,'expense');
+INSERT INTO category
+VALUES (22,'apartment','expense');
+
+INSERT INTO category
+VALUES (23, 'eating out', 'expense');
+
