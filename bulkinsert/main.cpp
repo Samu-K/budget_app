@@ -8,13 +8,12 @@
 #include <string>
 #include <fstream>
 #include <QVariant>
-#include <QSqlError>
 #include <vector>
 
 using namespace std;
 
 
-// Setup helper functions
+// Read password from file
 QString fetch_password(string fp) {
     std::ifstream file(fp);
     std::string line;
@@ -36,11 +35,12 @@ QString fetch_password(string fp) {
     return pass;
 }
 
+// connect to our database
 QSqlDatabase setup_db(QString password) {
-    // Setup our database
+    // Set driver
     QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
 
-    // Construct the url
+    // Set connection options
     db.setHostName("trsdata.postgres.database.azure.com");
     db.setPort(5432);
     db.setDatabaseName("postgres");
@@ -48,6 +48,7 @@ QSqlDatabase setup_db(QString password) {
     db.setPassword(password);
     db.setConnectOptions("requiressl=1");
 
+    // Make sure database was connected to
     bool status = db.open();
     if (!status) {
         cout << "Error: " + db.lastError().driverText().toStdString() << endl;
@@ -112,8 +113,14 @@ int main(int argc, char *argv[])
     QSqlDatabase db = setup_db(password);
 
     // Read in our data
-    std::ifstream file("../scripts/clean_expenses.txt");
+    cout << "Give input file: ";
+    string input_fp;
+    cin >> input_fp;
+
+    // read file
+    std::ifstream file(input_fp);
     if (file.is_open()) {
+        cout << "Transaction started" << endl;
         db.transaction();
 
         // Read file line by line
@@ -135,12 +142,15 @@ int main(int argc, char *argv[])
                 data.push_back(token);
                 ++id;
             }
+            // skip header row
             if (data[1] == "date") {
                 continue;
             }
+
             // final value
             data.push_back(line);
 
+            // push values to database
             insert_values(stoi(data[0]),data[1],stof(data[3]),data[2],stoi(data[4]));
             }
 
@@ -148,17 +158,28 @@ int main(int argc, char *argv[])
         file.close();
         }
 
-    string commit;
-    cout << "Do you want to commit inserts? " << endl;
+    // check if we should commit or roll transaction back
+    // this is especially useful for testing
+    char commit;
+    cout << "Do you want to commit inserts? (y / n)" << endl;
     cin >> commit;
 
 
-    if (commit == "yes") {
-        db.commit();
-    } else {
-        db.rollback();
+    while (true) {
+        if (commit == 'y') {
+            db.commit();
+            cout << "Commited" << endl;
+            break;
+        } else if (commit == 'n'){
+            db.rollback();
+            cout << "Transaction rolled back" << endl;
+            break;
+        } else {
+            cout << "invalid input" << endl;
+        }
     }
 
+    // close everything down
     db.close();
     a.closingDown();
     return 0;
