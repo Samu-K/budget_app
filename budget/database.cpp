@@ -47,7 +47,7 @@ void Database::db_connect(string pass, string uname) {
     // store to variable
     db_ = db;
 }
-map<string,int> Database::fetch_categories()
+map<string,pair<int,string>> Database::fetch_categories()
     /*
      * Fetches all current categories
      * logged into database
@@ -57,7 +57,7 @@ map<string,int> Database::fetch_categories()
 {
     // helper vars
     QSqlQuery query;
-    map<string,int> category_index;
+    map<string,pair<int,string>> category_index;
 
     // prepare and execute query
     query.prepare("SELECT * FROM category");
@@ -67,8 +67,13 @@ map<string,int> Database::fetch_categories()
     while (query.next()) {
         int index = query.value(0).toInt();
         string catname = query.value(1).toString().toStdString();
+        string type = query.value(2).toString().toStdString();
 
-        category_index[catname] = index;
+        pair<int,string> data;
+        data.first = index;
+        data.second = type;
+
+        category_index[catname] = data;
     }
 
     return category_index;
@@ -76,7 +81,11 @@ map<string,int> Database::fetch_categories()
 }
 
 
-void Database::insert_values(string date_str,string amount_str,string vendor,int category)
+void Database::insert_values(
+        string date_str,
+        string amount_str,
+        string vendor,
+        int category)
     /*
      * Inserts the given values into our database
     */
@@ -107,21 +116,21 @@ void Database::insert_values(string date_str,string amount_str,string vendor,int
         cout << query.lastError().text().toStdString() << endl;
         return;
     } else {
-        cout << "Added in " << to_string(id) << " : " << vendor << " : " << to_string(amount) << endl;
+        cout << "Added in " << to_string(max_id+1) << " : " << vendor << " : " << amount_str << endl;
     }
 
     // link trs to category
     query.prepare("INSERT INTO public.in_category "
                     "VALUES (:trs_id,:cat_id) ");
 
-    query.bindValue(":trs_id",id);
+    query.bindValue(":trs_id",max_id+1);
     query.bindValue(":cat_id",category);
     if (!query.exec()) {
         cout << "Error with query: " << query.lastQuery().toStdString() << endl;
         cout << query.lastError().text().toStdString() << endl;
         return;
     } else {
-        cout << "Linked " << id << " to " << category << endl;
+        cout << "Linked " << max_id+1 << " to " << category << endl;
     }
     cout << endl;
 }

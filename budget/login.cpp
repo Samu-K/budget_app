@@ -10,7 +10,7 @@ login::login(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setDefault(true);
 }
 
 login::~login()

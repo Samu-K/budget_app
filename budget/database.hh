@@ -16,7 +16,7 @@ public:
 
     // funcs
     void db_connect(string pass, string uname);
-    map<string,int> fetch_categories();
+    map<string,pair<int,string>> fetch_categories();
     void insert_values(string date_str,string amount_str,string vendor,int category);
     void close();
 

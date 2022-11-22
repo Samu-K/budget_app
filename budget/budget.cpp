@@ -11,6 +11,7 @@
 // Other useful libraries
 #include <QApplication>
 #include <iostream>
+#include <QListWidgetItem>
 
 using namespace std;
 
@@ -38,7 +39,6 @@ Budget::Budget(QWidget *parent)
 
     // set "expense" as default value for type
     ui->tSelect->setCurrentRow(0);
-    data_.type = "Expense";
 
     // setup our database
     Database database_ = Database();
@@ -62,14 +62,29 @@ void Budget::onSubmitted(login_info user)
     database_.db_connect(pass,uname);
 
     // fetch and setup categories
-    category_index_ = database_.fetch_categories();
-    Budget::populate_category(category_index_);
+    original_categories_ = database_.fetch_categories();
+    type_ = "expense";
+    populate_category();
 }
 
-void Budget::populate_category(map<string, int>& category_index)
+void Budget::populate_category()
 {
-    for (auto const& [name,id] : category_index) {
+    filter_category();
+
+    ui->cSelect->clear();
+
+    for (auto const& [name,id] : filtered_categories_) {
         ui->cSelect->addItem(QString::fromStdString(name));
+    }
+}
+
+void Budget::filter_category()
+{
+    filtered_categories_ = {};
+    for (auto const& [name,pair] : original_categories_) {
+        if (pair.second == type_) {
+            filtered_categories_[name] = pair.first;
+        }
     }
 }
 
@@ -98,16 +113,14 @@ void Budget::on_submitButton_clicked()
      * Also sets all input back to default
     */
 {
-    int cat_id = category_index_[data_.category];
+    int cat_id = filtered_categories_[data_.category];
 
     // send input to database
     database_.insert_values(
                 data_.date,
                 data_.amount,
                 data_.vendor,
-                cat_id,
-                data_.type
-
+                cat_id
     );
 
     // reset all values to default
@@ -129,7 +142,10 @@ void Budget::on_cSelect_itemPressed(QListWidgetItem *item)
 void Budget::on_tSelect_itemPressed(QListWidgetItem *item)
 {
     string txt = item->text().toStdString();
-    data_.type = txt;
+    type_ = txt;
+    cout << "type selected" << endl;
+
+    populate_category();
 }
 
 

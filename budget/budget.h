@@ -11,7 +11,7 @@
 
 // create structure to represent transaction data
 struct trsData {
-    std::string date, amount, vendor, category, type;
+    std::string date, amount, vendor, category;
 };
 
 QT_BEGIN_NAMESPACE
@@ -46,12 +46,16 @@ private:
     Ui::MainWindow *ui;
 
     // funcs
-    void populate_category(map<string,int>& category_index);
+    void populate_category();
+    void filter_category();
 
     // vars
     trsData data_;
+    string type_;
     Database database_;
-    map<string,int> category_index_;
     string pass_, uname_;
+    map<string,pair<int,string>> original_categories_;
+    map<string,int> filtered_categories_;
 };
+
 #endif // BUDGET_H
