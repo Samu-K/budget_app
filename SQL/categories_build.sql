@@ -50,7 +50,7 @@ INSERT INTO category
 VALUES (17,'payback','income');
 
 INSERT INTO category
-VALUES (18,'other','income');
+VALUES (18,'other income','income');
 
 INSERT INTO category
 VALUES (19,'utility','expense');
@@ -67,3 +67,8 @@ VALUES (22,'apartment','expense');
 INSERT INTO category
 VALUES (23, 'eating out', 'expense');
 
+INSERT INTO category
+VALUES (24, 'investment income', 'income');
+
+INSERT INTO category
+VALUES (25, 'other expenses', 'expense');

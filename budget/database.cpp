@@ -24,25 +24,24 @@ void Database::db_connect(string pass, string uname) {
      * Connects to our database with the given password and username
     */
 
-    // Setup our database
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+    // Set driver
+    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
 
-    // Construct the url
-    QString db_url = QString("Driver={ODBC Driver 13 for SQL Server};Server=tcp:budgetdata.database.windows.net,1433;Database=budget;Uid={")
-                             + QString::fromStdString(uname)
-                             + QString("};Pwd={")
-                             + QString::fromStdString(pass)
-                             + QString("};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30");
+    // Set connection options
+    db.setHostName("trsdata.postgres.database.azure.com");
+    db.setPort(5432);
+    db.setDatabaseName("postgres");
+    db.setUserName(QString::fromStdString(uname));
+    db.setPassword(QString::fromStdString(pass));
+    db.setConnectOptions("requiressl=1");
 
-    // open our database
-    db.setDatabaseName(db_url);
-    bool db_status = db.open();
-
-    if (!db_status) {
-        cout << "Connection to database failed" << endl;
-        cout << "Error: " << db.lastError().text().toStdString() << endl;
+    // Make sure database was connected to
+    bool status = db.open();
+    if (!status) {
+        cout << "Error: " + db.lastError().driverText().toStdString() << endl;
+        cout << db.lastError().databaseText().toStdString() << endl;
     } else {
-        cout << "Connection to database succesfull" << endl;
+        cout << "db open" << endl;
     }
 
     // store to variable
@@ -61,7 +60,7 @@ map<string,int> Database::fetch_categories()
     map<string,int> category_index;
 
     // prepare and execute query
-    query.prepare("SELECT * FROM categories");
+    query.prepare("SELECT * FROM category");
     query.exec();
 
     // go through query and store results to vector
@@ -77,45 +76,54 @@ map<string,int> Database::fetch_categories()
 }
 
 
-void Database::insert_values(string date_str,string amount_str,string vendor,int category, string type)
+void Database::insert_values(string date_str,string amount_str,string vendor,int category)
     /*
      * Inserts the given values into our database
     */
 {
+    // query for max id
+    QSqlQuery id_query;
+
+    id_query.exec("SELECT MAX(trs_id) FROM transaction;");
+    id_query.next();
+    int max_id = id_query.value(0).toInt();
 
     // Init our query
-    QSqlQuery insert_query;
+    QSqlQuery query;
 
-    // Our target table depends on previous input
-    if (type == "Expense") {
-        insert_query.prepare("INSERT INTO expenses "
-                        "VALUES (:date,:amount,:vendor,:category)");
-
-    } else if (type == "Income") {
-        insert_query.prepare("INSERT INTO income "
-                        "VALUES (:date,:amount,:vendor,:category)");
-    } else {
-        cout << "invalid type: " << type << endl;
-        return;
-    }
-
-    // check if data is missing
-    if (date_str.empty() || amount_str.empty() || vendor.empty()) {
-        cout << "Missing information" << endl;
-        return;
-    }
-
-    // convert to proper values
-    int amount = stoi(amount_str);
+    // prep trs insert
+    query.prepare("INSERT INTO public.transaction "
+                  "VALUES (:trs_id,:trs_date,:amount,:vendor) ");
 
     // Add values to insert query
-    insert_query.bindValue(":date",QString::fromStdString(date_str));
-    insert_query.bindValue(":amount",amount);
-    insert_query.bindValue(":vendor",QString::fromStdString(vendor));
-    insert_query.bindValue(":category",category);
+    query.bindValue(":trs_id",max_id+1);
+    query.bindValue(":trs_date",QString::fromStdString(date_str));
+    query.bindValue(":amount",stof(amount_str));
+    query.bindValue(":vendor",QString::fromStdString(vendor));
 
-    // Execute our query
-    insert_query.exec();
+    // Execute trs insert
+    if (!query.exec()) {
+        cout << "Error with query: " << query.lastQuery().toStdString() << endl;
+        cout << query.lastError().text().toStdString() << endl;
+        return;
+    } else {
+        cout << "Added in " << to_string(id) << " : " << vendor << " : " << to_string(amount) << endl;
+    }
+
+    // link trs to category
+    query.prepare("INSERT INTO public.in_category "
+                    "VALUES (:trs_id,:cat_id) ");
+
+    query.bindValue(":trs_id",id);
+    query.bindValue(":cat_id",category);
+    if (!query.exec()) {
+        cout << "Error with query: " << query.lastQuery().toStdString() << endl;
+        cout << query.lastError().text().toStdString() << endl;
+        return;
+    } else {
+        cout << "Linked " << id << " to " << category << endl;
+    }
+    cout << endl;
 }
 
 void Database::close() {

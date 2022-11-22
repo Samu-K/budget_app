@@ -41,10 +41,9 @@ cats_to_change = {
         "gambling": "entertainment",
         "games": "entertainment",
         "books": "entertainment",
-        "loans": "loan",
-        "support": "social benefits",
         "clothing": "clothes",
-        "investements": "investments"
+        "investements": "investments",
+        "other": "other expenses"
 }
 
 cat_ids = {
@@ -61,19 +60,16 @@ cat_ids = {
         "shopping":11,
         "investments":12,
         "entertainment":13,
-        "salary":14,
-        "loan":15,
-        "social benefits":16,
-        "payback":17,
-        "other":18,
         "utility":19,
         "subscriptions (non-essential)":20,
         "e-scooters":21,
         "apartment":22,
-        "eating out":23
+        "eating out":23,
+        "other expenses":25
+
 }
 
-# change category names
+# changei category names
 for old, new in cats_to_change.items():
     df.loc[df["category"] == old,"category"] = new
 
