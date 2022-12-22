@@ -23,18 +23,18 @@ ApplicationWindow {
         // sidetab icons
         ColumnLayout {
             width: sideTab.width
-            spacing: 55
+            spacing: 80
             anchors.horizontalCenter: sideTab.horizontalCenter
             anchors.top: sideTab.top
             anchors.topMargin: 35
 
-            Rectangle {
-                Layout.preferredWidth:  104
-                Layout.preferredHeight: width
+            // dashboard
+            Image  {
+                Layout.preferredWidth:  80
+                Layout.preferredHeight: 70
                 Layout.alignment: Qt.AlignCenter
 
-                radius: sideTab.width*0.5
-                color: "black"
+                source: "qrc:/design/dash.png"
 
                 Text {
                     text: qsTr("Dashboard")
@@ -46,13 +46,13 @@ ApplicationWindow {
                 }
             }
 
-            Rectangle {
-                Layout.preferredWidth:  104
-                Layout.preferredHeight: width
+            // transactions
+            Image {
+                Layout.preferredWidth:  80
+                Layout.preferredHeight: 70
                 Layout.alignment: Qt.AlignCenter
 
-                radius: sideTab.width*0.5
-                color: "black"
+                source: "qrc:/design/transaction.png"
 
                 Text {
                     text: qsTr("Transactions")
@@ -64,13 +64,13 @@ ApplicationWindow {
                 }
             }
 
-            Rectangle {
-                Layout.preferredWidth:  104
-                Layout.preferredHeight: width
+            // analytics
+            Image {
+                Layout.preferredWidth:  80
+                Layout.preferredHeight: 70
                 Layout.alignment: Qt.AlignCenter
 
-                radius: sideTab.width*0.5
-                color: "black"
+                source: "qrc:/design/analytics.png"
 
                 Text {
                     text: qsTr("Analytics")
@@ -91,22 +91,20 @@ ApplicationWindow {
             anchors.bottom: sideTab.bottom
             anchors.bottomMargin: 25
 
-            Rectangle {
-                Layout.preferredWidth: 72
-                Layout.preferredHeight: width
+            Image {
+                Layout.preferredWidth: 90
+                Layout.preferredHeight: 90
                 Layout.alignment: Qt.AlignCenter
 
-                radius: width*0.5
-                color: "black"
+                source: "qrc:/design/user_icon_colored.png"
             }
 
-            Rectangle {
-                Layout.preferredWidth: 72
-                Layout.preferredHeight: width
+            Image {
+                Layout.preferredWidth: 60
+                Layout.preferredHeight: 60
                 Layout.alignment: Qt.AlignCenter
 
-                radius: width*0.5
-                color: "black"
+                source: "qrc:/design/settings_white.png"
             }
         }
     }

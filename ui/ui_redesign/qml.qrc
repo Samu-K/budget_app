@@ -8,5 +8,8 @@
         <file>design/user_icon.png</file>
         <file>design/user_icon_colored.png</file>
         <file>dashboard.qml</file>
+        <file>design/analytics.png</file>
+        <file>design/dash.png</file>
+        <file>design/transaction.png</file>
     </qresource>
 </RCC>
