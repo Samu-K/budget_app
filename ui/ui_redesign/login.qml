@@ -16,7 +16,7 @@ Window {
         height: width
         radius: width
         gradient: RadialGradient {
-            GradientStop { position: 0.0; color: "#2da950" }
+            GradientStop { position: 0.0; color: "#1da544" }
             GradientStop { position: 1.0; color: "#144B24" }
         }
         anchors.horizontalCenter: parent.horizontalCenter
@@ -34,7 +34,7 @@ Window {
          border.width: 1
          radius: width*0.5
          anchors.top: parent.top
-         anchors.topMargin: 15
+         anchors.topMargin: 30
          anchors.horizontalCenter: parent.horizontalCenter
 
          // user icon
@@ -51,23 +51,24 @@ Window {
     // Username field
     Text {
         id: unameText
-        text: "Username"
+        text: qsTr("Username")
         color: "white"
         font.pointSize: 32
         anchors.verticalCenter: userBg.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenterOffset: 35
+        anchors.verticalCenterOffset: 45
     }
 
     Rectangle {
         id: uInputBox
         width: 370
         height: 40
+        radius: 8
         border.color: "white"
         border.width: 10
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: unameText.bottom
-        anchors.verticalCenterOffset: 30
+        anchors.verticalCenterOffset: 25
 
         TextInput {
             id: unameInput
@@ -82,23 +83,24 @@ Window {
     // Password field
     Text {
         id: passText
-        text: "Password"
+        text: qsTr("Password")
         color: "white"
         font.pointSize: 32
         anchors.verticalCenter: uInputBox.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenterOffset: 25
+        anchors.verticalCenterOffset: 30
     }
 
     Rectangle {
         id: pInputBox
         width: 370
         height: 40
+        radius: 8
         border.color: "white"
         border.width: 10
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: passText.bottom
-        anchors.verticalCenterOffset: 30
+        anchors.verticalCenterOffset: 25
 
         TextInput {
             id: passInput
@@ -122,12 +124,12 @@ Window {
                         (parent.hovered ? "#515358" : "#202123")
         }
 
-        text: "LOGIN"
+        text: qsTr("LOGIN")
         font.pixelSize: 24
         font.bold: true
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: pInputBox.bottom
-        anchors.verticalCenterOffset: 50
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 50
     }
 
     // remember me checkbox

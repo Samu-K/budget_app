@@ -7,5 +7,6 @@
         <file>design/settings_white.png</file>
         <file>design/user_icon.png</file>
         <file>design/user_icon_colored.png</file>
+        <file>dashboard.qml</file>
     </qresource>
 </RCC>
