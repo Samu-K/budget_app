@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls
+import QtQuick.Shapes 1.4
 
 Window {
     // main login window
@@ -8,12 +9,25 @@ Window {
     height: 500
     visible: true
     title: qsTr("Login")
-    color: "#144B24"
+
+    Rectangle {
+        id: gradient
+        width: parent.height*1.5
+        height: width
+        radius: width
+        gradient: RadialGradient {
+            GradientStop { position: 0.0; color: "#2da950" }
+            GradientStop { position: 1.0; color: "#144B24" }
+        }
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
 
     // user icon background
     Rectangle {
          id: userBg
-         width: 170
+         width: 130
          height: width
          color: "#6E89A8"
          border.color: "black"
@@ -26,8 +40,8 @@ Window {
          // user icon
          Image {
              id: usrImage
-             fillMode: Image.fit
-             source: "qrc:/user_icon_colored.png"
+             fillMode: Image.PreserveAspectFit
+             source: "qrc:/design/user_icon.png"
              anchors.fill: parent
              anchors.verticalCenter: parent.verticalCenter
              anchors.horizontalCenter: parent.horizontalCenter
@@ -38,10 +52,11 @@ Window {
     Text {
         id: unameText
         text: "Username"
+        color: "white"
         font.pointSize: 32
         anchors.verticalCenter: userBg.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenterOffset: 20
+        anchors.verticalCenterOffset: 35
     }
 
     Rectangle {
@@ -68,6 +83,7 @@ Window {
     Text {
         id: passText
         text: "Password"
+        color: "white"
         font.pointSize: 32
         anchors.verticalCenter: uInputBox.bottom
         anchors.horizontalCenter: parent.horizontalCenter

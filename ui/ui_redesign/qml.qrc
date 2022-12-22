@@ -1,6 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>login.qml</file>
-        <file>user_icon_colored.png</file>
+        <file>design/key.png</file>
+        <file>design/settings.png</file>
+        <file>design/settings.xcf</file>
+        <file>design/settings_white.png</file>
+        <file>design/user_icon.png</file>
+        <file>design/user_icon_colored.png</file>
     </qresource>
 </RCC>

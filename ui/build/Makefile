@@ -600,7 +600,12 @@ compiler_rcc_clean:
 qrc_qml.cpp: ../ui_redesign/qml.qrc \
 		/Users/SamuK/Qt/6.3.1/macos/libexec/rcc \
 		../ui_redesign/login.qml \
-		../ui_redesign/user_icon_colored.png
+		../ui_redesign/design/settings.xcf \
+		../ui_redesign/design/settings_white.png \
+		../ui_redesign/design/key.png \
+		../ui_redesign/design/user_icon.png \
+		../ui_redesign/design/settings.png \
+		../ui_redesign/design/user_icon_colored.png
 	/Users/SamuK/Qt/6.3.1/macos/libexec/rcc -name qml ../ui_redesign/qml.qrc -o qrc_qml.cpp
 
 compiler_moc_header_make_all:
