@@ -23,62 +23,130 @@ ApplicationWindow {
         // sidetab icons
         ColumnLayout {
             width: sideTab.width
-            spacing: 80
+            spacing: 40
             anchors.horizontalCenter: sideTab.horizontalCenter
             anchors.top: sideTab.top
             anchors.topMargin: 35
 
             // dashboard
-            Image  {
-                Layout.preferredWidth:  80
-                Layout.preferredHeight: 70
+            Rectangle {
+                id: dshButton
+                Layout.preferredWidth:  parent.width
+                Layout.preferredHeight: 120
                 Layout.alignment: Qt.AlignCenter
 
-                source: "qrc:/design/dash.png"
+                color: sideTab.color
 
-                Text {
-                    text: qsTr("Dashboard")
-                    font.pointSize: 24
-                    color: "white"
+                Image {
+                    width: 80
+                    height: 75
                     anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.bottom
-                    anchors.topMargin: 10
+                    anchors.top: parent.top
+                    anchors.topMargin: 5
+
+
+                    source: "qrc:/design/dash.png"
+
+                    Text {
+                        text: qsTr("Analytics")
+                        font.pointSize: 24
+                        color: "white"
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: parent.bottom
+                        anchors.topMargin: 10
+                    }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: {
+                        parent.color = "#5E5E5E"
+                    }
+                    onExited: {
+                        parent.color = sideTab.color
+                    }
                 }
             }
 
-            // transactions
-            Image {
-                Layout.preferredWidth:  80
-                Layout.preferredHeight: 70
+            // transaction
+            Rectangle {
+                id: trsButton
+                Layout.preferredWidth:  parent.width
+                Layout.preferredHeight: 120
                 Layout.alignment: Qt.AlignCenter
 
-                source: "qrc:/design/transaction.png"
+                color: sideTab.color
 
-                Text {
-                    text: qsTr("Transactions")
-                    font.pointSize: 24
-                    color: "white"
+                Image {
+                    width: 80
+                    height: 75
                     anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.bottom
-                    anchors.topMargin: 10
+                    anchors.top: parent.top
+                    anchors.topMargin: 5
+
+                    source: "qrc:/design/transaction.png"
+
+                    Text {
+                        text: qsTr("Transactions")
+                        font.pointSize: 24
+                        color: "white"
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: parent.bottom
+                        anchors.topMargin: 10
+                    }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: {
+                        parent.color = "#5E5E5E"
+                    }
+                    onExited: {
+                        parent.color = sideTab.color
+                    }
                 }
             }
 
             // analytics
-            Image {
-                Layout.preferredWidth:  80
-                Layout.preferredHeight: 70
+            Rectangle {
+                id: anlButton
+                Layout.preferredWidth:  parent.width
+                Layout.preferredHeight: 120
                 Layout.alignment: Qt.AlignCenter
 
-                source: "qrc:/design/analytics.png"
+                color: sideTab.color
 
-                Text {
-                    text: qsTr("Analytics")
-                    font.pointSize: 24
-                    color: "white"
+                Image {
+                    width: 80
+                    height: 75
                     anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.bottom
-                    anchors.topMargin: 10
+                    anchors.top: parent.top
+                    anchors.topMargin: 5
+
+
+                    source: "qrc:/design/analytics.png"
+
+                    Text {
+                        text: qsTr("Analytics")
+                        font.pointSize: 24
+                        color: "white"
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: parent.bottom
+                        anchors.topMargin: 10
+                    }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: {
+                        parent.color = "#5E5E5E"
+                    }
+                    onExited: {
+                        parent.color = sideTab.color
+                    }
                 }
             }
         }
@@ -91,20 +159,66 @@ ApplicationWindow {
             anchors.bottom: sideTab.bottom
             anchors.bottomMargin: 25
 
-            Image {
-                Layout.preferredWidth: 90
-                Layout.preferredHeight: 90
+            // user button
+            Rectangle {
+                id: userButton
+                Layout.preferredWidth:  sideTab.width
+                Layout.preferredHeight: 85
                 Layout.alignment: Qt.AlignCenter
 
-                source: "qrc:/design/user_icon_colored.png"
+                color: sideTab.color
+
+                Image {
+                    width: 85
+                    height: 85
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    source: "qrc:/design/user_icon_colored.png"
+
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: {
+                        userButton.color = "#5E5E5E"
+                    }
+                    onExited: {
+                        userButton.color = sideTab.color
+                    }
+                }
             }
 
-            Image {
-                Layout.preferredWidth: 60
-                Layout.preferredHeight: 60
+            // settings button
+            Rectangle {
+                id: settingsButton
+                Layout.preferredWidth: sideTab.width
+                Layout.preferredHeight: 85
                 Layout.alignment: Qt.AlignCenter
 
-                source: "qrc:/design/settings_white.png"
+                color: sideTab.color
+
+                Image {
+                    width: 70
+                    height: 70
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    source: "qrc:/design/settings_white.png"
+
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: {
+                        settingsButton.color = "#5E5E5E"
+                    }
+                    onExited: {
+                        settingsButton.color = sideTab.color
+                    }
+                }
             }
         }
     }
