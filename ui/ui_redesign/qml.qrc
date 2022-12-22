@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>login.qml</file>
+        <file>user_icon_colored.png</file>
     </qresource>
 </RCC>
