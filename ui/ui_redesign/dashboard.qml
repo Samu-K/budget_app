@@ -222,4 +222,42 @@ ApplicationWindow {
             }
         }
     }
+
+    Text {
+        id: actText
+        text: qsTr("Accounts")
+        font.pointSize: 32
+        color: "white"
+        anchors.left: sideTab.right
+        anchors.leftMargin: 100
+        anchors.top: parent.top
+        anchors.topMargin: 35
+    }
+
+    ListView {
+        id: accountList
+        width: 330
+        height: 190
+        anchors.horizontalCenter: actText.horizontalCenter
+        anchors.top: actText.bottom
+        anchors.topMargin: 10
+
+        model: ["Credit card", "Investments", "Savings"]
+
+        delegate: Button {
+            text: modelData
+            font.pointSize: 24
+
+            background: Rectangle {
+                width: accountList.width
+                color: "#BABABA"
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onHoveredChanged: parent.color = hovered ? "#666666" : "#BABABA"
+                }
+            }
+        }
+    }
+
 }
