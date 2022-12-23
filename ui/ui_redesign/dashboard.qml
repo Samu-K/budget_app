@@ -2,8 +2,6 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import "qrc:/components/dateButton.qml" as DateButton
-
 ApplicationWindow {
     id: root
     visible: true
@@ -45,7 +43,6 @@ ApplicationWindow {
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: parent.top
                     anchors.topMargin: 5
-
 
                     source: "qrc:/design/dash.png"
 
@@ -343,37 +340,43 @@ ApplicationWindow {
 
     // date select
     Rectangle {
-        id: dateSelect
+        id: dateSelectBg
         width: sumBg.width
         height: 50
         color: sideTab.color
         anchors.horizontalCenter: sumBg.horizontalCenter
         anchors.bottom: qckList.bottom
 
+        // quick links buttons
         RowLayout {
-            Button {
-                text: "3M"
-                Button.background: DateButton.dateButtonComponent
-            }
-            Button {
-                text: "6M"
-                Button.background: DateButton.dateButtonComponent
-            }
-            Button {
-                text: "1Y"
-                Button.background: DateButton.dateButtonComponent
-            }
-            Button {
-                text: "YTD"
-                Button.background: DateButton.dateButtonComponent
-            }
-            Button {
-                text: "3V"
-                Button.background: DateButton.dateButtonComponent
-            }
-            Button {
-                text: "5V"
-                Button.background: DateButton.dateButtonComponent
+            id: dateButtons
+            spacing: 80
+            anchors.left: parent.left
+            anchors.leftMargin: 80
+            anchors.right: parent.right
+            anchors.rightMargin: 80
+
+            height: dateSelectBg.height
+            Repeater {
+                model: ["3M","6M", "1Y", "3Y", "5Y", "Max"]
+
+                Button {
+                    text: modelData
+                    font.pointSize: 26
+
+                    background: Rectangle {
+                        color: sideTab.color
+                        anchors.top: dateSelectBg.top
+                        anchors.bottom: dateSelectBg.bottom
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onEntered: parent.color = "#5E5E5E"
+                            onExited: parent.color = dateSelectBg.color
+                        }
+                    }
+                }
             }
         }
     }
