@@ -383,7 +383,8 @@ ApplicationWindow {
 
     // current month
     Rectangle {
-        width: (root.width-sideTab.width)/2 -60
+        id: crMonthBg
+        width: (root.width-sideTab.width)/2 -80
         height: 50
         color: sideTab.color
         anchors.top: dateSelectBg.bottom
@@ -401,12 +402,12 @@ ApplicationWindow {
 
     // recent transactions
     Rectangle {
-        width: (root.width-sideTab.width)/2 -60
-        height: 50
+        width: crMonthBg.width
+        height: crMonthBg.height
         color: sideTab.color
         anchors.top: dateSelectBg.bottom
         anchors.topMargin: 25
-        anchors.left: sideTab.right
+        anchors.left: qckList.left
 
         Text {
             text: qsTr("Recent transactions")
