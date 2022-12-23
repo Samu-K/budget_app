@@ -11,5 +11,6 @@
         <file>design/analytics.png</file>
         <file>design/dash.png</file>
         <file>design/transaction.png</file>
+        <file>components/dateButton.qml</file>
     </qresource>
 </RCC>

@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import "qrc:/components/dateButton.qml" as DateButton
+
 ApplicationWindow {
     id: root
     visible: true
@@ -286,6 +288,7 @@ ApplicationWindow {
     }
 
 
+    // quick links buttons
     ListView {
         id: qckList
         width: 280
@@ -313,4 +316,65 @@ ApplicationWindow {
         }
     }
 
+    // Summary screen
+    Text {
+        id: sumText
+        text: qsTr("Summary")
+        font.pointSize: 32
+        color: "white"
+
+        anchors.left: accountList.right
+        anchors.leftMargin: 25
+        anchors.verticalCenter: actText.verticalCenter
+
+    }
+
+    // Summary background
+    Rectangle {
+        id: sumBg
+        width: 860
+        color: "#8E9EB8"
+        anchors.left: accountList.right
+        anchors.leftMargin: 25
+        anchors.top: accountList.top
+        anchors.bottom: qckList.bottom
+        anchors.bottomMargin: 65
+    }
+
+    // date select
+    Rectangle {
+        id: dateSelect
+        width: sumBg.width
+        height: 50
+        color: sideTab.color
+        anchors.horizontalCenter: sumBg.horizontalCenter
+        anchors.bottom: qckList.bottom
+
+        RowLayout {
+            Button {
+                text: "3M"
+                Button.background: DateButton.dateButtonComponent
+            }
+            Button {
+                text: "6M"
+                Button.background: DateButton.dateButtonComponent
+            }
+            Button {
+                text: "1Y"
+                Button.background: DateButton.dateButtonComponent
+            }
+            Button {
+                text: "YTD"
+                Button.background: DateButton.dateButtonComponent
+            }
+            Button {
+                text: "3V"
+                Button.background: DateButton.dateButtonComponent
+            }
+            Button {
+                text: "5V"
+                Button.background: DateButton.dateButtonComponent
+            }
+        }
+    }
 }
