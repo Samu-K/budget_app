@@ -380,4 +380,41 @@ ApplicationWindow {
             }
         }
     }
+
+    // current month
+    Rectangle {
+        width: (root.width-sideTab.width)/2 -60
+        height: 50
+        color: sideTab.color
+        anchors.top: dateSelectBg.bottom
+        anchors.topMargin: 25
+        anchors.right: sumBg.right
+
+        Text {
+            text: qsTr("Current month")
+            font.pointSize: 36
+            color: "white"
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+        }
+    }
+
+    // recent transactions
+    Rectangle {
+        width: (root.width-sideTab.width)/2 -60
+        height: 50
+        color: sideTab.color
+        anchors.top: dateSelectBg.bottom
+        anchors.topMargin: 25
+        anchors.left: sideTab.right
+
+        Text {
+            text: qsTr("Recent transactions")
+            font.pointSize: 36
+            color: "white"
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+        }
+    }
+
 }
