@@ -223,6 +223,7 @@ ApplicationWindow {
         }
     }
 
+    // accounts text
     Text {
         id: actText
         text: qsTr("Accounts")
@@ -234,9 +235,10 @@ ApplicationWindow {
         anchors.topMargin: 35
     }
 
+    // accounts
     ListView {
         id: accountList
-        width: 330
+        width: 280
         height: 190
         anchors.horizontalCenter: actText.horizontalCenter
         anchors.top: actText.bottom
@@ -246,15 +248,66 @@ ApplicationWindow {
 
         delegate: Button {
             text: modelData
-            font.pointSize: 24
+            width: accountList.width
+            font.pointSize: 26
 
             background: Rectangle {
-                width: accountList.width
-                color: "#BABABA"
+                color: sideTab.color
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onHoveredChanged: parent.color = hovered ? "#666666" : "#BABABA"
+                    onEntered: parent.color = "#5E5E5E"
+                    onExited: parent.color = sideTab.color
+                }
+            }
+        }
+    }
+
+    // quick links
+    Text {
+        id: qckText
+        text: qsTr("Quick links")
+        font.pointSize: 32
+        color: "white"
+        anchors.horizontalCenter: actText.horizontalCenter
+        anchors.top: accountList.bottom
+        anchors.topMargin: 5
+    }
+
+    Image {
+        width: 35
+        height: 35
+        anchors.left: qckText.right
+        anchors.leftMargin: 10
+        anchors.bottom: qckText.bottom
+
+        source: "qrc:/design/settings_white.png"
+
+    }
+
+
+    ListView {
+        id: qckList
+        width: 280
+        height: 190
+        anchors.horizontalCenter: qckText.horizontalCenter
+        anchors.top: qckText.bottom
+        anchors.topMargin: 10
+
+        model: ["Add transaction", "Add account", "Export data"]
+
+        delegate: Button {
+            text: modelData
+            width: qckList.width
+            font.pointSize: 26
+
+            background: Rectangle {
+                color: sideTab.color
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = "#5E5E5E"
+                    onExited: parent.color = sideTab.color
                 }
             }
         }
