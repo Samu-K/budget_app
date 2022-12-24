@@ -381,9 +381,9 @@ ApplicationWindow {
         }
     }
 
-    // current month
+    // current  text
     Rectangle {
-        id: crMonthBg
+        id: crMonthText
         width: (root.width-sideTab.width)/2 -80
         height: 50
         color: sideTab.color
@@ -400,10 +400,88 @@ ApplicationWindow {
         }
     }
 
-    // recent transactions
+    // current month info
     Rectangle {
-        width: crMonthBg.width
-        height: crMonthBg.height
+        id: crMonthBg
+        width: crMonthText.width
+        height: 165
+        color: sideTab.color
+
+        anchors.top: crMonthText.bottom
+        anchors.topMargin: 10
+        anchors.horizontalCenter: crMonthText.horizontalCenter
+
+        // expenses
+        Rectangle {
+            id: expBox
+            width: 200
+            height: 50
+            color: sumBg.color
+
+            anchors.left: parent.left
+            anchors.leftMargin: 30
+            anchors.top: parent.top
+            anchors.topMargin: 30
+
+            Text {
+                text: qsTr("Expenses")
+                font.pointSize: 24
+                color: "white"
+
+                anchors.bottom: parent.top
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+
+        // income
+        Rectangle {
+            id: incBox
+            width: 200
+            height: 50
+            color: sumBg.color
+
+            anchors.right: parent.right
+            anchors.rightMargin: 30
+            anchors.top: parent.top
+            anchors.topMargin: 30
+
+            Text {
+                text: qsTr("Income")
+                font.pointSize: 24
+                color: "white"
+
+                anchors.bottom: parent.top
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+
+        // savings
+        Rectangle {
+            id: svsBox
+            width: 250
+            height: 50
+            color: sumBg.color
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 15
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Text {
+                text: qsTr("Total")
+                font.pointSize: 24
+                color: "white"
+
+                anchors.bottom: parent.top
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+    }
+
+    // recent transactions text
+    Rectangle {
+        id: trsText
+        width: crMonthText.width
+        height: crMonthText.height
         color: sideTab.color
         anchors.top: dateSelectBg.bottom
         anchors.topMargin: 25
@@ -417,5 +495,8 @@ ApplicationWindow {
             anchors.verticalCenter: parent.verticalCenter
         }
     }
+
+    // recent transactions bg
+
 
 }
