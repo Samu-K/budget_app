@@ -243,7 +243,7 @@ ApplicationWindow {
         anchors.top: actText.bottom
         anchors.topMargin: 10
 
-        model: ["Credit card", "Investments", "Savings"]
+        model: [qsTr("Credit card"), qsTr("Investments"), qsTr("Savings")]
 
         delegate: Button {
             text: modelData
@@ -294,7 +294,7 @@ ApplicationWindow {
         anchors.top: qckText.bottom
         anchors.topMargin: 10
 
-        model: ["Add transaction", "Add account", "Export data"]
+        model: [qsTr("Add transaction"), qsTr("Add account"), qsTr("Export data")]
 
         delegate: Button {
             text: modelData
@@ -350,11 +350,11 @@ ApplicationWindow {
         // quick links buttons
         RowLayout {
             id: dateButtons
-            spacing: 80
+            spacing: 30
             anchors.left: parent.left
-            anchors.leftMargin: 80
+            anchors.leftMargin: spacing
             anchors.right: parent.right
-            anchors.rightMargin: 80
+            anchors.rightMargin: spacing
 
             height: dateSelectBg.height
             Repeater {
@@ -363,6 +363,8 @@ ApplicationWindow {
                 Button {
                     text: modelData
                     font.pointSize: 26
+                    Layout.preferredWidth: 100
+                    Layout.preferredHeight: dateSelectBg.height
 
                     background: Rectangle {
                         color: sideTab.color
@@ -431,6 +433,16 @@ ApplicationWindow {
                 anchors.bottom: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
             }
+
+            // amount
+            Text {
+                text: "100€"
+                font.pointSize: 32
+                color: "white"
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
         }
 
         // income
@@ -445,6 +457,7 @@ ApplicationWindow {
             anchors.top: parent.top
             anchors.topMargin: 30
 
+            // title
             Text {
                 text: qsTr("Income")
                 font.pointSize: 24
@@ -452,6 +465,16 @@ ApplicationWindow {
 
                 anchors.bottom: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            // amount
+            Text {
+                text: "456€"
+                font.pointSize: 32
+                color: "white"
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
 
@@ -466,6 +489,7 @@ ApplicationWindow {
             anchors.bottomMargin: 15
             anchors.horizontalCenter: parent.horizontalCenter
 
+            // title
             Text {
                 text: qsTr("Total")
                 font.pointSize: 24
@@ -473,6 +497,15 @@ ApplicationWindow {
 
                 anchors.bottom: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
+            }
+            // amount
+            Text {
+                text: "+ 356€"
+                font.pointSize: 32
+                color: "white"
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
     }
@@ -497,6 +530,42 @@ ApplicationWindow {
     }
 
     // recent transactions bg
+    Rectangle {
+        id: trsBox
+        width: trsText.width
+        height: 165
+        color: sideTab.color
 
+        anchors.top: trsText.bottom
+        anchors.topMargin: 10
+        anchors.horizontalCenter: trsText.horizontalCenter
+
+        Text {
+            id: incText
+            text: qsTr("Income")
+            font.pointSize: 24
+            color: "white"
+
+            anchors.right: parent.horizontalCenter
+            anchors.rightMargin: parent.width*0.125
+
+            anchors.top: parent.top
+            anchors.topMargin: 10
+        }
+
+        Text {
+            id: exptext
+            text: qsTr("Expenses")
+            font.pointSize: incText.font.pointSize
+            color: incText.color
+
+            anchors.left: parent.horizontalCenter
+            anchors.leftMargin: incText.anchors.rightMargin
+
+            anchors.top: parent.top
+            anchors.topMargin: incText.anchors.topMargin
+        }
+
+    }
 
 }
