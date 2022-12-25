@@ -540,79 +540,35 @@ ApplicationWindow {
         anchors.topMargin: 10
         anchors.horizontalCenter: trsText.horizontalCenter
 
-        Text {
-            id: incText
-            text: qsTr("Income")
-            font.pointSize: 26
-            color: "white"
-
-            anchors.left: parent.left
-            anchors.leftMargin: (trsBox.width/4)-(width/2)
-
-            anchors.top: parent.top
-            anchors.topMargin: 10
-        }
-
-        Text {
-            id: expText
-            text: qsTr("Expenses")
-            font.pointSize: incText.font.pointSize
-            color: incText.color
-
-            anchors.right: parent.right
-            anchors.rightMargin: incText.anchors.leftMargin
-
-            anchors.top: parent.top
-            anchors.topMargin: incText.anchors.topMargin
-        }
-
-        // divider
-        Rectangle {
-            id: trsDivider
-            color: sumBg.color
-            width: 10
-            height: trsBox.height
-
-            anchors.horizontalCenter: trsBox.horizontalCenter
-            anchors.verticalCenter: trsBox.verticalCenter
-        }
-
-        // income table
-        GridLayout {
-            id: incGrid
-            columns: 3
-            columnSpacing: 30
-
-            anchors.horizontalCenter: incText.horizontalCenter
-            anchors.top: incText.bottom
-            anchors.topMargin: 10
-
-            Text { text: "1.3.2022"; font.pointSize:20; color: "white" }
-            Text { text: "450€"; font.pointSize:20; color: "white" }
-            Text { text: "Kela"; font.pointSize:20; color: "white" }
-        }
-
         // expense table
         GridLayout {
             id: expGrid
-            columns: incGrid.columns
-            columnSpacing: incGrid.columnSpacing
+            columns: 4
+            columnSpacing: 60
 
-            anchors.horizontalCenter: expText.horizontalCenter
-            anchors.top: expText.bottom
+            anchors.horizontalCenter: trsBox.horizontalCenter
+            anchors.top: trsBox.top
             anchors.topMargin: 10
 
             Text { text: "13.3.2022"; font.pointSize:20; color: "white" }
-            Text { text: "350€"; font.pointSize:20; color: "white" }
+            Text { text: "- 350€"; font.pointSize:20; color: "white" }
             Text { text: "KSM"; font.pointSize:20; color: "white" }
+            Text { text: "Groceries"; font.pointSize: 20; color: "white" }
 
             Text { text: "14.3.2022"; font.pointSize:20; color: "white" }
-            Text { text: "3.20€"; font.pointSize:20; color: "white" }
+            Text { text: "- 3.20€"; font.pointSize:20; color: "white" }
             Text { text: "Sodexo"; font.pointSize:20; color: "white" }
+            Text { text: "School food"; font.pointSize: 20; color: "white" }
 
             Text { text: "15.3.2022"; font.pointSize:20; color: "white" }
-            Text { text: "20%"; font.pointSize:20; color: "white" }
+            Text { text: "- 20€"; font.pointSize:20; color: "white" }
             Text { text: "Poro"; font.pointSize:20; color: "white" }
+            Text { text: "Going out"; font.pointSize: 20; color: "white" }
+
+            Text { text: "16.3.2022"; font.pointSize:20; color: "white" }
+            Text { text: "+ 124€"; font.pointSize:20; color: "white" }
+            Text { text: "Kela"; font.pointSize:20; color: "white" }
+            Text { text: "Social support"; font.pointSize: 20; color: "white" }
         }
 
 
