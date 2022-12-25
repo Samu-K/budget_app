@@ -336,6 +336,38 @@ ApplicationWindow {
         anchors.top: accountList.top
         anchors.bottom: qckList.bottom
         anchors.bottomMargin: 65
+
+        // date axis
+        Rectangle {
+            id: sumDateBg
+            width: parent.width
+            height: 25
+            color: sideTab.color
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+
+            RowLayout {
+                id: sumDates
+                height: parent.height
+
+                anchors.left: parent.left
+                                anchors.leftMargin: spacing
+                anchors.right: parent.right
+                anchors.rightMargin: spacing
+
+                Repeater {
+                    model: ["1/22", "2/22", "3/22"]
+
+                    Text {
+                        text: modelData
+                        font.pointSize: 20
+                        color: "white"
+                    }
+                }
+
+            }
+        }
     }
 
     // date select
