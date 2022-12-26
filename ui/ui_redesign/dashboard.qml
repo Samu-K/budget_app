@@ -3,7 +3,34 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtCharts
 
+
 ApplicationWindow {
+    // set global variables
+    // these are treated as constant
+
+    // colors
+        // background color of entire app
+        property color appBg: "#236BAE"
+        // color of text
+        property color textColor: "white"
+        // color of area backgrounds (e.g side tab, boxes)
+        property color boxBg: "#2C3139"
+        // ligther version of box bg (e.g summary)
+        property color boxBgLight: "#8E9EB8"
+        // color when hovering a button
+        property color slcColor: "#5E5E5E"
+
+    // sizes
+        // title sizes
+        property int title1: 32
+        property int title2: 24
+        // normal text size
+        property int norm: 20
+
+        // background sizes
+        property int title1H: 50
+        property int title2H: 50
+
     id: root
     visible: true
     color: "#236BAE"
@@ -151,13 +178,14 @@ ApplicationWindow {
             }
         }
 
-        // optins and account
+        // options and account
         ColumnLayout {
             width: sideTab.width
             spacing: 25
             anchors.horizontalCenter: sideTab.horizontalCenter
             anchors.bottom: sideTab.bottom
             anchors.bottomMargin: 25
+
 
             // user button
             Rectangle {
