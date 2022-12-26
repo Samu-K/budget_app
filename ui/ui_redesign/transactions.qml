@@ -671,4 +671,81 @@ ApplicationWindow {
             }
         }
     }
+
+    // transactions screen divider
+    Rectangle {
+        id: trsDiv
+        width: 10
+        height: root.height
+        color: boxBgLight
+
+        anchors.top: topBar.bottom
+        anchors.horizontalCenter: topBar.horizontalCenter
+    }
+
+    // titles
+    Text {
+        id: expTableTitle
+        text: qsTr("Expenses")
+        font.pointSize: 38
+        color: textColor
+
+        anchors.horizontalCenter: trsDiv.horizontalCenter
+        anchors.horizontalCenterOffset: -topBar.width/4
+        anchors.top: topBar.bottom
+        anchors.topMargin: 20
+    }
+
+    Text {
+        id: incTableTitle
+        text: qsTr("Income")
+        font.pointSize: 38
+        color: textColor
+
+        anchors.horizontalCenter: trsDiv.horizontalCenter
+        anchors.horizontalCenterOffset: topBar.width/4
+        anchors.top: topBar.bottom
+        anchors.topMargin: 20
+    }
+
+    // table headers
+    RowLayout {
+        id: expHeaders
+        spacing: 40
+
+        anchors.horizontalCenter: expTableTitle.horizontalCenter
+        anchors.top: expTableTitle.bottom
+        anchors.topMargin: 10
+
+        Repeater {
+            model: ["Date", "Amount", "Vendor", "Category"]
+
+            Text {
+                text: modelData
+                font.pointSize: title3
+                color: textColor
+            }
+        }
+    }
+
+    // table headers
+    RowLayout {
+        id: incHeaders
+        spacing: 40
+
+        anchors.horizontalCenter: incTableTitle.horizontalCenter
+        anchors.top: incTableTitle.bottom
+        anchors.topMargin: 10
+
+        Repeater {
+            model: ["Date", "Amount", "Vendor", "Category"]
+
+            Text {
+                text: modelData
+                font.pointSize: title3
+                color: textColor
+            }
+        }
+    }
+
 }
