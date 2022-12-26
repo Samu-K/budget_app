@@ -248,4 +248,269 @@ ApplicationWindow {
             }
         }
     }
+
+    // transaction bar
+    Rectangle {
+        id: trsBar
+        width: 325
+        height: parent.height
+        color: boxBg
+
+        anchors.right: parent.right
+
+        // expense button
+        Button {
+            id: expToggle
+            width: parent.width/2
+            height: 45
+
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.topMargin: topBar.height
+            Text {
+                text: "Expense"
+                color: textColor
+                font.pointSize: title1
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            background: Rectangle {
+                color: "red"
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = "darkRed"
+                    onExited: parent.color = "red"
+                }
+            }
+        }
+
+        // income button
+        Button {
+            id: incToggle
+            width: parent.width/2
+            height: 45
+
+            anchors.left: expToggle.right
+            anchors.verticalCenter: expToggle.verticalCenter
+
+            Text {
+                text: "Income"
+                color: textColor
+                font.pointSize: title1
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            background: Rectangle {
+                color: "green"
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = "darkGreen"
+                    onExited: parent.color = "green"
+                }
+            }
+        }
+
+        // amount box
+        Rectangle {
+            id: amountBox
+            width: parent.width-40
+            height: 35
+            color: boxBgLight
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: incToggle.bottom
+            anchors.topMargin: 70
+
+            // label
+            Text {
+                text: qsTr("Amount")
+                font.pointSize: title3
+                color: textColor
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.top
+                anchors.bottomMargin: 5
+            }
+
+            TextInput {
+                id: amountInput
+                font.pointSize: title2
+                height: parent.height
+                width: parent.width
+                color: textColor
+
+                horizontalAlignment: Text.Center
+                verticalAlignment: Text.Center
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+
+        // vendor box
+        Rectangle {
+            id: vendorBox
+            width: parent.width-40
+            height: 35
+            color: boxBgLight
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: amountBox.bottom
+            anchors.topMargin: 70
+
+            // label
+            Text {
+                text: qsTr("Vendor")
+                font.pointSize: title3
+                color: textColor
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.top
+                anchors.bottomMargin: 5
+            }
+
+            TextInput {
+                id: vendorInput
+                font.pointSize: title2
+                height: parent.height
+                width: parent.width
+                color: textColor
+
+                horizontalAlignment: Text.Center
+                verticalAlignment: Text.Center
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+
+        // category picker
+        Rectangle {
+            id: catBox
+            width: parent.width-40
+            height: 350
+            color: boxBgLight
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: vendorBox.bottom
+            anchors.topMargin: 70
+
+
+            // label
+            Text {
+                text: qsTr("Category")
+                font.pointSize: title3
+                color: textColor
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.top
+                anchors.bottomMargin: 5
+            }
+
+            // expense category list
+            ListView {
+                id: expCatList
+                width: parent.width / 2
+                height: parent.height
+
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.topMargin: 30
+
+                model: [qsTr("Cat 1"), qsTr("Cat 2"), qsTr("Cat 3")]
+
+                delegate: Button {
+                    width: parent.width
+                    height: 30
+                    Text {
+                        text: modelData
+                        color: textColor
+                        font.pointSize: norm
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    background: Rectangle {
+                        color: boxBgLight
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onEntered: parent.color = slcColor
+                            onExited: parent.color = boxBgLight
+                        }
+                    }
+                }
+            }
+
+            // income category list
+            ListView {
+                id: incCatList
+                width: parent.width / 2
+                height: parent.height
+
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.topMargin: 30
+
+                model: [qsTr("iCat 1"), qsTr("iCat 2"), qsTr("iCat 3")]
+
+                delegate: Button {
+                    width: parent.width
+                    height: 30
+                    Text {
+                        text: modelData
+                        color: textColor
+                        font.pointSize: norm
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    background: Rectangle {
+                        color: boxBgLight
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onEntered: parent.color = slcColor
+                            onExited: parent.color = boxBgLight
+                        }
+                    }
+                }
+            }
+
+            // category list titles
+            Text {
+                text: qsTr("Expense")
+                font.pixelSize: title2
+                color: textColor
+
+                anchors.bottom: expCatList.top
+                anchors.horizontalCenter: expCatList.horizontalCenter
+            }
+            Text {
+                text: qsTr("Income")
+                font.pixelSize: title2
+                color: textColor
+
+                anchors.bottom: incCatList.top
+                anchors.horizontalCenter: incCatList.horizontalCenter
+            }
+        }
+    }
+
+    // top bar
+    Rectangle {
+        id: topBar
+        width: parent.width - sideTab.width - trsBar.width
+        height: 80
+        color: boxBg
+
+        anchors.left: sideTab.right
+        anchors.top: parent.top
+    }
 }
