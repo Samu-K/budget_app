@@ -33,10 +33,6 @@ ApplicationWindow {
         // normal text size
         property int norm: 20
 
-        // background sizes
-        property int title1H: 50
-        property int title2H: 40
-
     id: root
     visible: true
     color: appBg
