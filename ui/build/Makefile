@@ -623,6 +623,7 @@ qrc_qml.cpp: ../ui_redesign/qml.qrc \
 		/Users/SamuK/Qt/6.3.1/macos/libexec/rcc \
 		../ui_redesign/login.qml \
 		../ui_redesign/dashboard.qml \
+		../ui_redesign/transactions.qml \
 		../ui_redesign/design/settings_white.png \
 		../ui_redesign/design/key.png \
 		../ui_redesign/design/user_icon.png \
@@ -654,8 +655,8 @@ compiler_clean: compiler_rcc_clean
 
 ####### Compile
 
-main.o: ../ui_redesign/main.cpp /Users/SamuK/Qt/6.3.1/macos/lib/QtGui.framework/Headers/QGuiApplication \
-		/Users/SamuK/Qt/6.3.1/macos/lib/QtGui.framework/Headers/qguiapplication.h \
+main.o: ../ui_redesign/main.cpp /Users/SamuK/Qt/6.3.1/macos/lib/QtWidgets.framework/Headers/QApplication \
+		/Users/SamuK/Qt/6.3.1/macos/lib/QtWidgets.framework/Headers/qapplication.h \
 		/Users/SamuK/Qt/6.3.1/macos/lib/QtQml.framework/Headers/QQmlApplicationEngine \
 		/Users/SamuK/Qt/6.3.1/macos/lib/QtQml.framework/Headers/qqmlapplicationengine.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ui_redesign/main.cpp
