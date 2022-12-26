@@ -23,7 +23,7 @@ ApplicationWindow {
         property color boxBgLight: "#8E9EB8"
         // color when hovering a button
         // "#5E5E5E"
-        property color slcColor: "red"
+        property color slcColor: "#5E5E5E"
 
     // sizes
         // title sizes
@@ -82,7 +82,7 @@ ApplicationWindow {
 
                     Text {
                         text: qsTr("Dashboard")
-                        font.pointSize: 24
+                        font.pointSize: title3
                         color: textColor
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.bottom
@@ -122,7 +122,7 @@ ApplicationWindow {
 
                     Text {
                         text: qsTr("Transactions")
-                        font.pointSize: 24
+                        font.pointSize: title3
                         color: textColor
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.bottom
@@ -163,7 +163,7 @@ ApplicationWindow {
 
                     Text {
                         text: qsTr("Analytics")
-                        font.pointSize: 24
+                        font.pointSize: title3
                         color: textColor
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.bottom
@@ -261,7 +261,7 @@ ApplicationWindow {
     Text {
         id: actText
         text: qsTr("Accounts")
-        font.pointSize: 32
+        font.pointSize: title1
         color: textColor
         anchors.left: sideTab.right
         anchors.leftMargin: 100
@@ -286,7 +286,7 @@ ApplicationWindow {
             Text {
                 text: modelData
                 color: textColor
-                font.pointSize: 26
+                font.pointSize: title2
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -307,7 +307,7 @@ ApplicationWindow {
     Text {
         id: qckText
         text: qsTr("Quick links")
-        font.pointSize: 32
+        font.pointSize: title1
         color: textColor
         anchors.horizontalCenter: actText.horizontalCenter
         anchors.top: accountList.bottom
@@ -343,7 +343,7 @@ ApplicationWindow {
             Text {
                 text: modelData
                 color: textColor
-                font.pointSize: 26
+                font.pointSize: title2
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -364,7 +364,7 @@ ApplicationWindow {
     Text {
         id: sumText
         text: qsTr("Summary")
-        font.pointSize: 32
+        font.pointSize: title1
         color: textColor
 
         anchors.left: accountList.right
@@ -439,7 +439,7 @@ ApplicationWindow {
 
                     Text {
                         text: modelData
-                        font.pointSize: 20
+                        font.pointSize: norm
                         color: textColor
                     }
                 }
@@ -474,11 +474,11 @@ ApplicationWindow {
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
-                        font.pixelSize: 26
+                        font.pixelSize: title2
                         color: textColor
                         text: modelData
                     }
-                    font.pointSize: 26
+                    font.pointSize: title2
                     Layout.preferredWidth: 100
                     Layout.preferredHeight: dateSelectBg.height
 
@@ -512,7 +512,7 @@ ApplicationWindow {
 
         Text {
             text: qsTr("Current month")
-            font.pointSize: 36
+            font.pointSize: title1
             color: textColor
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
@@ -544,7 +544,7 @@ ApplicationWindow {
 
             Text {
                 text: qsTr("Expenses")
-                font.pointSize: 24
+                font.pointSize: title3
                 color: textColor
 
                 anchors.bottom: parent.top
@@ -554,7 +554,7 @@ ApplicationWindow {
             // amount
             Text {
                 text: "100€"
-                font.pointSize: 32
+                font.pointSize: title1
                 color: textColor
 
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -577,7 +577,7 @@ ApplicationWindow {
             // title
             Text {
                 text: qsTr("Income")
-                font.pointSize: 24
+                font.pointSize: title3
                 color: textColor
 
                 anchors.bottom: parent.top
@@ -587,7 +587,7 @@ ApplicationWindow {
             // amount
             Text {
                 text: "456€"
-                font.pointSize: 32
+                font.pointSize: title1
                 color: textColor
 
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -609,7 +609,7 @@ ApplicationWindow {
             // title
             Text {
                 text: qsTr("Total")
-                font.pointSize: 24
+                font.pointSize: title3
                 color: textColor
 
                 anchors.bottom: parent.top
@@ -618,7 +618,7 @@ ApplicationWindow {
             // amount
             Text {
                 text: "+ 356€"
-                font.pointSize: 32
+                font.pointSize: title1
                 color: textColor
 
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -639,7 +639,7 @@ ApplicationWindow {
 
         Text {
             text: qsTr("Recent transactions")
-            font.pointSize: 36
+            font.pointSize: title1
             color: textColor
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
@@ -667,28 +667,25 @@ ApplicationWindow {
             anchors.top: trsBox.top
             anchors.topMargin: 10
 
-            Text { text: "13.3.2022"; font.pointSize:20; color: textColor }
-            Text { text: "- 350€"; font.pointSize:20; color: textColor }
-            Text { text: "KSM"; font.pointSize:20; color: textColor }
-            Text { text: "Groceries"; font.pointSize: 20; color: textColor }
+            Text { text: "13.3.2022"; font.pointSize:norm; color: textColor }
+            Text { text: "- 350€"; font.pointSize:norm; color: textColor }
+            Text { text: "KSM"; font.pointSize:norm; color: textColor }
+            Text { text: "Groceries"; font.pointSize: norm; color: textColor }
 
-            Text { text: "14.3.2022"; font.pointSize:20; color: textColor }
-            Text { text: "- 3.20€"; font.pointSize:20; color: textColor }
-            Text { text: "Sodexo"; font.pointSize:20; color: textColor }
-            Text { text: "School food"; font.pointSize: 20; color: textColor }
+            Text { text: "14.3.2022"; font.pointSize:norm; color: textColor }
+            Text { text: "- 3.20€"; font.pointSize:norm; color: textColor }
+            Text { text: "Sodexo"; font.pointSize:norm; color: textColor }
+            Text { text: "School food"; font.pointSize: norm; color: textColor }
 
-            Text { text: "15.3.2022"; font.pointSize:20; color: textColor }
-            Text { text: "- 20€"; font.pointSize:20; color: textColor }
-            Text { text: "Poro"; font.pointSize:20; color: textColor }
-            Text { text: "Going out"; font.pointSize: 20; color: textColor }
+            Text { text: "15.3.2022"; font.pointSize:norm; color: textColor }
+            Text { text: "- 20€"; font.pointSize:norm; color: textColor }
+            Text { text: "Poro"; font.pointSize:norm; color: textColor }
+            Text { text: "Going out"; font.pointSize: norm; color: textColor }
 
-            Text { text: "16.3.2022"; font.pointSize:20; color: textColor }
-            Text { text: "+ 124€"; font.pointSize:20; color: textColor }
-            Text { text: "Kela"; font.pointSize:20; color: textColor }
-            Text { text: "Social support"; font.pointSize: 20; color: textColor }
+            Text { text: "16.3.2022"; font.pointSize:norm; color: textColor }
+            Text { text: "+ 124€"; font.pointSize:norm; color: textColor }
+            Text { text: "Kela"; font.pointSize:norm; color: textColor }
+            Text { text: "Social support"; font.pointSize: norm; color: textColor }
         }
-
-
     }
-
 }
