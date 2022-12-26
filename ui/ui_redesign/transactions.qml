@@ -394,7 +394,7 @@ ApplicationWindow {
         Rectangle {
             id: catBox
             width: parent.width-40
-            height: 350
+            height: 280
             color: boxBgLight
 
             anchors.horizontalCenter: parent.horizontalCenter
@@ -413,6 +413,41 @@ ApplicationWindow {
                 anchors.bottomMargin: 5
             }
 
+            // category list titles
+            Text {
+                id: expText
+                text: qsTr("Expense")
+                font.pixelSize: title2
+                font.bold: true
+                color: "black"
+
+                anchors.top: catBox.top
+                anchors.right: catBox.right
+                anchors.rightMargin: catBox.width/10
+            }
+            Text {
+                id: incText
+                text: qsTr("Income")
+                font.pixelSize: title2
+                font.bold: true
+                color: "black"
+
+                anchors.top: catBox.top
+                anchors.left: catBox.left
+                anchors.leftMargin: catBox.width/10
+            }
+
+            // divider
+            Rectangle {
+                id: catDiv
+                width: catBox.width
+                height: 5
+                color: boxBg
+
+                anchors.top: incText.bottom
+                anchors.left: catBox.left
+            }
+
             // expense category list
             ListView {
                 id: expCatList
@@ -420,8 +455,8 @@ ApplicationWindow {
                 height: parent.height
 
                 anchors.left: parent.left
-                anchors.top: parent.top
-                anchors.topMargin: 30
+                anchors.top: catDiv.bottom
+                anchors.topMargin: 5
 
                 model: [qsTr("Cat 1"), qsTr("Cat 2"), qsTr("Cat 3")]
 
@@ -455,8 +490,8 @@ ApplicationWindow {
                 height: parent.height
 
                 anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.topMargin: 30
+                anchors.top: catDiv.bottom
+                anchors.topMargin: 5
 
                 model: [qsTr("iCat 1"), qsTr("iCat 2"), qsTr("iCat 3")]
 
@@ -483,22 +518,32 @@ ApplicationWindow {
                 }
             }
 
-            // category list titles
-            Text {
-                text: qsTr("Expense")
-                font.pixelSize: title2
-                color: textColor
 
-                anchors.bottom: expCatList.top
-                anchors.horizontalCenter: expCatList.horizontalCenter
+        }
+
+        // submit button
+        Button {
+            width: trsBar.width
+            height: 45
+            anchors.top: catBox.bottom
+            anchors.topMargin: 20
+
+            Text {
+                text: "Add transaction"
+                color: textColor
+                font.pointSize: title2
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
             }
-            Text {
-                text: qsTr("Income")
-                font.pixelSize: title2
-                color: textColor
 
-                anchors.bottom: incCatList.top
-                anchors.horizontalCenter: incCatList.horizontalCenter
+            background: Rectangle {
+                color: boxBgLight
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = slcColor
+                    onExited: parent.color = boxBgLight
+                }
             }
         }
     }
