@@ -23,7 +23,7 @@ ApplicationWindow {
         property color boxBgLight: "#8E9EB8"
         // color when hovering a button
         // "#5E5E5E"
-        property color slcColor: "red"
+        property color slcColor: "#5E5E5E"
 
     // sizes
         // title sizes
