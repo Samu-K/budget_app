@@ -557,5 +557,118 @@ ApplicationWindow {
 
         anchors.left: sideTab.right
         anchors.top: parent.top
+
+        // all transaction tab
+        Button {
+            id: trsTabButton
+            width: 200
+            height: 60
+            anchors.bottom: topBar.bottom
+            anchors.left: topBar.left
+
+            Text {
+                text: "All transactions"
+                color: textColor
+                font.pointSize: title3
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            background: Rectangle {
+                color: slcColor
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = slcColor
+                    onExited: parent.color = slcColor
+                }
+            }
+        }
+
+        // recurring transactions tab
+        Button {
+            id: recTabButton
+            width: 200
+            height: 60
+            anchors.bottom: topBar.bottom
+            anchors.left: trsTabButton.right
+            anchors.leftMargin: 10
+
+            Text {
+                text: "Recurring\ntransactions"
+                color: textColor
+                font.pointSize: title3
+                horizontalAlignment: Text.Center
+                verticalAlignment: Text.Center
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            background: Rectangle {
+                color: boxBgLight
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = slcColor
+                    onExited: parent.color = boxBgLight
+                }
+            }
+        }
+
+        // categories tab
+        Button {
+            id: catTabButton
+            width: 200
+            height: 60
+            anchors.bottom: topBar.bottom
+            anchors.left: recTabButton.right
+            anchors.leftMargin: 10
+
+            Text {
+                text: "Categories"
+                color: textColor
+                font.pointSize: title3
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            background: Rectangle {
+                color: boxBgLight
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = slcColor
+                    onExited: parent.color = boxBgLight
+                }
+            }
+        }
+
+        // account tab
+        Button {
+            id: accTabButton
+            width: 200
+            height: 60
+            anchors.bottom: topBar.bottom
+            anchors.left: catTabButton.right
+            anchors.leftMargin: 10
+
+            Text {
+                text: "Accounts"
+                color: textColor
+                font.pointSize: title3
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            background: Rectangle {
+                color: boxBgLight
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = slcColor
+                    onExited: parent.color = boxBgLight
+                }
+            }
+        }
     }
 }
