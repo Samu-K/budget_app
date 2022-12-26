@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtCharts
 
 ApplicationWindow {
     id: root
@@ -47,7 +48,7 @@ ApplicationWindow {
                     source: "qrc:/design/dash.png"
 
                     Text {
-                        text: qsTr("Analytics")
+                        text: qsTr("Dashboard")
                         font.pointSize: 24
                         color: "white"
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -273,6 +274,7 @@ ApplicationWindow {
         anchors.topMargin: 5
     }
 
+    // settings for quick links
     Image {
         width: 35
         height: 35
@@ -283,7 +285,6 @@ ApplicationWindow {
         source: "qrc:/design/settings_white.png"
 
     }
-
 
     // quick links buttons
     ListView {
@@ -337,6 +338,35 @@ ApplicationWindow {
         anchors.bottom: qckList.bottom
         anchors.bottomMargin: 65
 
+        // bars
+        ChartView {
+            width: parent.width
+            height: parent.height
+            margins.bottom: 0
+            anchors.fill: parent.fill
+
+            antialiasing: true
+            legend.visible: false
+
+            backgroundColor: sumBg.color
+            BarSeries {
+                id: mySeries
+                barWidth: 1
+
+                axisX: BarCategoryAxis {
+                    color: sumBg.color
+                    gridVisible: false
+                    labelsVisible: false
+                }
+                axisY: BarCategoryAxis {
+                    color: sumBg.color
+                    gridVisible: false
+                }
+
+                BarSet { label: "Spending"; values: [5, 12, 32, 21, 15, 6,12,30,2,17]; color:"green" }
+            }
+        }
+
         // date axis
         Rectangle {
             id: sumDateBg
@@ -349,11 +379,13 @@ ApplicationWindow {
 
             RowLayout {
                 id: sumDates
+                spacing: 100
                 height: parent.height
 
                 anchors.left: parent.left
-                                anchors.leftMargin: spacing
                 anchors.right: parent.right
+
+                anchors.leftMargin: spacing
                 anchors.rightMargin: spacing
 
                 Repeater {

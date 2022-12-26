@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = /Library/Developer/CommandLineTools/usr/bin/clang
 CXX           = /Library/Developer/CommandLineTools/usr/bin/clang++
-DEFINES       = -DQT_QML_DEBUG -DQT_QUICK_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_QMLMODELS_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_QUICK_LIB -DQT_CHARTS_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_QMLMODELS_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.14 -Wall -Wextra -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.14 -Wall -Wextra -fPIC $(DEFINES)
-INCPATH       = -I../ui_redesign -I. -I/Users/SamuK/Qt/6.3.1/macos/lib/QtQuick.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtOpenGL.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtGui.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtQmlModels.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtQml.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/include -I/Users/SamuK/Qt/6.3.1/macos/include/QtQmlIntegration -I/Users/SamuK/Qt/6.3.1/macos/lib/QtNetwork.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/mkspecs/macx-clang -F/Users/SamuK/Qt/6.3.1/macos/lib
+INCPATH       = -I../ui_redesign -I. -I/Users/SamuK/Qt/6.3.1/macos/lib/QtQuick.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtCharts.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtOpenGLWidgets.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtOpenGL.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtWidgets.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtGui.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtQmlModels.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtQml.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/include -I/Users/SamuK/Qt/6.3.1/macos/include/QtQmlIntegration -I/Users/SamuK/Qt/6.3.1/macos/lib/QtNetwork.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/SamuK/Qt/6.3.1/macos/mkspecs/macx-clang -F/Users/SamuK/Qt/6.3.1/macos/lib
 QMAKE         = /Users/SamuK/Qt/6.3.1/macos/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = ui_redesign1.0.0
 DISTDIR = /Users/SamuK/Desktop/Coding/budget_app/ui/build/.tmp/ui_redesign1.0.0
 LINK          = /Library/Developer/CommandLineTools/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.14 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/SamuK/Qt/6.3.1/macos/lib
-LIBS          = $(SUBLIBS) -F/Users/SamuK/Qt/6.3.1/macos/lib -framework QtQuick -framework QtOpenGL -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtQmlModels -framework QtQml -framework QtNetwork -framework QtCore -framework DiskArbitration -framework IOKit -framework AGL -framework OpenGL   
+LIBS          = $(SUBLIBS) -F/Users/SamuK/Qt/6.3.1/macos/lib -framework QtQuick -framework QtCharts -framework QtOpenGLWidgets -framework QtOpenGL -framework QtWidgets -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtQmlModels -framework QtQml -framework QtNetwork -framework QtCore -framework DiskArbitration -framework IOKit -framework AGL -framework OpenGL   
 AR            = /Library/Developer/CommandLineTools/usr/bin/ar cq
 RANLIB        = /Library/Developer/CommandLineTools/usr/bin/ranlib -s
 SED           = sed
@@ -70,6 +70,10 @@ DIST          = ../ui_redesign/components/dateButton.qml \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_ext_freetype.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_ext_libjpeg.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_ext_libpng.pri \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_charts.pri \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_charts_private.pri \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_chartsqml.pri \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_chartsqml_private.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_concurrent.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_concurrent_private.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_core.pri \
@@ -193,6 +197,7 @@ DIST          = ../ui_redesign/components/dateButton.qml \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/resources.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/moc.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/unix/opengl.prf \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/uic.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/unix/thread.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/qmake_use.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/file_copies.prf \
@@ -241,6 +246,10 @@ Makefile: ../ui_redesign/ui_redesign.pro /Users/SamuK/Qt/6.3.1/macos/mkspecs/mac
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_ext_freetype.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_ext_libjpeg.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_ext_libpng.pri \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_charts.pri \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_charts_private.pri \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_chartsqml.pri \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_chartsqml_private.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_concurrent.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_concurrent_private.pri \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_core.pri \
@@ -364,6 +373,7 @@ Makefile: ../ui_redesign/ui_redesign.pro /Users/SamuK/Qt/6.3.1/macos/mkspecs/mac
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/resources.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/moc.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/unix/opengl.prf \
+		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/uic.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/unix/thread.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/qmake_use.prf \
 		/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/file_copies.prf \
@@ -376,7 +386,10 @@ Makefile: ../ui_redesign/ui_redesign.pro /Users/SamuK/Qt/6.3.1/macos/mkspecs/mac
 		../ui_redesign/ui_redesign.pro \
 		../ui_redesign/qml.qrc \
 		/Users/SamuK/Qt/6.3.1/macos/lib/QtQuick.framework/Resources/QtQuick.prl \
+		/Users/SamuK/Qt/6.3.1/macos/lib/QtCharts.framework/Resources/QtCharts.prl \
+		/Users/SamuK/Qt/6.3.1/macos/lib/QtOpenGLWidgets.framework/Resources/QtOpenGLWidgets.prl \
 		/Users/SamuK/Qt/6.3.1/macos/lib/QtOpenGL.framework/Resources/QtOpenGL.prl \
+		/Users/SamuK/Qt/6.3.1/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl \
 		/Users/SamuK/Qt/6.3.1/macos/lib/QtGui.framework/Resources/QtGui.prl \
 		/Users/SamuK/Qt/6.3.1/macos/lib/QtQmlModels.framework/Resources/QtQmlModels.prl \
 		/Users/SamuK/Qt/6.3.1/macos/lib/QtQml.framework/Resources/QtQml.prl \
@@ -397,6 +410,10 @@ Makefile: ../ui_redesign/ui_redesign.pro /Users/SamuK/Qt/6.3.1/macos/mkspecs/mac
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_ext_freetype.pri:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_ext_libjpeg.pri:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_ext_libpng.pri:
+/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_charts.pri:
+/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_charts_private.pri:
+/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_chartsqml.pri:
+/Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_chartsqml_private.pri:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_concurrent.pri:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_concurrent_private.pri:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/modules/qt_lib_core.pri:
@@ -520,6 +537,7 @@ Makefile: ../ui_redesign/ui_redesign.pro /Users/SamuK/Qt/6.3.1/macos/mkspecs/mac
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/features/resources.prf:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/features/moc.prf:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/features/unix/opengl.prf:
+/Users/SamuK/Qt/6.3.1/macos/mkspecs/features/uic.prf:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/features/unix/thread.prf:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/features/qmake_use.prf:
 /Users/SamuK/Qt/6.3.1/macos/mkspecs/features/file_copies.prf:
@@ -532,7 +550,10 @@ Makefile: ../ui_redesign/ui_redesign.pro /Users/SamuK/Qt/6.3.1/macos/mkspecs/mac
 ../ui_redesign/ui_redesign.pro:
 ../ui_redesign/qml.qrc:
 /Users/SamuK/Qt/6.3.1/macos/lib/QtQuick.framework/Resources/QtQuick.prl:
+/Users/SamuK/Qt/6.3.1/macos/lib/QtCharts.framework/Resources/QtCharts.prl:
+/Users/SamuK/Qt/6.3.1/macos/lib/QtOpenGLWidgets.framework/Resources/QtOpenGLWidgets.prl:
 /Users/SamuK/Qt/6.3.1/macos/lib/QtOpenGL.framework/Resources/QtOpenGL.prl:
+/Users/SamuK/Qt/6.3.1/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl:
 /Users/SamuK/Qt/6.3.1/macos/lib/QtGui.framework/Resources/QtGui.prl:
 /Users/SamuK/Qt/6.3.1/macos/lib/QtQmlModels.framework/Resources/QtQmlModels.prl:
 /Users/SamuK/Qt/6.3.1/macos/lib/QtQml.framework/Resources/QtQml.prl:
@@ -619,6 +640,8 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
+compiler_uic_make_all:
+compiler_uic_clean:
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
 compiler_yacc_decl_make_all:
