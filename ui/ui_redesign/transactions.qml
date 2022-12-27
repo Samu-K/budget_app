@@ -101,7 +101,7 @@ ApplicationWindow {
                 Layout.preferredHeight: 120
                 Layout.alignment: Qt.AlignCenter
 
-                color: boxBg
+                color: slcColor
 
                 Image {
                     width: 80
@@ -129,7 +129,7 @@ ApplicationWindow {
                         parent.color = slcColor
                     }
                     onExited: {
-                        parent.color = boxBg
+                        parent.color = slcColor
                     }
                 }
             }
@@ -277,12 +277,13 @@ ApplicationWindow {
             }
 
             background: Rectangle {
-                color: "red"
+                id: expButtonBg
+                color: "darkRed"
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
                     onEntered: parent.color = "darkRed"
-                    onExited: parent.color = "red"
+                    onExited: parent.color = "darkRed"
                 }
             }
         }
@@ -306,6 +307,7 @@ ApplicationWindow {
             }
 
             background: Rectangle {
+                id: ingToggleBg
                 color: "green"
                 MouseArea {
                     anchors.fill: parent
@@ -316,20 +318,20 @@ ApplicationWindow {
             }
         }
 
-        // amount box
+        // date box
         Rectangle {
-            id: amountBox
+            id: dateBox
             width: parent.width-40
             height: 35
             color: boxBgLight
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: incToggle.bottom
-            anchors.topMargin: 70
+            anchors.topMargin: 50
 
             // label
             Text {
-                text: qsTr("Amount")
+                text: qsTr("Date")
                 font.pointSize: title3
                 color: textColor
 
@@ -353,6 +355,43 @@ ApplicationWindow {
             }
         }
 
+        // amount box
+        Rectangle {
+            id: amountBox
+            width: parent.width-40
+            height: 35
+            color: boxBgLight
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: dateBox.bottom
+            anchors.topMargin: 50
+
+            // label
+            Text {
+                text: qsTr("Amount")
+                font.pointSize: title3
+                color: textColor
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.top
+                anchors.bottomMargin: 5
+            }
+
+            TextInput {
+                id: dateInput
+                font.pointSize: title2
+                height: parent.height
+                width: parent.width
+                color: textColor
+
+                horizontalAlignment: Text.Center
+                verticalAlignment: Text.Center
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+
         // vendor box
         Rectangle {
             id: vendorBox
@@ -362,7 +401,7 @@ ApplicationWindow {
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: amountBox.bottom
-            anchors.topMargin: 70
+            anchors.topMargin: 50
 
             // label
             Text {
@@ -399,7 +438,7 @@ ApplicationWindow {
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: vendorBox.bottom
-            anchors.topMargin: 70
+            anchors.topMargin: 50
 
 
             // label
@@ -552,7 +591,7 @@ ApplicationWindow {
     Rectangle {
         id: topBar
         width: parent.width - sideTab.width - trsBar.width
-        height: 80
+        height: 50
         color: boxBg
 
         anchors.left: sideTab.right
@@ -562,7 +601,7 @@ ApplicationWindow {
         Button {
             id: trsTabButton
             width: 200
-            height: 60
+            height: 30
             anchors.bottom: topBar.bottom
             anchors.left: topBar.left
 
@@ -589,13 +628,13 @@ ApplicationWindow {
         Button {
             id: recTabButton
             width: 200
-            height: 60
+            height: 30
             anchors.bottom: topBar.bottom
             anchors.left: trsTabButton.right
             anchors.leftMargin: 10
 
             Text {
-                text: "Recurring\ntransactions"
+                text: "Recurring"
                 color: textColor
                 font.pointSize: title3
                 horizontalAlignment: Text.Center
@@ -619,7 +658,7 @@ ApplicationWindow {
         Button {
             id: catTabButton
             width: 200
-            height: 60
+            height: 30
             anchors.bottom: topBar.bottom
             anchors.left: recTabButton.right
             anchors.leftMargin: 10
@@ -647,7 +686,7 @@ ApplicationWindow {
         Button {
             id: accTabButton
             width: 200
-            height: 60
+            height: 30
             anchors.bottom: topBar.bottom
             anchors.left: catTabButton.right
             anchors.leftMargin: 10
@@ -688,7 +727,8 @@ ApplicationWindow {
         id: expTableTitle
         text: qsTr("Expenses")
         font.pointSize: 38
-        color: textColor
+        font.bold: true
+        color: "black"
 
         anchors.horizontalCenter: trsDiv.horizontalCenter
         anchors.horizontalCenterOffset: -topBar.width/4
@@ -700,7 +740,8 @@ ApplicationWindow {
         id: incTableTitle
         text: qsTr("Income")
         font.pointSize: 38
-        color: textColor
+        font.bold: true
+        color: "black"
 
         anchors.horizontalCenter: trsDiv.horizontalCenter
         anchors.horizontalCenterOffset: topBar.width/4
@@ -755,52 +796,46 @@ ApplicationWindow {
     GridLayout {
         id: expTable
         columns: 4
-        columnSpacing: expHeaders.spacing
+        columnSpacing: 50
 
-        anchors.horizontalCenter: expHeaders.horizontalCenter
+        anchors.left: expHeaders.left
         anchors.top: expHeaders.bottom
         anchors.topMargin: 10
 
-        Text { text: "13.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "- 350€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "KSM"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "Groceries"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-
-        Text { text: "14.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "- 3.20€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
-        Text { text: "Sodexo"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
-        Text { text: "School food"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
-
-        Text { text: "15.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
-        Text { text: "- 20€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
-        Text { text: "Poro"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "Going out"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-
-        Text { text: "16.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "+ 124€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
-        Text { text: "Kela"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
-        Text { text: "Social support"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Repeater {
+            model: ["13.2.2022","350€","Ksm","Groceries",
+                    "14.3.2022","3.2€","Sodexo","School food"
+                ]
+            Text {
+                text: modelData
+                font.pointSize: norm
+                color: textColor
+            }
+        }
     }
 
     // income table
     GridLayout {
-        id: inctable
+        id: incTable
         columns: 4
-        columnSpacing: incHeaders.spacing
+        columnSpacing: 50
 
         anchors.left: incHeaders.left
+        anchors.right: incHeaders.right
+
         anchors.top: incHeaders.bottom
         anchors.topMargin: 10
 
-        Text { text: "13.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "124 €"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "Kela"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "Social Support"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-
-        Text { text: "14.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
-        Text { text: "20€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
-        Text { text: "Sami"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
-        Text { text: "Payback"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Repeater {
+            model: ["13.2.2022","320€","Kela","Social Support",
+                    "14.2.2022","20€","Sami","Payback"
+                ]
+            Text {
+                text: modelData
+                font.pointSize: norm
+                color: textColor
+            }
+        }
 
     }
 

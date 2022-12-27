@@ -65,7 +65,7 @@ ApplicationWindow {
                 Layout.preferredHeight: 120
                 Layout.alignment: Qt.AlignCenter
 
-                color: boxBg
+                color: slcColor
 
                 Image {
                     width: 80
@@ -93,7 +93,7 @@ ApplicationWindow {
                         parent.color = slcColor
                     }
                     onExited: {
-                        parent.color = boxBg
+                        parent.color = slcColor
                     }
                 }
             }
