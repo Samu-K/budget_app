@@ -711,7 +711,7 @@ ApplicationWindow {
     // table headers
     RowLayout {
         id: expHeaders
-        spacing: 40
+        spacing: 35
 
         anchors.horizontalCenter: expTableTitle.horizontalCenter
         anchors.top: expTableTitle.bottom
@@ -722,8 +722,10 @@ ApplicationWindow {
 
             Text {
                 text: modelData
-                font.pointSize: title3
+                font.pointSize: title2
                 color: textColor
+                horizontalAlignment: Text.Center
+                verticalAlignment: Text.Center
             }
         }
     }
@@ -731,7 +733,7 @@ ApplicationWindow {
     // table headers
     RowLayout {
         id: incHeaders
-        spacing: 40
+        spacing: 35
 
         anchors.horizontalCenter: incTableTitle.horizontalCenter
         anchors.top: incTableTitle.bottom
@@ -742,10 +744,64 @@ ApplicationWindow {
 
             Text {
                 text: modelData
-                font.pointSize: title3
+                font.pointSize: title2
                 color: textColor
+
             }
         }
+    }
+
+    // expense table
+    GridLayout {
+        id: expTable
+        columns: 4
+        columnSpacing: expHeaders.spacing
+
+        anchors.horizontalCenter: expHeaders.horizontalCenter
+        anchors.top: expHeaders.bottom
+        anchors.topMargin: 10
+
+        Text { text: "13.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "- 350€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "KSM"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "Groceries"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+
+        Text { text: "14.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "- 3.20€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Text { text: "Sodexo"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Text { text: "School food"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+
+        Text { text: "15.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Text { text: "- 20€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Text { text: "Poro"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "Going out"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+
+        Text { text: "16.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "+ 124€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Text { text: "Kela"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Text { text: "Social support"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+    }
+
+    // income table
+    GridLayout {
+        id: inctable
+        columns: 4
+        columnSpacing: incHeaders.spacing
+
+        anchors.left: incHeaders.left
+        anchors.top: incHeaders.bottom
+        anchors.topMargin: 10
+
+        Text { text: "13.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "124 €"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "Kela"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "Social Support"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+
+        Text { text: "14.3.2022"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center}
+        Text { text: "20€"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Text { text: "Sami"; font.pointSize:norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+        Text { text: "Payback"; font.pointSize: norm; color: textColor; verticalAlignment: Text.Center; horizontalAlignment: Text.Center }
+
     }
 
 }
