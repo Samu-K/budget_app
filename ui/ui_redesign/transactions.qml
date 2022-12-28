@@ -327,7 +327,7 @@ ApplicationWindow {
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: incToggle.bottom
-            anchors.topMargin: 50
+            anchors.topMargin: 80
 
             // label
             Text {
@@ -364,7 +364,7 @@ ApplicationWindow {
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: dateBox.bottom
-            anchors.topMargin: 50
+            anchors.topMargin: 80
 
             // label
             Text {
@@ -401,7 +401,7 @@ ApplicationWindow {
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: amountBox.bottom
-            anchors.topMargin: 50
+            anchors.topMargin: 80
 
             // label
             Text {
@@ -430,16 +430,30 @@ ApplicationWindow {
         }
 
         // category picker
-        Rectangle {
+        ComboBox {
             id: catBox
-            width: parent.width-40
-            height: 280
-            color: boxBgLight
+            width: trsBar.width-40
+            height: 35
 
-            anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: vendorBox.bottom
-            anchors.topMargin: 50
+            anchors.topMargin: 80
+            anchors.horizontalCenter: trsBar.horizontalCenter
 
+            font.pointSize: 24
+
+
+            model: [ "Banana", "Apple", "Coconut" ]
+
+            background:
+                Rectangle {
+                    id: catBg
+                    color: boxBgLight
+                    width: parent.width
+                    height: parent.height+10
+
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+            }
 
             // label
             Text {
@@ -449,123 +463,16 @@ ApplicationWindow {
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.top
-                anchors.bottomMargin: 5
+                anchors.bottomMargin: 10
             }
-
-            // category list titles
-            Text {
-                id: expText
-                text: qsTr("Expense")
-                font.pixelSize: title2
-                font.bold: true
-                color: "black"
-
-                anchors.top: catBox.top
-                anchors.right: catBox.right
-                anchors.rightMargin: catBox.width/10
-            }
-            Text {
-                id: incText
-                text: qsTr("Income")
-                font.pixelSize: title2
-                font.bold: true
-                color: "black"
-
-                anchors.top: catBox.top
-                anchors.left: catBox.left
-                anchors.leftMargin: catBox.width/10
-            }
-
-            // divider
-            Rectangle {
-                id: catDiv
-                width: catBox.width
-                height: 5
-                color: boxBg
-
-                anchors.top: incText.bottom
-                anchors.left: catBox.left
-            }
-
-            // expense category list
-            ListView {
-                id: expCatList
-                width: parent.width / 2
-                height: parent.height
-
-                anchors.left: parent.left
-                anchors.top: catDiv.bottom
-                anchors.topMargin: 5
-
-                model: [qsTr("Cat 1"), qsTr("Cat 2"), qsTr("Cat 3")]
-
-                delegate: Button {
-                    width: parent.width
-                    height: 30
-                    Text {
-                        text: modelData
-                        color: textColor
-                        font.pointSize: norm
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-
-                    background: Rectangle {
-                        color: boxBgLight
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: parent.color = slcColor
-                            onExited: parent.color = boxBgLight
-                        }
-                    }
-                }
-            }
-
-            // income category list
-            ListView {
-                id: incCatList
-                width: parent.width / 2
-                height: parent.height
-
-                anchors.right: parent.right
-                anchors.top: catDiv.bottom
-                anchors.topMargin: 5
-
-                model: [qsTr("iCat 1"), qsTr("iCat 2"), qsTr("iCat 3")]
-
-                delegate: Button {
-                    width: parent.width
-                    height: 30
-                    Text {
-                        text: modelData
-                        color: textColor
-                        font.pointSize: norm
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-
-                    background: Rectangle {
-                        color: boxBgLight
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: parent.color = slcColor
-                            onExited: parent.color = boxBgLight
-                        }
-                    }
-                }
-            }
-
-
         }
 
         // submit button
         Button {
             width: trsBar.width
             height: 45
-            anchors.top: catBox.bottom
-            anchors.topMargin: 20
+            anchors.bottom: trsBar.bottom
+            anchors.bottomMargin: 40
 
             Text {
                 text: "Add transaction"
@@ -714,12 +621,13 @@ ApplicationWindow {
     // transactions screen divider
     Rectangle {
         id: trsDiv
-        width: 10
-        height: root.height
+        width: topBar.width
+        height: 10
         color: boxBgLight
 
-        anchors.top: topBar.bottom
-        anchors.horizontalCenter: topBar.horizontalCenter
+        anchors.verticalCenter: sideTab.verticalCenter
+        anchors.verticalCenterOffset: topBar.height/2
+        anchors.left: topBar.left
     }
 
     // titles
@@ -731,9 +639,8 @@ ApplicationWindow {
         color: "black"
 
         anchors.horizontalCenter: trsDiv.horizontalCenter
-        anchors.horizontalCenterOffset: -topBar.width/4
         anchors.top: topBar.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 10
     }
 
     Text {
@@ -744,17 +651,17 @@ ApplicationWindow {
         color: "black"
 
         anchors.horizontalCenter: trsDiv.horizontalCenter
-        anchors.horizontalCenterOffset: topBar.width/4
-        anchors.top: topBar.bottom
+        anchors.top: trsDiv.bottom
         anchors.topMargin: 20
     }
 
     // table headers
     RowLayout {
         id: expHeaders
-        spacing: 35
+        spacing: 190
 
-        anchors.horizontalCenter: expTableTitle.horizontalCenter
+        anchors.left: sideTab.right
+        anchors.leftMargin: 30
         anchors.top: expTableTitle.bottom
         anchors.topMargin: 10
 
@@ -774,9 +681,11 @@ ApplicationWindow {
     // table headers
     RowLayout {
         id: incHeaders
-        spacing: 35
+        spacing: 190
 
-        anchors.horizontalCenter: incTableTitle.horizontalCenter
+        anchors.left: sideTab.right
+        anchors.leftMargin: 30
+
         anchors.top: incTableTitle.bottom
         anchors.topMargin: 10
 
@@ -796,7 +705,7 @@ ApplicationWindow {
     GridLayout {
         id: expTable
         columns: 4
-        columnSpacing: 50
+        columnSpacing: 200
 
         anchors.left: expHeaders.left
         anchors.top: expHeaders.bottom
@@ -818,7 +727,7 @@ ApplicationWindow {
     GridLayout {
         id: incTable
         columns: 4
-        columnSpacing: 50
+        columnSpacing: 200
 
         anchors.left: incHeaders.left
         anchors.right: incHeaders.right
