@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt.labs.qmlmodels 1.0
 
 
 ApplicationWindow {
@@ -655,97 +656,90 @@ ApplicationWindow {
         anchors.topMargin: 20
     }
 
-    // table headers
-    RowLayout {
-        id: expHeaders
-        spacing: 190
-
-        anchors.left: sideTab.right
-        anchors.leftMargin: 30
-        anchors.top: expTableTitle.bottom
-        anchors.topMargin: 10
-
-        Repeater {
-            model: ["Date", "Amount", "Vendor", "Category"]
-
-            Text {
-                text: modelData
-                font.pointSize: title2
-                color: textColor
-                horizontalAlignment: Text.Center
-                verticalAlignment: Text.Center
-            }
-        }
-    }
-
-    // table headers
-    RowLayout {
-        id: incHeaders
-        spacing: 190
-
-        anchors.left: sideTab.right
-        anchors.leftMargin: 30
-
-        anchors.top: incTableTitle.bottom
-        anchors.topMargin: 10
-
-        Repeater {
-            model: ["Date", "Amount", "Vendor", "Category"]
-
-            Text {
-                text: modelData
-                font.pointSize: title2
-                color: textColor
-
-            }
-        }
-    }
-
     // expense table
-    GridLayout {
+    TableView {
         id: expTable
-        columns: 4
-        columnSpacing: 200
+        height: 180
 
-        anchors.left: expHeaders.left
-        anchors.top: expHeaders.bottom
-        anchors.topMargin: 10
+        anchors.left: sideTab.right
+        anchors.leftMargin: 60
 
-        Repeater {
-            model: ["13.2.2022","350€","Ksm","Groceries",
-                    "14.3.2022","3.2€","Sodexo","School food"
-                ]
+        anchors.right: trsBar.left
+        anchors.rightMargin: 60
+
+        anchors.top: expTableTitle.bottom
+        anchors.topMargin: 80
+
+        columnSpacing: topBar.width * (1/4.5)
+        rowSpacing: 5
+
+        model: TableModel {
+            TableModelColumn { display: "Date" }
+            TableModelColumn { display: "Amount" }
+            TableModelColumn { display: "Vendor" }
+            TableModelColumn { display: "Category" }
+
+            rows: [
+                {
+                    "Date": "13.2.2022",
+                    "Amount": "250€",
+                    "Vendor": "KSM",
+                    "Category": "Groceries"
+                },
+                {
+                    "Date": "14.2.2022",
+                    "Amount": "25€",
+                    "Vendor": "Sodexo",
+                    "Category": "School food"
+                },
+                {
+                    "Date": "15.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "16.2.2022",
+                    "Amount": "40€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "17.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "17.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "17.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "17.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+            ]
+        }
+
+        delegate: Rectangle {
+            color: "transparent"
+
             Text {
-                text: modelData
-                font.pointSize: norm
+                text: display
+                font.pointSize: title2
                 color: textColor
+                anchors.centerIn: parent
             }
         }
     }
-
-    // income table
-    GridLayout {
-        id: incTable
-        columns: 4
-        columnSpacing: 200
-
-        anchors.left: incHeaders.left
-        anchors.right: incHeaders.right
-
-        anchors.top: incHeaders.bottom
-        anchors.topMargin: 10
-
-        Repeater {
-            model: ["13.2.2022","320€","Kela","Social Support",
-                    "14.2.2022","20€","Sami","Payback"
-                ]
-            Text {
-                text: modelData
-                font.pointSize: norm
-                color: textColor
-            }
-        }
-
-    }
-
 }
