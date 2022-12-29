@@ -11,19 +11,14 @@ ApplicationWindow {
 
     // colors
         // background color of entire app
-        // "#236BAE"
         property color appBg: "#236BAE"
         // color of text
-        // white
         property color textColor: "white"
         // color of area backgrounds (e.g side tab, boxes)
-        // "#2C3139"
         property color boxBg: "#2C3139"
         // ligther version of box bg (e.g summary)
-        // "#8E9EB8"
         property color boxBgLight: "#8E9EB8"
         // color when hovering a button
-        // "#5E5E5E"
         property color slcColor: "#5E5E5E"
 
     // sizes
@@ -49,27 +44,35 @@ ApplicationWindow {
 
         // sidetab icons
         ColumnLayout {
+            id: sideTabIcons
             width: sideTab.width
             spacing: 40
             anchors.horizontalCenter: sideTab.horizontalCenter
             anchors.top: sideTab.top
             anchors.topMargin: 35
 
+            // variables for sidetab icons
+            property int bgHeight: 120
+            property int iconWidth: 80
+            property int iconHeight: 75
+            property int titleMargin: 10
+            property int iconMargin: 5
+
             // dashboard
             Rectangle {
                 id: dshButton
                 Layout.preferredWidth:  parent.width
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: sideTabIcons.bgHeight
                 Layout.alignment: Qt.AlignCenter
 
                 color: boxBg
 
                 Image {
-                    width: 80
-                    height: 75
+                    width: sideTabIcons.iconWidth
+                    height: sideTabIcons.iconHeight
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: parent.top
-                    anchors.topMargin: 5
+                    anchors.topMargin: sideTabIcons.iconMargin
 
                     source: "qrc:/design/dash.png"
 
@@ -79,7 +82,7 @@ ApplicationWindow {
                         color: textColor
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.bottom
-                        anchors.topMargin: 10
+                        anchors.topMargin: sideTabIcons.titleMargin
                     }
                 }
 
@@ -99,17 +102,17 @@ ApplicationWindow {
             Rectangle {
                 id: trsButton
                 Layout.preferredWidth:  parent.width
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: sideTabIcons.bgHeight
                 Layout.alignment: Qt.AlignCenter
 
                 color: slcColor
 
                 Image {
-                    width: 80
-                    height: 75
+                    width: sideTabIcons.iconWidth
+                    height: sideTabIcons.iconHeight
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: parent.top
-                    anchors.topMargin: 5
+                    anchors.topMargin: sideTabIcons.iconMargin
 
                     source: "qrc:/design/transaction.png"
 
@@ -119,7 +122,7 @@ ApplicationWindow {
                         color: textColor
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.bottom
-                        anchors.topMargin: 10
+                        anchors.topMargin: sideTabIcons.titleMargin
                     }
                 }
 
@@ -139,17 +142,17 @@ ApplicationWindow {
             Rectangle {
                 id: anlButton
                 Layout.preferredWidth:  parent.width
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: sideTabIcons.bgHeight
                 Layout.alignment: Qt.AlignCenter
 
                 color: boxBg
 
                 Image {
-                    width: 80
-                    height: 75
+                    width: sideTabIcons.iconWidth
+                    height: sideTabIcons.iconHeight
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: parent.top
-                    anchors.topMargin: 5
+                    anchors.topMargin: sideTabIcons.iconMargin
 
 
                     source: "qrc:/design/analytics.png"
@@ -160,7 +163,7 @@ ApplicationWindow {
                         color: textColor
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.bottom
-                        anchors.topMargin: 10
+                        anchors.topMargin: sideTabIcons.titleMargin
                     }
                 }
 
@@ -179,18 +182,21 @@ ApplicationWindow {
 
         // options and account
         ColumnLayout {
+            id: optionsTabIcons
             width: sideTab.width
             spacing: 25
             anchors.horizontalCenter: sideTab.horizontalCenter
             anchors.bottom: sideTab.bottom
             anchors.bottomMargin: 25
 
+            // vars to keep things consistent
+            property int bgHeight: 85
 
             // user button
             Rectangle {
                 id: userButton
                 Layout.preferredWidth:  sideTab.width
-                Layout.preferredHeight: 85
+                Layout.preferredHeight: optionsTabIcons.bgHeight
                 Layout.alignment: Qt.AlignCenter
 
                 color: boxBg
@@ -221,7 +227,7 @@ ApplicationWindow {
             Rectangle {
                 id: settingsButton
                 Layout.preferredWidth: sideTab.width
-                Layout.preferredHeight: 85
+                Layout.preferredHeight: optionsTabIcons.bgHeight
                 Layout.alignment: Qt.AlignCenter
 
                 color: boxBg
@@ -253,17 +259,21 @@ ApplicationWindow {
     // transaction bar
     Rectangle {
         id: trsBar
-        width: 325
+        width: root.width*(1/5)
         height: parent.height
         color: boxBg
 
         anchors.right: parent.right
 
+        // vars for type buttons
+        property int buttonHeight: 45
+
+
         // expense button
         Button {
             id: expToggle
             width: parent.width/2
-            height: 45
+            height: trsBar.buttonHeight
 
             anchors.left: parent.left
             anchors.top: parent.top
@@ -293,7 +303,7 @@ ApplicationWindow {
         Button {
             id: incToggle
             width: parent.width/2
-            height: 45
+            height: trsBar.buttonHeight
 
             anchors.left: expToggle.right
             anchors.verticalCenter: expToggle.verticalCenter
@@ -319,16 +329,22 @@ ApplicationWindow {
             }
         }
 
+        // vars for input fields
+        property int bgHeight: 35
+        property int inputMargin: 80
+        property int sideMargin: 20
+        property int titleMargin: 5
+
         // date box
         Rectangle {
             id: dateBox
-            width: parent.width-40
-            height: 35
+            width: parent.width-(trsBar.sideMargin*2)
+            height: trsBar.bgHeight
             color: boxBgLight
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: incToggle.bottom
-            anchors.topMargin: 80
+            anchors.topMargin: trsBar.inputMargin
 
             // label
             Text {
@@ -338,7 +354,7 @@ ApplicationWindow {
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.top
-                anchors.bottomMargin: 5
+                anchors.bottomMargin: trsBar.titleMargin
             }
 
             TextInput {
@@ -359,13 +375,13 @@ ApplicationWindow {
         // amount box
         Rectangle {
             id: amountBox
-            width: parent.width-40
-            height: 35
+            width: parent.width-(trsBar.sideMargin*2)
+            height: trsBar.bgHeight
             color: boxBgLight
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: dateBox.bottom
-            anchors.topMargin: 80
+            anchors.topMargin: trsBar.inputMargin
 
             // label
             Text {
@@ -375,7 +391,7 @@ ApplicationWindow {
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.top
-                anchors.bottomMargin: 5
+                anchors.bottomMargin: trsBar.titleMargin
             }
 
             TextInput {
@@ -397,12 +413,12 @@ ApplicationWindow {
         Rectangle {
             id: vendorBox
             width: parent.width-40
-            height: 35
+            height: trsBar.bgHeight
             color: boxBgLight
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: amountBox.bottom
-            anchors.topMargin: 80
+            anchors.topMargin: trsBar.inputMargin
 
             // label
             Text {
@@ -412,7 +428,7 @@ ApplicationWindow {
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.top
-                anchors.bottomMargin: 5
+                anchors.bottomMargin: trsBar.titleMargin
             }
 
             TextInput {
@@ -433,14 +449,14 @@ ApplicationWindow {
         // category picker
         ComboBox {
             id: catBox
-            width: trsBar.width-40
-            height: 35
+            width: trsBar.width-(trsBar.sideMargin*2)
+            height: trsBar.bgHeight
 
             anchors.top: vendorBox.bottom
-            anchors.topMargin: 80
+            anchors.topMargin: trsBar.inputMargin
             anchors.horizontalCenter: trsBar.horizontalCenter
 
-            font.pointSize: 24
+            font.pointSize: title3
 
 
             model: [ "Banana", "Apple", "Coconut" ]
@@ -505,11 +521,14 @@ ApplicationWindow {
         anchors.left: sideTab.right
         anchors.top: parent.top
 
+        property int buttonWidth: 200
+        property int buttonHeight: 30
+
         // all transaction tab
         Button {
             id: trsTabButton
-            width: 200
-            height: 30
+            width: topBar.buttonWidth
+            height: topBar.buttonHeight
             anchors.bottom: topBar.bottom
             anchors.left: topBar.left
 
@@ -535,8 +554,8 @@ ApplicationWindow {
         // recurring transactions tab
         Button {
             id: recTabButton
-            width: 200
-            height: 30
+            width: topBar.buttonWidth
+            height: topBar.buttonHeight
             anchors.bottom: topBar.bottom
             anchors.left: trsTabButton.right
             anchors.leftMargin: 10
@@ -565,8 +584,8 @@ ApplicationWindow {
         // categories tab
         Button {
             id: catTabButton
-            width: 200
-            height: 30
+            width: topBar.buttonWidth
+            height: topBar.buttonHeight
             anchors.bottom: topBar.bottom
             anchors.left: recTabButton.right
             anchors.leftMargin: 10
@@ -593,8 +612,8 @@ ApplicationWindow {
         // account tab
         Button {
             id: accTabButton
-            width: 200
-            height: 30
+            width: topBar.buttonWidth
+            height: topBar.buttonHeight
             anchors.bottom: topBar.bottom
             anchors.left: catTabButton.right
             anchors.leftMargin: 10
