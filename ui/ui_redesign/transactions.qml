@@ -656,6 +656,56 @@ ApplicationWindow {
         anchors.topMargin: 20
     }
 
+    // headers
+    Text {
+        id: dateHeader
+        text: "Date"
+        font.pointSize: title1
+        color: textColor
+        font.bold: true
+
+        anchors.left: expTable.left
+        anchors.leftMargin: 65
+        anchors.bottom: expTable.top
+        anchors.bottomMargin: 10
+    }
+    Text {
+        id: amountHeader
+        text: "Amount"
+        font.pointSize: title1
+        color: textColor
+        font.bold: true
+
+        anchors.left: dateHeader.right
+        anchors.leftMargin: 115
+        anchors.bottom: expTable.top
+        anchors.bottomMargin: 10
+    }
+    Text {
+        id: vendorHeader
+        text: "Vendor"
+        font.pointSize: title1
+        color: textColor
+        font.bold: true
+
+        anchors.left: amountHeader.right
+        anchors.leftMargin: 95
+        anchors.bottom: expTable.top
+        anchors.bottomMargin: 10
+    }
+    Text {
+        id: catHeader
+        text: "Category"
+        font.pointSize: title1
+        color: textColor
+        font.bold: true
+
+        anchors.left: vendorHeader.right
+        anchors.leftMargin: 85
+        anchors.bottom: expTable.top
+        anchors.bottomMargin: 10
+    }
+
     // expense table
     TableView {
         id: expTable
@@ -670,8 +720,10 @@ ApplicationWindow {
         anchors.top: expTableTitle.bottom
         anchors.topMargin: 80
 
-        columnSpacing: topBar.width * (1/4.5)
-        rowSpacing: 5
+        //columnSpacing: topBar.width * (1/4.5)
+        //rowSpacing: 5
+
+        ScrollBar.vertical: ScrollBar.AlwaysOn
 
         model: TableModel {
             TableModelColumn { display: "Date" }
@@ -732,7 +784,152 @@ ApplicationWindow {
         }
 
         delegate: Rectangle {
-            color: "transparent"
+            color: boxBgLight
+            implicitWidth: 210
+            implicitHeight: 40
+            border.width: 1
+
+            Text {
+                text: display
+                font.pointSize: title2
+                color: textColor
+                anchors.centerIn: parent
+            }
+        }
+    }
+
+    // headers
+    Text {
+        id: incDateHeader
+        text: "Date"
+        font.pointSize: title1
+        color: textColor
+        font.bold: true
+
+        anchors.left: incTable.left
+        anchors.leftMargin: 65
+        anchors.bottom: incTable.top
+        anchors.bottomMargin: 10
+    }
+    Text {
+        id: incAmountHeader
+        text: "Amount"
+        font.pointSize: title1
+        color: textColor
+        font.bold: true
+
+        anchors.left: incDateHeader.right
+        anchors.leftMargin: 115
+        anchors.bottom: incTable.top
+        anchors.bottomMargin: 10
+    }
+    Text {
+        id: incVendorHeader
+        text: "Vendor"
+        font.pointSize: title1
+        color: textColor
+        font.bold: true
+
+        anchors.left: incAmountHeader.right
+        anchors.leftMargin: 95
+        anchors.bottom: incTable.top
+        anchors.bottomMargin: 10
+    }
+    Text {
+        id: incCatHeader
+        text: "Category"
+        font.pointSize: title1
+        color: textColor
+        font.bold: true
+
+        anchors.left: incVendorHeader.right
+        anchors.leftMargin: 85
+        anchors.bottom: incTable.top
+        anchors.bottomMargin: 10
+    }
+
+    // expense table
+    TableView {
+        id: incTable
+        height: 180
+
+        anchors.left: sideTab.right
+        anchors.leftMargin: 60
+
+        anchors.right: trsBar.left
+        anchors.rightMargin: 60
+
+        anchors.top: incTableTitle.bottom
+        anchors.topMargin: 80
+
+        //columnSpacing: topBar.width * (1/4.5)
+        //rowSpacing: 5
+
+        ScrollBar.vertical: ScrollBar.AlwaysOn
+
+        model: TableModel {
+            TableModelColumn { display: "Date" }
+            TableModelColumn { display: "Amount" }
+            TableModelColumn { display: "Vendor" }
+            TableModelColumn { display: "Category" }
+
+            rows: [
+                {
+                    "Date": "13.2.2022",
+                    "Amount": "250€",
+                    "Vendor": "KSM",
+                    "Category": "Groceries"
+                },
+                {
+                    "Date": "14.2.2022",
+                    "Amount": "25€",
+                    "Vendor": "Sodexo",
+                    "Category": "School food"
+                },
+                {
+                    "Date": "15.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "16.2.2022",
+                    "Amount": "40€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "17.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "17.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "17.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+                {
+                    "Date": "17.2.2022",
+                    "Amount": "20€",
+                    "Vendor": "Ranta",
+                    "Category": "Going out"
+                },
+            ]
+        }
+
+        delegate: Rectangle {
+            color: boxBgLight
+            implicitWidth: 210
+            implicitHeight: 40
+            border.width: 1
 
             Text {
                 text: display
