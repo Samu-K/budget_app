@@ -279,12 +279,12 @@ ApplicationWindow {
 
             background: Rectangle {
                 id: expButtonBg
-                color: "darkRed"
+                color: "#FF0000"
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
                     onEntered: parent.color = "darkRed"
-                    onExited: parent.color = "darkRed"
+                    onExited: parent.color = "#FF0000"
                 }
             }
         }
@@ -653,8 +653,10 @@ ApplicationWindow {
 
         anchors.horizontalCenter: trsDiv.horizontalCenter
         anchors.top: trsDiv.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 10
     }
+
+    property int headerMargin: 30
 
     // headers
     Text {
@@ -667,7 +669,7 @@ ApplicationWindow {
         anchors.left: expTable.left
         anchors.leftMargin: 65
         anchors.bottom: expTable.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: headerMargin
     }
     Text {
         id: amountHeader
@@ -679,7 +681,7 @@ ApplicationWindow {
         anchors.left: dateHeader.right
         anchors.leftMargin: 115
         anchors.bottom: expTable.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: headerMargin
     }
     Text {
         id: vendorHeader
@@ -691,7 +693,7 @@ ApplicationWindow {
         anchors.left: amountHeader.right
         anchors.leftMargin: 95
         anchors.bottom: expTable.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: headerMargin
     }
     Text {
         id: catHeader
@@ -703,7 +705,7 @@ ApplicationWindow {
         anchors.left: vendorHeader.right
         anchors.leftMargin: 85
         anchors.bottom: expTable.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: headerMargin
     }
 
     // expense table
@@ -809,7 +811,7 @@ ApplicationWindow {
         anchors.left: incTable.left
         anchors.leftMargin: 65
         anchors.bottom: incTable.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: headerMargin
     }
     Text {
         id: incAmountHeader
@@ -821,7 +823,7 @@ ApplicationWindow {
         anchors.left: incDateHeader.right
         anchors.leftMargin: 115
         anchors.bottom: incTable.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: headerMargin
     }
     Text {
         id: incVendorHeader
@@ -833,7 +835,7 @@ ApplicationWindow {
         anchors.left: incAmountHeader.right
         anchors.leftMargin: 95
         anchors.bottom: incTable.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: headerMargin
     }
     Text {
         id: incCatHeader
@@ -845,7 +847,7 @@ ApplicationWindow {
         anchors.left: incVendorHeader.right
         anchors.leftMargin: 85
         anchors.bottom: incTable.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: headerMargin
     }
 
     // expense table
@@ -860,7 +862,7 @@ ApplicationWindow {
         anchors.rightMargin: 60
 
         anchors.top: incTableTitle.bottom
-        anchors.topMargin: 80
+        anchors.topMargin: 70
 
         //columnSpacing: topBar.width * (1/4.5)
         //rowSpacing: 5
