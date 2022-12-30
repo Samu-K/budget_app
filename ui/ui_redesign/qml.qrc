@@ -12,5 +12,6 @@
         <file>design/dash.png</file>
         <file>design/transaction.png</file>
         <file>transactions.qml</file>
+        <file>recurring_trs.qml</file>
     </qresource>
 </RCC>
