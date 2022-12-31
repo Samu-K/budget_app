@@ -35,7 +35,7 @@ ApplicationWindow {
 
     // left tab
     LeftTab {
-        selected: "trs"
+        id: sideTab
     }
 
     // transaction bar
@@ -157,7 +157,7 @@ ApplicationWindow {
             width: trsBar.width-(trsBar.sideMargin*2)
             height: trsBar.bgHeight
 
-            anchors.top: vendorBox.bottom
+            anchors.top: vendorInput.bottom
             anchors.topMargin: trsBar.inputMargin
             anchors.horizontalCenter: trsBar.horizontalCenter
 

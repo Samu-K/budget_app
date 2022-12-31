@@ -3,7 +3,7 @@ import QtQuick.Layouts
 
 // left side tab
 Rectangle {
-    width: parent.width*(1/5)
+    width: parent.width*(1/8)
     height: parent.height
 
     // background color of entire app
@@ -16,9 +16,6 @@ Rectangle {
     property color boxBgLight: "#8E9EB8"
     // color when hovering a button
     property color slcColor: "#5E5E5E"
-
-    // component vars
-    property string selected
 
     color: boxBg
 
@@ -37,30 +34,36 @@ Rectangle {
         anchors.topMargin: 35
 
         // variables for sidetab icons
-        property int bgHeight: 120
-        property int iconSize: 80
+        property int iconSize: 75
 
-        // dashboard
-        LeftTabButton {
-            iconSource: "qrc:/design/dash.png"
-            text: "Dashboard"
-            iconSize: iconSize
+        // icons to show
+        ListModel {
+            id: iconList
+
+            ListElement {
+                text: "dashboard"
+                source: "qrc:/design/dash.png"
+            }
+            ListElement {
+                text: "transactions"
+                source: "qrc:/design/transaction.png"
+            }
+            ListElement {
+                text: "analytics"
+                source: "qrc:/design/analytics.png"
+            }
         }
 
-        // Transactions
-        LeftTabButton {
-            iconSource: "qrc:/design/transaction.png"
-            text: "Transactions"
-            iconSize: iconSize
-        }
 
-        // Analytics
-        LeftTabButton {
-            iconSource: "qrc:/design/analytics.png"
-            text: "Analytics"
-            iconSize: iconSize
-        }
+        Repeater {
+            model: iconList
 
+            LeftTabButton {
+                text: model.text
+                iconSource: model.source
+                iconSize: iconColumn.iconSize
+            }
+        }
     }
 
     // options and account

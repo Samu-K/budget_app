@@ -3,19 +3,18 @@ import QtQuick.Layouts
 
 Rectangle {
     // component vars
-    property alias iconSource: icon.source
     property alias text: text.text
+    property alias iconSource: image.source
     property int iconSize
 
-
     Layout.preferredWidth:  parent.width
-    Layout.preferredHeight: iconColumn.bgHeight
+    Layout.preferredHeight: 120
     Layout.alignment: Qt.AlignCenter
 
     color: "#2C3139"
 
     Image {
-        id: icon
+        id: image
         width: iconSize
         height: iconSize
 
@@ -35,6 +34,7 @@ Rectangle {
     }
 
     MouseArea {
+        id: mouse
         anchors.fill: parent
         hoverEnabled: true
         onEntered: {
@@ -44,5 +44,4 @@ Rectangle {
             parent.color = "#2C3139"
             }
         }
-    }
 }
