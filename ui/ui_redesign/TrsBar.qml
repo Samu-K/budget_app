@@ -48,7 +48,6 @@ Rectangle {
         }
     }
 
-
     // income button
     Button {
         id: incToggle
@@ -84,9 +83,7 @@ Rectangle {
 
     // vars for input fields
     property int bgHeight: 35
-    property int inputMargin: 70
     property int sideMargin: 20
-    property int titleMargin: 5
 
     // input fields
     ColumnLayout {
@@ -148,46 +145,6 @@ Rectangle {
             anchors.bottomMargin: 10
         }
     }
-
-    // rec picker
-    ComboBox {
-        id: recBox
-        width: trsBar.width-(trsBar.sideMargin*2)
-        height: trsBar.bgHeight
-
-        anchors.top: catBox.bottom
-        anchors.topMargin: 80
-        anchors.horizontalCenter: trsBar.horizontalCenter
-
-        font.pointSize: title3
-
-
-        model: [ "Day", "Week", "Month" ]
-
-        background:
-            Rectangle {
-                id: recBg
-                color: boxBgLight
-                width: parent.width
-                height: parent.height+10
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-        }
-
-        // label
-        Text {
-            text: qsTr("Once every ")
-            font.pointSize: title3
-            color: textColor
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.top
-            anchors.bottomMargin: 10
-        }
-    }
-
-
 
     // submit button
     Button {

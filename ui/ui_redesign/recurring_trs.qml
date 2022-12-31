@@ -42,6 +42,43 @@ ApplicationWindow {
         id: trsBar
     }
 
+    // rec picker
+    ComboBox {
+        id: recBox
+        width: trsBar.width-(trsBar.sideMargin*2)
+        height: trsBar.bgHeight
+
+        anchors.bottom: trsBar.bottom
+        anchors.bottomMargin: 150
+        anchors.horizontalCenter: trsBar.horizontalCenter
+
+        font.pointSize: title3
+
+        model: [ "Day", "Week", "Month" ]
+
+        background:
+            Rectangle {
+                id: recBg
+                color: boxBgLight
+                width: parent.width
+                height: parent.height+10
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+        }
+
+        // label
+        Text {
+            text: qsTr("Once every ")
+            font.pointSize: title3
+            color: textColor
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.top
+            anchors.bottomMargin: 10
+        }
+    }
+
 
     // top bar
     Rectangle {
@@ -194,7 +231,6 @@ ApplicationWindow {
         anchors.top: topBar.bottom
         anchors.topMargin: 10
     }
-
     Text {
         id: incTableTitle
         text: qsTr("Recurring income")
@@ -355,7 +391,6 @@ ApplicationWindow {
         anchors.bottom: incTable.top
         anchors.bottomMargin: headerMargin
     }
-
     Text {
         id: incAmountHeader
         text: "Amount"
@@ -451,6 +486,5 @@ ApplicationWindow {
             }
         }
     }
-
 
 }
