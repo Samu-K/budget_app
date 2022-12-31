@@ -8,12 +8,8 @@ Rectangle {
     property int sideMargin
 
     color: "#8E9EB8"
-
     width: parent.width-(sideMargin*2)
-    height: parent.bgHeight
-
-    anchors.topMargin: parent.inputMargin
-    anchors.horizontalCenter: parent.horizontalCenter
+    height: 35
 
     // label
     Text {

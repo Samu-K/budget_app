@@ -88,31 +88,27 @@ Rectangle {
     property int sideMargin: 20
     property int titleMargin: 5
 
-    // date input
-    TrsInputField {
-        id: dateInput
-        text: "Date"
+    // input fields
+    ColumnLayout {
+        id: trsInput
+        height: 300
+        width: trsBar.width
+        spacing: 30
 
-        sideMargin: parent.sideMargin
         anchors.top: expToggle.bottom
-    }
+        anchors.topMargin: 40
+        anchors.horizontalCenter: trsBar.horizontalCenter
 
-    // amount input
-    TrsInputField {
-        id: amountInput
-        text: "Amount"
+        Repeater {
+            model: ["Date", "Amount", "Vendor"]
 
-        sideMargin: parent.sideMargin
-        anchors.top: dateInput.bottom
-    }
+            TrsInputField {
+                text: modelData
+                sideMargin: 20
 
-    // vendor input
-    TrsInputField {
-        id: vendorInput
-        text: "Amount"
-
-        sideMargin: parent.sideMargin
-        anchors.top: amountInput.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
     }
 
     // category picker
@@ -121,8 +117,8 @@ Rectangle {
         width: trsBar.width-(trsBar.sideMargin*2)
         height: trsBar.bgHeight
 
-        anchors.top: vendorInput.bottom
-        anchors.topMargin: trsBar.inputMargin
+        anchors.top: trsInput.bottom
+        anchors.topMargin: 40
         anchors.horizontalCenter: trsBar.horizontalCenter
 
         font.pointSize: title3
@@ -160,7 +156,7 @@ Rectangle {
         height: trsBar.bgHeight
 
         anchors.top: catBox.bottom
-        anchors.topMargin: trsBar.inputMargin
+        anchors.topMargin: 80
         anchors.horizontalCenter: trsBar.horizontalCenter
 
         font.pointSize: title3
@@ -198,7 +194,7 @@ Rectangle {
         width: trsBar.width
         height: 45
         anchors.bottom: trsBar.bottom
-        anchors.bottomMargin: 40
+        anchors.bottomMargin: 50
 
         Text {
             text: "Add transaction"
