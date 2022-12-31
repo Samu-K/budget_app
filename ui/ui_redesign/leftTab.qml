@@ -33,9 +33,6 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: 35
 
-        // variables for sidetab icons
-        property int iconSize: 75
-
         // icons to show
         ListModel {
             id: iconList
@@ -54,14 +51,13 @@ Rectangle {
             }
         }
 
-
         Repeater {
             model: iconList
 
             LeftTabButton {
                 text: model.text
                 iconSource: model.source
-                iconSize: iconColumn.iconSize
+                iconSize: 75
             }
         }
     }
@@ -79,65 +75,20 @@ Rectangle {
         property int bgHeight: 85
 
         // user button
-        Rectangle {
+        LeftTabButton {
             id: userButton
-            Layout.preferredWidth:  parent.width
-            Layout.preferredHeight: optionsTabIcons.bgHeight
-            Layout.alignment: Qt.AlignCenter
-
-            color: boxBg
-
-            Image {
-                width: 85
-                height: 85
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-
-                source: "qrc:/design/user_icon_colored.png"
-
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-                onEntered: {
-                    userButton.color = slcColor
-                }
-                onExited: {
-                    userButton.color = boxBg
-                }
-            }
+            iconSource: "qrc:/design/user_icon_colored.png"
+            bgHeight: 80
+            iconSize: 85
         }
 
         // settings button
-        Rectangle {
-            id: settingsButton
-            Layout.preferredWidth: parent.width
-            Layout.preferredHeight: optionsTabIcons.bgHeight
-            Layout.alignment: Qt.AlignCenter
-
-            color: boxBg
-
-            Image {
-                width: 70
-                height: 70
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-
-                source: "qrc:/design/settings_white.png"
-
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-                onEntered: {
-                    settingsButton.color = slcColor
-                }
-                onExited: {
-                    settingsButton.color = boxBg
-                }
-            }
+        LeftTabButton {
+            id: stsButton
+            iconSource: "qrc:/design/settings_white.png"
+            bgHeight: 80
+            iconSize: 70
         }
     }
+
 }

@@ -5,10 +5,13 @@ Rectangle {
     // component vars
     property alias text: text.text
     property alias iconSource: image.source
+
+    property int bgHeight: 120
     property int iconSize
 
+
     Layout.preferredWidth:  parent.width
-    Layout.preferredHeight: 120
+    Layout.preferredHeight: bgHeight
     Layout.alignment: Qt.AlignCenter
 
     color: "#2C3139"
