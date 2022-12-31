@@ -13,5 +13,6 @@
         <file>design/transaction.png</file>
         <file>transactions.qml</file>
         <file>recurring_trs.qml</file>
+        <file>TrsInputField.qml</file>
     </qresource>
 </RCC>

@@ -3,7 +3,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.qmlmodels 1.0
 
-
 ApplicationWindow {
     id: root
     visible: true
@@ -329,132 +328,48 @@ ApplicationWindow {
             }
         }
 
-        // vars for input fields
+        // vars for input field
         property int bgHeight: 35
         property int inputMargin: 80
         property int sideMargin: 20
         property int titleMargin: 5
 
-        // date box
-        Rectangle {
-            id: dateBox
-            width: parent.width-(trsBar.sideMargin*2)
-            height: trsBar.bgHeight
-            color: boxBgLight
+        // date input
+        TrsInputField {
+            id: dateInput
+            text: "Date"
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: incToggle.bottom
-            anchors.topMargin: trsBar.inputMargin
-
-            // label
-            Text {
-                text: qsTr("Date")
-                font.pointSize: title3
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.top
-                anchors.bottomMargin: trsBar.titleMargin
-            }
-
-            TextInput {
-                id: amountInput
-                font.pointSize: title2
-                height: parent.height
-                width: parent.width
-                color: textColor
-
-                horizontalAlignment: Text.Center
-                verticalAlignment: Text.Center
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
+            sideMargin: parent.sideMargin
+            anchors.top: expToggle.bottom
         }
 
-        // amount box
-        Rectangle {
-            id: amountBox
-            width: parent.width-(trsBar.sideMargin*2)
-            height: trsBar.bgHeight
-            color: boxBgLight
+        // amount input
+        TrsInputField {
+            id: amountInput
+            text: "Amount"
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: dateBox.bottom
-            anchors.topMargin: trsBar.inputMargin
-
-            // label
-            Text {
-                text: qsTr("Amount")
-                font.pointSize: title3
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.top
-                anchors.bottomMargin: trsBar.titleMargin
-            }
-
-            TextInput {
-                id: dateInput
-                font.pointSize: title2
-                height: parent.height
-                width: parent.width
-                color: textColor
-
-                horizontalAlignment: Text.Center
-                verticalAlignment: Text.Center
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
+            sideMargin: parent.sideMargin
+            anchors.top: dateInput.bottom
         }
 
-        // vendor box
-        Rectangle {
-            id: vendorBox
-            width: parent.width-40
-            height: trsBar.bgHeight
-            color: boxBgLight
+        // vendor input
+        TrsInputField {
+            id: vendorInput
+            text: "Amount"
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: amountBox.bottom
-            anchors.topMargin: trsBar.inputMargin
-
-            // label
-            Text {
-                text: qsTr("Vendor")
-                font.pointSize: title3
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.top
-                anchors.bottomMargin: trsBar.titleMargin
-            }
-
-            TextInput {
-                id: vendorInput
-                font.pointSize: title2
-                height: parent.height
-                width: parent.width
-                color: textColor
-
-                horizontalAlignment: Text.Center
-                verticalAlignment: Text.Center
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
+            sideMargin: parent.sideMargin
+            anchors.top: amountInput.bottom
         }
 
         // category picker
         ComboBox {
             id: catBox
-            width: trsBar.width-(trsBar.sideMargin*2)
-            height: trsBar.bgHeight
+            width: parent.width-(parent.sideMargin*2)
+            height: parent.bgHeight
 
-            anchors.top: vendorBox.bottom
-            anchors.topMargin: trsBar.inputMargin
-            anchors.horizontalCenter: trsBar.horizontalCenter
+            anchors.top: vendorInput.bottom
+            anchors.topMargin: parent.inputMargin
+            anchors.horizontalCenter: parent.horizontalCenter
 
             font.pointSize: title3
 
@@ -744,8 +659,6 @@ ApplicationWindow {
         //columnSpacing: topBar.width * (1/4.5)
         //rowSpacing: 5
 
-        ScrollBar.vertical: ScrollBar.AlwaysOn
-
         model: TableModel {
             TableModelColumn { display: "Date" }
             TableModelColumn { display: "Amount" }
@@ -885,8 +798,6 @@ ApplicationWindow {
 
         //columnSpacing: topBar.width * (1/4.5)
         //rowSpacing: 5
-
-        ScrollBar.vertical: ScrollBar.AlwaysOn
 
         model: TableModel {
             TableModelColumn { display: "Date" }
