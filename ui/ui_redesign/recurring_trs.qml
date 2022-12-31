@@ -33,227 +33,9 @@ ApplicationWindow {
     height: screen.height
     color: appBg
 
-    // side tab
-    Rectangle {
-        id: sideTab
-        width: 148
-        height: root.height
-        color: boxBg
-
-        anchors.left: root.left
-
-        // sidetab icons
-        ColumnLayout {
-            id: sideTabIcons
-            width: sideTab.width
-            spacing: 40
-            anchors.horizontalCenter: sideTab.horizontalCenter
-            anchors.top: sideTab.top
-            anchors.topMargin: 35
-
-            // variables for sidetab icons
-            property int bgHeight: 120
-            property int iconWidth: 80
-            property int iconHeight: 75
-            property int titleMargin: 10
-            property int iconMargin: 5
-
-            // dashboard
-            Rectangle {
-                id: dshButton
-                Layout.preferredWidth:  parent.width
-                Layout.preferredHeight: sideTabIcons.bgHeight
-                Layout.alignment: Qt.AlignCenter
-
-                color: boxBg
-
-                Image {
-                    width: sideTabIcons.iconWidth
-                    height: sideTabIcons.iconHeight
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.top
-                    anchors.topMargin: sideTabIcons.iconMargin
-
-                    source: "qrc:/design/dash.png"
-
-                    Text {
-                        text: qsTr("Dashboard")
-                        font.pointSize: title3
-                        color: textColor
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: parent.bottom
-                        anchors.topMargin: sideTabIcons.titleMargin
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        parent.color = slcColor
-                    }
-                    onExited: {
-                        parent.color = boxBg
-                    }
-                }
-            }
-
-            // transaction
-            Rectangle {
-                id: trsButton
-                Layout.preferredWidth:  parent.width
-                Layout.preferredHeight: sideTabIcons.bgHeight
-                Layout.alignment: Qt.AlignCenter
-
-                color: slcColor
-
-                Image {
-                    width: sideTabIcons.iconWidth
-                    height: sideTabIcons.iconHeight
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.top
-                    anchors.topMargin: sideTabIcons.iconMargin
-
-                    source: "qrc:/design/transaction.png"
-
-                    Text {
-                        text: qsTr("Transactions")
-                        font.pointSize: title3
-                        color: textColor
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: parent.bottom
-                        anchors.topMargin: sideTabIcons.titleMargin
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        parent.color = slcColor
-                    }
-                    onExited: {
-                        parent.color = slcColor
-                    }
-                }
-            }
-
-            // analytics
-            Rectangle {
-                id: anlButton
-                Layout.preferredWidth:  parent.width
-                Layout.preferredHeight: sideTabIcons.bgHeight
-                Layout.alignment: Qt.AlignCenter
-
-                color: boxBg
-
-                Image {
-                    width: sideTabIcons.iconWidth
-                    height: sideTabIcons.iconHeight
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.top
-                    anchors.topMargin: sideTabIcons.iconMargin
-
-
-                    source: "qrc:/design/analytics.png"
-
-                    Text {
-                        text: qsTr("Analytics")
-                        font.pointSize: title3
-                        color: textColor
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: parent.bottom
-                        anchors.topMargin: sideTabIcons.titleMargin
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        parent.color = slcColor
-                    }
-                    onExited: {
-                        parent.color = boxBg
-                    }
-                }
-            }
-        }
-
-        // options and account
-        ColumnLayout {
-            id: optionsTabIcons
-            width: sideTab.width
-            spacing: 25
-            anchors.horizontalCenter: sideTab.horizontalCenter
-            anchors.bottom: sideTab.bottom
-            anchors.bottomMargin: 25
-
-            // vars to keep things consistent
-            property int bgHeight: 85
-
-            // user button
-            Rectangle {
-                id: userButton
-                Layout.preferredWidth:  sideTab.width
-                Layout.preferredHeight: optionsTabIcons.bgHeight
-                Layout.alignment: Qt.AlignCenter
-
-                color: boxBg
-
-                Image {
-                    width: 85
-                    height: 85
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    source: "qrc:/design/user_icon_colored.png"
-
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        userButton.color = slcColor
-                    }
-                    onExited: {
-                        userButton.color = boxBg
-                    }
-                }
-            }
-
-            // settings button
-            Rectangle {
-                id: settingsButton
-                Layout.preferredWidth: sideTab.width
-                Layout.preferredHeight: optionsTabIcons.bgHeight
-                Layout.alignment: Qt.AlignCenter
-
-                color: boxBg
-
-                Image {
-                    width: 70
-                    height: 70
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    source: "qrc:/design/settings_white.png"
-
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        settingsButton.color = slcColor
-                    }
-                    onExited: {
-                        settingsButton.color = boxBg
-                    }
-                }
-            }
-        }
+    // left tab
+    LeftTab {
+        selected: "trs"
     }
 
     // transaction bar
@@ -342,115 +124,31 @@ ApplicationWindow {
         property int sideMargin: 20
         property int titleMargin: 5
 
-        // date box
-        Rectangle {
-            id: dateBox
-            width: parent.width-(trsBar.sideMargin*2)
-            height: trsBar.bgHeight
-            color: boxBgLight
+        // date input
+        TrsInputField {
+            id: dateInput
+            text: "Date"
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: incToggle.bottom
-            anchors.topMargin: trsBar.inputMargin
-
-            // label
-            Text {
-                text: qsTr("First charge")
-                font.pointSize: title3
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.top
-                anchors.bottomMargin: trsBar.titleMargin
-            }
-
-            TextInput {
-                id: amountInput
-                font.pointSize: title2
-                height: parent.height
-                width: parent.width
-                color: textColor
-
-                horizontalAlignment: Text.Center
-                verticalAlignment: Text.Center
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
+            sideMargin: parent.sideMargin
+            anchors.top: expToggle.bottom
         }
 
-        // amount box
-        Rectangle {
-            id: amountBox
-            width: parent.width-(trsBar.sideMargin*2)
-            height: trsBar.bgHeight
-            color: boxBgLight
+        // amount input
+        TrsInputField {
+            id: amountInput
+            text: "Amount"
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: dateBox.bottom
-            anchors.topMargin: trsBar.inputMargin
-
-            // label
-            Text {
-                text: qsTr("Amount")
-                font.pointSize: title3
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.top
-                anchors.bottomMargin: trsBar.titleMargin
-            }
-
-            TextInput {
-                id: dateInput
-                font.pointSize: title2
-                height: parent.height
-                width: parent.width
-                color: textColor
-
-                horizontalAlignment: Text.Center
-                verticalAlignment: Text.Center
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
+            sideMargin: parent.sideMargin
+            anchors.top: dateInput.bottom
         }
 
-        // vendor box
-        Rectangle {
-            id: vendorBox
-            width: parent.width-40
-            height: trsBar.bgHeight
-            color: boxBgLight
+        // vendor input
+        TrsInputField {
+            id: vendorInput
+            text: "Amount"
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: amountBox.bottom
-            anchors.topMargin: trsBar.inputMargin
-
-            // label
-            Text {
-                text: qsTr("Vendor")
-                font.pointSize: title3
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.top
-                anchors.bottomMargin: trsBar.titleMargin
-            }
-
-            TextInput {
-                id: vendorInput
-                font.pointSize: title2
-                height: parent.height
-                width: parent.width
-                color: textColor
-
-                horizontalAlignment: Text.Center
-                verticalAlignment: Text.Center
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
+            sideMargin: parent.sideMargin
+            anchors.top: amountInput.bottom
         }
 
         // category picker

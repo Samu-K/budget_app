@@ -14,5 +14,7 @@
         <file>transactions.qml</file>
         <file>recurring_trs.qml</file>
         <file>TrsInputField.qml</file>
+        <file>LeftTab.qml</file>
+        <file>LeftTabButton.qml</file>
     </qresource>
 </RCC>

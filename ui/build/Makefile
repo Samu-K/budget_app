@@ -625,6 +625,8 @@ qrc_qml.cpp: ../ui_redesign/qml.qrc \
 		../ui_redesign/dashboard.qml \
 		../ui_redesign/transactions.qml \
 		../ui_redesign/TrsInputField.qml \
+		../ui_redesign/LeftTabButton.qml \
+		../ui_redesign/LeftTab.qml \
 		../ui_redesign/recurring_trs.qml \
 		../ui_redesign/design/settings_white.png \
 		../ui_redesign/design/key.png \
