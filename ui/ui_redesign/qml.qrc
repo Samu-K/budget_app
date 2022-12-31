@@ -16,5 +16,6 @@
         <file>TrsInputField.qml</file>
         <file>LeftTab.qml</file>
         <file>LeftTabButton.qml</file>
+        <file>TrsBar.qml</file>
     </qresource>
 </RCC>
