@@ -61,5 +61,47 @@ TransactionsTemplate {
         "Vendor",
         "Category"
     ]
-    recurring: true
+
+    TrsBar{
+        id: trsBar
+
+        // recurring picker
+        ComboBox {
+            id: recBox
+
+            width: parent.width-(parent.sideMargin*2)
+            height: parent.bgHeight
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 150
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            font.pointSize: title3
+
+            model: [ "Day", "Week", "Month" ]
+
+            background:
+                Rectangle {
+                    id: recBg
+                    color: boxBgLight
+                    width: parent.width
+                    height: parent.height+10
+
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+            }
+
+            // label
+            Text {
+                text: qsTr("Once every ")
+                font.pointSize: title3
+                color: textColor
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.top
+                anchors.bottomMargin: 10
+            }
+        }
+}
+
 }

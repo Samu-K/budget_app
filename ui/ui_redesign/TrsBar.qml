@@ -23,7 +23,8 @@ Rectangle {
 
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.topMargin: topBar.height
+        anchors.topMargin: 50
+
         Text {
             text: "Expense"
             color: textColor

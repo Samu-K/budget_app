@@ -11,7 +11,6 @@ ApplicationWindow {
     property var incomeData
     property var expenseData
     property var columnTitles
-    property bool recurring: false
 
     // colors
         // background color of entire app
@@ -40,51 +39,6 @@ ApplicationWindow {
     // left tab
     LeftTab {
         id: sideTab
-    }
-
-    // right side tab
-    TrsBar {
-        id: trsBar
-
-        // recurring picker
-        ComboBox {
-            id: recBox
-            visible: recurring
-
-            width: parent.width-(parent.sideMargin*2)
-            height: parent.bgHeight
-
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 150
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            font.pointSize: title3
-
-            model: [ "Day", "Week", "Month" ]
-
-            background:
-                Rectangle {
-                    id: recBg
-                    color: boxBgLight
-                    width: parent.width
-                    height: parent.height+10
-
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-            }
-
-            // label
-            Text {
-                text: qsTr("Once every ")
-                font.pointSize: title3
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.top
-                anchors.bottomMargin: 10
-            }
-        }
-
     }
 
     // top bar

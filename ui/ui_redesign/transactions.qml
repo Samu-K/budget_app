@@ -124,4 +124,10 @@ TransactionsTemplate {
         "Vendor",
         "Category"
     ]
+
+    // right side tab
+    TrsBar {
+        id: trsBar
+    }
+
 }
