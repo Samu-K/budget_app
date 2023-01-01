@@ -623,6 +623,7 @@ qrc_qml.cpp: ../ui_redesign/qml.qrc \
 		/Users/SamuK/Qt/6.3.1/macos/libexec/rcc \
 		../ui_redesign/login.qml \
 		../ui_redesign/dashboard.qml \
+		../ui_redesign/TransactionsTemplate.qml \
 		../ui_redesign/TrsInputField.qml \
 		../ui_redesign/transactions.qml \
 		../ui_redesign/LeftTabButton.qml \

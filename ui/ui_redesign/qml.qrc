@@ -20,5 +20,6 @@
         <file>TopBarButton.qml</file>
         <file>TrsTable.qml</file>
         <file>TableHeader.qml</file>
+        <file>TransactionsTemplate.qml</file>
     </qresource>
 </RCC>
