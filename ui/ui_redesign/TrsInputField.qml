@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import QtQuick.Layouts
 
 // label
 Text {
@@ -7,7 +8,7 @@ Text {
     color: "white"
     font.pointSize: 24
 
-    anchors.horizontalCenter: parent.horizontalCenter
+    Layout.alignment: Qt.AlignHCenter
 
     property alias bgWidth: background.width
     property int sideMargin

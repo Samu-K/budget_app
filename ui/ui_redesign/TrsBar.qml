@@ -92,7 +92,7 @@ Rectangle {
         height: 300
         width: trsBar.width-40
 
-        spacing: 10
+        spacing: 5
 
         anchors.top: expToggle.bottom
 
