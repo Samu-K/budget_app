@@ -147,6 +147,20 @@ ApplicationWindow {
         anchors.topMargin: 10
     }
 
+    // headers for expense table
+    TableHeader {
+        id: expTableHeaders
+        syncView: expTable
+
+        titles: [
+            "Once every",
+            "Next charge",
+            "Amount",
+            "Vendor",
+            "Category"
+        ]
+    }
+
     TrsTable {
         id: expTable
         anchors.left: sideTab.right
@@ -185,33 +199,18 @@ ApplicationWindow {
         }
     }
 
-    HorizontalHeaderView {
-        id: expHorizontalHeader
-        syncView: expTable
+    // headers for income table
+    TableHeader {
+        id: incTableHeaders
+        syncView: incTable
 
-        anchors.left: expTable.left
-        anchors.bottom: expTable.top
-
-        model: [
+        titles: [
             "Once every",
             "Next charge",
             "Amount",
             "Vendor",
             "Category"
         ]
-
-        delegate: Rectangle {
-            implicitWidth: 100
-            implicitHeight: 30
-
-            color: "transparent"
-            Text {
-                text: modelData
-                font.pointSize: 24
-                color: "white"
-                anchors.centerIn: parent
-            }
-        }
     }
 
     TrsTable {
@@ -252,32 +251,5 @@ ApplicationWindow {
             ]
         }
     }
-    HorizontalHeaderView {
-        id: incHorizontalHeader
-        syncView: incTable
 
-        anchors.left: incTable.left
-        anchors.bottom: incTable.top
-
-        model: [
-            "Once every",
-            "Next charge",
-            "Amount",
-            "Vendor",
-            "Category"
-        ]
-
-        delegate: Rectangle {
-            implicitWidth: 100
-            implicitHeight: 30
-
-            color: "transparent"
-            Text {
-                text: modelData
-                font.pointSize: 24
-                color: "white"
-                anchors.centerIn: parent
-            }
-        }
-    }
 }

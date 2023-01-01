@@ -19,5 +19,6 @@
         <file>TrsBar.qml</file>
         <file>TopBarButton.qml</file>
         <file>TrsTable.qml</file>
+        <file>TableHeader.qml</file>
     </qresource>
 </RCC>
