@@ -3,7 +3,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.qmlmodels 1.0
 
-
 ApplicationWindow {
     id: root
     visible: true
@@ -157,35 +156,62 @@ ApplicationWindow {
         anchors.rightMargin: 60
 
         anchors.top: expTableTitle.bottom
-        anchors.topMargin: 80
+        anchors.topMargin: 40
 
         model: TableModel {
-                TableModelColumn { display: "Once every" }
-                TableModelColumn { display: "Next charge" }
-                TableModelColumn { display: "Amount" }
-                TableModelColumn { display: "Vendor" }
-                TableModelColumn { display: "Category" }
+            TableModelColumn { display: "Once every" }
+            TableModelColumn { display: "Next charge" }
+            TableModelColumn { display: "Amount" }
+            TableModelColumn { display: "Vendor" }
+            TableModelColumn { display: "Category" }
 
-                rows: [
-                    {
-                        "Once every": "month",
-                        "Next charge": "13.2.2022",
-                        "Amount": "124€",
-                        "Vendor": "Isabel",
-                        "Category": "rent"
-                    },
-                    {
-                        "Once every": "year",
-                        "Next charge": "13.4.2022",
-                        "Amount": "20€",
-                        "Vendor": "Pocket Casts",
-                        "Category": "subscriptions"
-                    },
+            rows: [
+                {
+                    "Once every": "month",
+                    "Next charge": "13.2.2022",
+                    "Amount": "124€",
+                    "Vendor": "Isabel",
+                    "Category": "rent"
+                },
+                {
+                    "Once every": "year",
+                    "Next charge": "13.4.2022",
+                    "Amount": "20€",
+                    "Vendor": "Pocket Casts",
+                    "Category": "subscriptions"
+                },
 
-                ]
+            ]
+        }
+    }
+
+    HorizontalHeaderView {
+        id: expHorizontalHeader
+        syncView: expTable
+
+        anchors.left: expTable.left
+        anchors.bottom: expTable.top
+
+        model: [
+            "Once every",
+            "Next charge",
+            "Amount",
+            "Vendor",
+            "Category"
+        ]
+
+        delegate: Rectangle {
+            implicitWidth: 100
+            implicitHeight: 30
+
+            color: "transparent"
+            Text {
+                text: modelData
+                font.pointSize: 24
+                color: "white"
+                anchors.centerIn: parent
             }
-
-
+        }
     }
 
     TrsTable {
@@ -198,7 +224,7 @@ ApplicationWindow {
         anchors.rightMargin: 60
 
         anchors.top: incTableTitle.bottom
-        anchors.topMargin: 80
+        anchors.topMargin: 40
 
         model: TableModel {
             TableModelColumn { display: "Once every" }
@@ -224,6 +250,34 @@ ApplicationWindow {
                 },
 
             ]
+        }
+    }
+    HorizontalHeaderView {
+        id: incHorizontalHeader
+        syncView: incTable
+
+        anchors.left: incTable.left
+        anchors.bottom: incTable.top
+
+        model: [
+            "Once every",
+            "Next charge",
+            "Amount",
+            "Vendor",
+            "Category"
+        ]
+
+        delegate: Rectangle {
+            implicitWidth: 100
+            implicitHeight: 30
+
+            color: "transparent"
+            Text {
+                text: modelData
+                font.pointSize: 24
+                color: "white"
+                anchors.centerIn: parent
+            }
         }
     }
 }
