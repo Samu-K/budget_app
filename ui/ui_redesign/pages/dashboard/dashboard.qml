@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtCharts
 
+import "qrc:/pages/shared"
 
 ApplicationWindow {
     // set global variables
@@ -41,216 +42,8 @@ ApplicationWindow {
     width: screen.width
     height: screen.height
 
-    // side tab
-    Rectangle {
+    LeftTab {
         id: sideTab
-        width: 148
-        height: root.height
-        color: boxBg
-
-        anchors.left: root.left
-
-        // sidetab icons
-        ColumnLayout {
-            width: sideTab.width
-            spacing: 40
-            anchors.horizontalCenter: sideTab.horizontalCenter
-            anchors.top: sideTab.top
-            anchors.topMargin: 35
-
-            // dashboard
-            Rectangle {
-                id: dshButton
-                Layout.preferredWidth:  parent.width
-                Layout.preferredHeight: 120
-                Layout.alignment: Qt.AlignCenter
-
-                color: slcColor
-
-                Image {
-                    width: 80
-                    height: 75
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.top
-                    anchors.topMargin: 5
-
-                    source: "qrc:/design/dash.png"
-
-                    Text {
-                        text: qsTr("Dashboard")
-                        font.pointSize: title3
-                        color: textColor
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: parent.bottom
-                        anchors.topMargin: 10
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        parent.color = slcColor
-                    }
-                    onExited: {
-                        parent.color = slcColor
-                    }
-                }
-            }
-
-            // transaction
-            Rectangle {
-                id: trsButton
-                Layout.preferredWidth:  parent.width
-                Layout.preferredHeight: 120
-                Layout.alignment: Qt.AlignCenter
-
-                color: boxBg
-
-                Image {
-                    width: 80
-                    height: 75
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.top
-                    anchors.topMargin: 5
-
-                    source: "qrc:/design/transaction.png"
-
-                    Text {
-                        text: qsTr("Transactions")
-                        font.pointSize: title3
-                        color: textColor
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: parent.bottom
-                        anchors.topMargin: 10
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        parent.color = slcColor
-                    }
-                    onExited: {
-                        parent.color = boxBg
-                    }
-                }
-            }
-
-            // analytics
-            Rectangle {
-                id: anlButton
-                Layout.preferredWidth:  parent.width
-                Layout.preferredHeight: 120
-                Layout.alignment: Qt.AlignCenter
-
-                color: boxBg
-
-                Image {
-                    width: 80
-                    height: 75
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.top
-                    anchors.topMargin: 5
-
-
-                    source: "qrc:/design/analytics.png"
-
-                    Text {
-                        text: qsTr("Analytics")
-                        font.pointSize: title3
-                        color: textColor
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: parent.bottom
-                        anchors.topMargin: 10
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        parent.color = slcColor
-                    }
-                    onExited: {
-                        parent.color = boxBg
-                    }
-                }
-            }
-        }
-
-        // options and account
-        ColumnLayout {
-            width: sideTab.width
-            spacing: 25
-            anchors.horizontalCenter: sideTab.horizontalCenter
-            anchors.bottom: sideTab.bottom
-            anchors.bottomMargin: 25
-
-
-            // user button
-            Rectangle {
-                id: userButton
-                Layout.preferredWidth:  sideTab.width
-                Layout.preferredHeight: 85
-                Layout.alignment: Qt.AlignCenter
-
-                color: boxBg
-
-                Image {
-                    width: 85
-                    height: 85
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    source: "qrc:/design/user_icon_colored.png"
-
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        userButton.color = slcColor
-                    }
-                    onExited: {
-                        userButton.color = boxBg
-                    }
-                }
-            }
-
-            // settings button
-            Rectangle {
-                id: settingsButton
-                Layout.preferredWidth: sideTab.width
-                Layout.preferredHeight: 85
-                Layout.alignment: Qt.AlignCenter
-
-                color: boxBg
-
-                Image {
-                    width: 70
-                    height: 70
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    source: "qrc:/design/settings_white.png"
-
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: {
-                        settingsButton.color = slcColor
-                    }
-                    onExited: {
-                        settingsButton.color = boxBg
-                    }
-                }
-            }
-        }
     }
 
     // accounts text
@@ -308,18 +101,16 @@ ApplicationWindow {
         anchors.horizontalCenter: actText.horizontalCenter
         anchors.top: accountList.bottom
         anchors.topMargin: 5
-    }
 
-    // settings for quick links
-    Image {
-        width: 35
-        height: 35
-        anchors.left: qckText.right
-        anchors.leftMargin: 10
-        anchors.bottom: qckText.bottom
+        // settings for quick links
+        LeftTabButton {
+            iconSource: "qrc:/design/settings_white.png"
+            iconSize: 30
 
-        source: "qrc:/design/settings_white.png"
-
+            anchors.left: parent.right
+            anchors.leftMargin: 20
+            anchors.top: parent.top
+        }
     }
 
     // quick links buttons
@@ -526,101 +317,74 @@ ApplicationWindow {
         anchors.topMargin: 10
         anchors.horizontalCenter: crMonthText.horizontalCenter
 
-        // expenses
-        Rectangle {
-            id: expBox
-            width: 200
-            height: 50
-            color: sumBg.color
+        Component {
+            id: infoBox
 
-            anchors.left: parent.left
-            anchors.leftMargin: 30
-            anchors.top: parent.top
-            anchors.topMargin: 30
+            Rectangle {
+                id: bg
+                width: 180
+                height: 50
+                color: boxBgLight
 
-            Text {
-                text: qsTr("Expenses")
-                font.pointSize: title3
-                color: textColor
+                Text {
+                    id: label
+                    text: labelText
+                    color: "white"
+                    font.pointSize: 24
+                    anchors.bottom: parent.top
+                    anchors.bottomMargin: 5
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
 
-                anchors.bottom: parent.top
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
+                Text {
+                    id: amount
+                    text: amountText
+                    color: "white"
+                    font.pointSize: 32
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
 
-            // amount
-            Text {
-                text: "100€"
-                font.pointSize: title1
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
-        }
-
-        // income
-        Rectangle {
-            id: incBox
-            width: 200
-            height: 50
-            color: boxBgLight
-
-            anchors.right: parent.right
-            anchors.rightMargin: 30
-            anchors.top: parent.top
-            anchors.topMargin: 30
-
-            // title
-            Text {
-                text: qsTr("Income")
-                font.pointSize: title3
-                color: textColor
-
-                anchors.bottom: parent.top
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            // amount
-            Text {
-                text: "456€"
-                font.pointSize: title1
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
+                }
             }
         }
 
-        // savings
-        Rectangle {
-            id: svsBox
+        Loader {
+            id: expenseBox
+            sourceComponent: infoBox
+            property string labelText: "Expenses"
+            property string amountText: "150€"
+
+            anchors.left: crMonthBg.left
+            anchors.leftMargin: 40
+            anchors.top: crMonthBg.top
+            anchors.topMargin: 40
+        }
+
+        Loader {
+            id: incomeBox
+            sourceComponent: infoBox
+            property string labelText: "Income"
+            property string amountText: "350€"
+
+            anchors.right: crMonthBg.right
+            anchors.rightMargin: 40
+            anchors.top: crMonthBg.top
+            anchors.topMargin: 40
+        }
+
+        Loader {
+            id: savingsBox
+            sourceComponent: infoBox
             width: 250
-            height: 50
-            color: boxBgLight
+            property string labelText: "Savings"
+            property string amountText: "+ 200€"
 
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 15
             anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: crMonthBg.bottom
+            anchors.bottomMargin: 10
 
-            // title
-            Text {
-                text: qsTr("Total")
-                font.pointSize: title3
-                color: textColor
-
-                anchors.bottom: parent.top
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-            // amount
-            Text {
-                text: "+ 356€"
-                font.pointSize: title1
-                color: textColor
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
         }
+
     }
 
     // recent transactions text
