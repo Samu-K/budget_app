@@ -213,11 +213,8 @@ ApplicationWindow {
         anchors.bottomMargin: headerMargin
     }
 
-    // expense table
-    TableView {
+    TrsTable {
         id: expTable
-        height: 180
-
         anchors.left: sideTab.right
         anchors.leftMargin: 60
 
@@ -227,48 +224,33 @@ ApplicationWindow {
         anchors.top: expTableTitle.bottom
         anchors.topMargin: 80
 
-        //columnSpacing: topBar.width * (1/4.5)
-        //rowSpacing: 5
-
         model: TableModel {
-            TableModelColumn { display: "Once every" }
-            TableModelColumn { display: "Next charge" }
-            TableModelColumn { display: "Amount" }
-            TableModelColumn { display: "Vendor" }
-            TableModelColumn { display: "Category" }
+                TableModelColumn { display: "Once every" }
+                TableModelColumn { display: "Next charge" }
+                TableModelColumn { display: "Amount" }
+                TableModelColumn { display: "Vendor" }
+                TableModelColumn { display: "Category" }
 
-            rows: [
-                {
-                    "Once every": "month",
-                    "Next charge": "13.2.2022",
-                    "Amount": "124€",
-                    "Vendor": "Isabel",
-                    "Category": "rent"
-                },
-                {
-                    "Once every": "year",
-                    "Next charge": "13.4.2022",
-                    "Amount": "20€",
-                    "Vendor": "Pocket Casts",
-                    "Category": "subscriptions"
-                },
+                rows: [
+                    {
+                        "Once every": "month",
+                        "Next charge": "13.2.2022",
+                        "Amount": "124€",
+                        "Vendor": "Isabel",
+                        "Category": "rent"
+                    },
+                    {
+                        "Once every": "year",
+                        "Next charge": "13.4.2022",
+                        "Amount": "20€",
+                        "Vendor": "Pocket Casts",
+                        "Category": "subscriptions"
+                    },
 
-            ]
-        }
-
-        delegate: Rectangle {
-            color: boxBgLight
-            implicitWidth: 180
-            implicitHeight: 40
-            border.width: 1
-
-            Text {
-                text: display
-                font.pointSize: title2
-                color: textColor
-                anchors.centerIn: parent
+                ]
             }
-        }
+
+
     }
 
     // headers
@@ -320,7 +302,6 @@ ApplicationWindow {
         anchors.bottom: incTable.top
         anchors.bottomMargin: headerMargin
     }
-
     Text {
         id: incCatHeader
         text: "Category"
@@ -334,10 +315,8 @@ ApplicationWindow {
         anchors.bottomMargin: headerMargin
     }
 
-    // income table
-    TableView {
+    TrsTable {
         id: incTable
-        height: 180
 
         anchors.left: sideTab.right
         anchors.leftMargin: 60
@@ -347,9 +326,6 @@ ApplicationWindow {
 
         anchors.top: incTableTitle.bottom
         anchors.topMargin: 80
-
-        //columnSpacing: topBar.width * (1/4.5)
-        //rowSpacing: 5
 
         model: TableModel {
             TableModelColumn { display: "Once every" }
@@ -376,20 +352,5 @@ ApplicationWindow {
 
             ]
         }
-
-        delegate: Rectangle {
-            color: boxBgLight
-            implicitWidth: 180
-            implicitHeight: 40
-            border.width: 1
-
-            Text {
-                text: display
-                font.pointSize: title2
-                color: textColor
-                anchors.centerIn: parent
-            }
-        }
     }
-
 }
