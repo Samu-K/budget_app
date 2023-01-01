@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtCharts
-
+import Qt.labs.qmlmodels 1.0
 import "qrc:/pages/shared"
 
 ApplicationWindow {
@@ -272,8 +272,6 @@ ApplicationWindow {
 
                     background: Rectangle {
                         color: boxBg
-                        anchors.top: dateSelectBg.top
-                        anchors.bottom: dateSelectBg.bottom
 
                         MouseArea {
                             anchors.fill: parent
@@ -337,7 +335,7 @@ ApplicationWindow {
                 }
 
                 Text {
-                    id: amount
+                    id: amountTxt
                     text: amountText
                     color: "white"
                     font.pointSize: 32
@@ -418,34 +416,81 @@ ApplicationWindow {
         anchors.horizontalCenter: trsText.horizontalCenter
 
         // expense table
-        GridLayout {
+        TableView {
             id: expGrid
-            columns: 4
-            columnSpacing: 60
+            width: parent.width
+            height: parent.height
 
             anchors.horizontalCenter: trsBox.horizontalCenter
             anchors.top: trsBox.top
-            anchors.topMargin: 10
+            anchors.topMargin: 20
 
-            Text { text: "13.3.2022"; font.pointSize:norm; color: textColor }
-            Text { text: "- 350€"; font.pointSize:norm; color: textColor }
-            Text { text: "KSM"; font.pointSize:norm; color: textColor }
-            Text { text: "Groceries"; font.pointSize: norm; color: textColor }
+            interactive: false
 
-            Text { text: "14.3.2022"; font.pointSize:norm; color: textColor }
-            Text { text: "- 3.20€"; font.pointSize:norm; color: textColor }
-            Text { text: "Sodexo"; font.pointSize:norm; color: textColor }
-            Text { text: "School food"; font.pointSize: norm; color: textColor }
+            ListModel {
+                id: trsList
 
-            Text { text: "15.3.2022"; font.pointSize:norm; color: textColor }
-            Text { text: "- 20€"; font.pointSize:norm; color: textColor }
-            Text { text: "Poro"; font.pointSize:norm; color: textColor }
-            Text { text: "Going out"; font.pointSize: norm; color: textColor }
+                ListElement {
+                    date: "13.3.2022"
+                    amount: "- 350€"
+                    vendor: "KSM"
+                    category: "Groceries"
+                }
+                ListElement {
+                    date: "13.3.2022"
+                    amount: "- 320€"
+                    vendor: "Isabel"
+                    category: "Rent"
+                }
+                ListElement {
+                    date: "15.4.2022"
+                    amount: "- 15€"
+                    vendor: "Roosa"
+                    category: "Debts"
+                }
+                ListElement {
+                    date: "13.3.2022"
+                    amount: "+ 124€"
+                    vendor: "Kela"
+                    category: "Social Support"
+                }
+            }
 
-            Text { text: "16.3.2022"; font.pointSize:norm; color: textColor }
-            Text { text: "+ 124€"; font.pointSize:norm; color: textColor }
-            Text { text: "Kela"; font.pointSize:norm; color: textColor }
-            Text { text: "Social support"; font.pointSize: norm; color: textColor }
+            model: trsList
+            delegate: Rectangle {
+                color: "transparent"
+                implicitHeight: 35
+                implicitWidth: 100
+
+                Text {
+                    text: date
+                    font.pointSize: 20
+                    color: "white"
+                    anchors.left: parent.left
+                    anchors.leftMargin: parent.width*(1/2)
+                }
+                Text {
+                    text: amount
+                    font.pointSize: 20
+                    color: "white"
+                    anchors.left: parent.left
+                    anchors.leftMargin: parent.width*2
+                }
+                Text {
+                    text: vendor
+                    font.pointSize: 20
+                    color: "white"
+                    anchors.left: parent.left
+                    anchors.leftMargin: parent.width*3
+                }
+                Text {
+                    text: category
+                    font.pointSize: 20
+                    color: "white"
+                    anchors.left: parent.left
+                    anchors.leftMargin: parent.width*4
+                }
+            }
         }
     }
 }
