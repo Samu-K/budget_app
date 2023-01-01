@@ -5,6 +5,7 @@ import QtQuick.Layouts
 
 // transaction bar
 Rectangle {
+    id: trsBar
     width: parent.width*(1/5)
     height: parent.height
     color: "#2C3139"
@@ -89,21 +90,23 @@ Rectangle {
     ColumnLayout {
         id: trsInput
         height: 300
-        width: trsBar.width
-        spacing: 30
+        width: trsBar.width-40
+
+        spacing: 10
 
         anchors.top: expToggle.bottom
-        anchors.topMargin: 40
-        anchors.horizontalCenter: trsBar.horizontalCenter
+
+        anchors.left: parent.left
+        anchors.leftMargin: 20
 
         Repeater {
             model: ["Date", "Amount", "Vendor"]
 
+            Layout.alignment: Qt.AlignTop
+
             TrsInputField {
                 text: modelData
-                sideMargin: 20
-
-                anchors.horizontalCenter: parent.horizontalCenter
+                bgWidth: trsBar.width-(40)
             }
         }
     }
@@ -115,7 +118,7 @@ Rectangle {
         height: trsBar.bgHeight
 
         anchors.top: trsInput.bottom
-        anchors.topMargin: 40
+        anchors.topMargin: 70
         anchors.horizontalCenter: trsBar.horizontalCenter
 
         font.pointSize: title3

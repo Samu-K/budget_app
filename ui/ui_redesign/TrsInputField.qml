@@ -1,40 +1,44 @@
 import QtQuick 2.15
 
-Rectangle {
-    id: background
+// label
+Text {
+    id: text
 
-    // component vars
-    property alias text: text.text
+    color: "white"
+    font.pointSize: 24
+
+    anchors.horizontalCenter: parent.horizontalCenter
+
+    property alias bgWidth: background.width
     property int sideMargin
 
-    color: "#8E9EB8"
-    width: parent.width-(sideMargin*2)
-    height: 35
+    Rectangle {
+        id: background
 
-    // label
-    Text {
-        id: text
-        color: "white"
-        font.pointSize: 24
+        color: "#8E9EB8"
+        height: 35
+        clip: true
 
+        anchors.top: parent.bottom
+        anchors.topMargin: 5
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.top
-        anchors.bottomMargin: 5
-    }
 
-    // input
-    TextInput {
-        id: input
-        font.pointSize: 26
-        height: parent.height
-        width: parent.width
-        color: text.color
+        // input
+        TextInput {
+            id: input
+            width: parent.width
+            Component.onCompleted: input.ensureVisible(0)
 
-        horizontalAlignment: Text.Center
-        verticalAlignment: Text.Center
+            font.pointSize: 26
+            color: text.color
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+            horizontalAlignment: Text.Center
+            verticalAlignment: Text.Center
+
+            anchors.fill: parent
+        }
     }
 }
+
+
 

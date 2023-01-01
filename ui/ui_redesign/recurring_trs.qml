@@ -104,7 +104,7 @@ ApplicationWindow {
 
                 TopBarButton {
                     buttonText: modelData
-                    anchors.bottom: parent.bottom
+                    Layout.alignment: Qt.AlignBottom
                 }
             }
         }
@@ -148,71 +148,6 @@ ApplicationWindow {
         anchors.topMargin: 10
     }
 
-    property int headerMargin: 30
-
-    // headers
-    Text {
-        id: recHeader
-        text: "Once every"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: expTable.left
-        anchors.leftMargin: 0
-        anchors.bottom: expTable.top
-        anchors.bottomMargin: headerMargin
-    }
-    Text {
-        id: dateHeader
-        text: "Next charge"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: recHeader.right
-        anchors.leftMargin: 5
-        anchors.bottom: expTable.top
-        anchors.bottomMargin: headerMargin
-    }
-
-    Text {
-        id: amountHeader
-        text: "Amount"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: dateHeader.right
-        anchors.leftMargin: 20
-        anchors.bottom: expTable.top
-        anchors.bottomMargin: headerMargin
-    }
-    Text {
-        id: vendorHeader
-        text: "Vendor"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: amountHeader.right
-        anchors.leftMargin: 75
-        anchors.bottom: expTable.top
-        anchors.bottomMargin: headerMargin
-    }
-    Text {
-        id: catHeader
-        text: "Category"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: vendorHeader.right
-        anchors.leftMargin: 50
-        anchors.bottom: expTable.top
-        anchors.bottomMargin: headerMargin
-    }
-
     TrsTable {
         id: expTable
         anchors.left: sideTab.right
@@ -251,68 +186,6 @@ ApplicationWindow {
             }
 
 
-    }
-
-    // headers
-    Text {
-        id: incRecHeader
-        text: "Once every"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: incTable.left
-        anchors.leftMargin: 0
-        anchors.bottom: incTable.top
-        anchors.bottomMargin: headerMargin
-    }
-    Text {
-        id: incDateHeader
-        text: "Next charge"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: incRecHeader.right
-        anchors.leftMargin: 5
-        anchors.bottom: incTable.top
-        anchors.bottomMargin: headerMargin
-    }
-    Text {
-        id: incAmountHeader
-        text: "Amount"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: incDateHeader.right
-        anchors.leftMargin: 20
-        anchors.bottom: incTable.top
-        anchors.bottomMargin: headerMargin
-    }
-    Text {
-        id: incVendorHeader
-        text: "Vendor"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: incAmountHeader.right
-        anchors.leftMargin: 75
-        anchors.bottom: incTable.top
-        anchors.bottomMargin: headerMargin
-    }
-    Text {
-        id: incCatHeader
-        text: "Category"
-        font.pointSize: title1
-        color: textColor
-        font.bold: true
-
-        anchors.left: incVendorHeader.right
-        anchors.leftMargin: 50
-        anchors.bottom: incTable.top
-        anchors.bottomMargin: headerMargin
     }
 
     TrsTable {

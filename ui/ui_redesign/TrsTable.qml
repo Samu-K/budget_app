@@ -1,8 +1,10 @@
 import QtQuick 2.15
 import Qt.labs.qmlmodels
+import QtQuick.Controls
 
 // expense table
 TableView {
+    id: tableView
     height: 180
 
     delegate: Rectangle {
@@ -17,6 +19,14 @@ TableView {
             color: "white"
             anchors.centerIn: parent
         }
+    }
+
+    model: ["Once every", "Next charge", "Amount", "Vendor", "Category"]
+
+    HorizontalHeaderView {
+        id: horizontalHeader
+        syncView: tableView
+        anchors.left: parent.left
     }
 }
 
