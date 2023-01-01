@@ -1,25 +1,25 @@
 <RCC>
     <qresource prefix="/">
-        <file>login.qml</file>
         <file>design/key.png</file>
         <file>design/settings.png</file>
         <file>design/settings.xcf</file>
         <file>design/settings_white.png</file>
         <file>design/user_icon.png</file>
         <file>design/user_icon_colored.png</file>
-        <file>dashboard.qml</file>
         <file>design/analytics.png</file>
         <file>design/dash.png</file>
         <file>design/transaction.png</file>
-        <file>transactions.qml</file>
-        <file>recurring_trs.qml</file>
-        <file>TrsInputField.qml</file>
-        <file>LeftTab.qml</file>
-        <file>LeftTabButton.qml</file>
-        <file>TrsBar.qml</file>
-        <file>TopBarButton.qml</file>
-        <file>TrsTable.qml</file>
-        <file>TableHeader.qml</file>
-        <file>TransactionsTemplate.qml</file>
+        <file>pages/dashboard/dashboard.qml</file>
+        <file>pages/login/login.qml</file>
+        <file>pages/transactions/recurring_trs.qml</file>
+        <file>pages/transactions/transactions.qml</file>
+        <file>pages/transactions/components/TopBarButton.qml</file>
+        <file>pages/transactions/components/TransactionsTemplate.qml</file>
+        <file>pages/transactions/components/table/TableHeader.qml</file>
+        <file>pages/transactions/components/table/TrsTable.qml</file>
+        <file>pages/transactions/components/trsbar/TrsBar.qml</file>
+        <file>pages/transactions/components/trsbar/TrsInputField.qml</file>
+        <file>pages/shared/LeftTab.qml</file>
+        <file>pages/shared/LeftTabButton.qml</file>
     </qresource>
 </RCC>

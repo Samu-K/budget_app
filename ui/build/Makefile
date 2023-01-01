@@ -621,18 +621,18 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_qml.cpp
 qrc_qml.cpp: ../ui_redesign/qml.qrc \
 		/Users/SamuK/Qt/6.3.1/macos/libexec/rcc \
-		../ui_redesign/login.qml \
-		../ui_redesign/dashboard.qml \
-		../ui_redesign/TransactionsTemplate.qml \
-		../ui_redesign/TrsInputField.qml \
-		../ui_redesign/transactions.qml \
-		../ui_redesign/LeftTabButton.qml \
-		../ui_redesign/TopBarButton.qml \
-		../ui_redesign/TrsBar.qml \
-		../ui_redesign/TrsTable.qml \
-		../ui_redesign/LeftTab.qml \
-		../ui_redesign/TableHeader.qml \
-		../ui_redesign/recurring_trs.qml \
+		../ui_redesign/pages/shared/LeftTabButton.qml \
+		../ui_redesign/pages/shared/LeftTab.qml \
+		../ui_redesign/pages/login/login.qml \
+		../ui_redesign/pages/transactions/transactions.qml \
+		../ui_redesign/pages/transactions/recurring_trs.qml \
+		../ui_redesign/pages/transactions/components/TransactionsTemplate.qml \
+		../ui_redesign/pages/transactions/components/TopBarButton.qml \
+		../ui_redesign/pages/transactions/components/table/TrsTable.qml \
+		../ui_redesign/pages/transactions/components/table/TableHeader.qml \
+		../ui_redesign/pages/transactions/components/trsbar/TrsInputField.qml \
+		../ui_redesign/pages/transactions/components/trsbar/TrsBar.qml \
+		../ui_redesign/pages/dashboard/dashboard.qml \
 		../ui_redesign/design/settings_white.png \
 		../ui_redesign/design/key.png \
 		../ui_redesign/design/user_icon.png \

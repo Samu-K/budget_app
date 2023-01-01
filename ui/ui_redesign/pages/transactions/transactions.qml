@@ -3,6 +3,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.qmlmodels 1.0
 
+import "qrc:/pages/transactions/components"
+import "qrc:/pages/transactions/components/trsbar"
+
 TransactionsTemplate {
     incomeData: TableModel {
            TableModelColumn { display: "Date" }

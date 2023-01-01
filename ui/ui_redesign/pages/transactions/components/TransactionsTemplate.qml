@@ -3,6 +3,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.qmlmodels 1.0
 
+import "qrc:/pages/transactions/components/table"
+import "qrc:/pages/shared"
+
 ApplicationWindow {
     id: root
     visible: true
