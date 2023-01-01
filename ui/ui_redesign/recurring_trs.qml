@@ -38,11 +38,12 @@ ApplicationWindow {
         id: sideTab
     }
 
+    // right side tab
     TrsBar {
         id: trsBar
     }
 
-    // rec picker
+    // recurring picker
     ComboBox {
         id: recBox
         width: trsBar.width-(trsBar.sideMargin*2)
@@ -90,121 +91,25 @@ ApplicationWindow {
         anchors.left: sideTab.right
         anchors.top: parent.top
 
-        property int buttonWidth: 200
-        property int buttonHeight: 30
+        RowLayout {
+            id: topButtons
+            height: parent.height
 
-        // all transaction tab
-        Button {
-            id: trsTabButton
-            width: topBar.buttonWidth
-            height: topBar.buttonHeight
-            anchors.bottom: topBar.bottom
-            anchors.left: topBar.left
+            spacing: 5
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
 
-            Text {
-                text: "All transactions"
-                color: textColor
-                font.pointSize: title3
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
+            Repeater {
+                model:["All transactions", "Recurring", "Accounts", "Categories"]
 
-            background: Rectangle {
-                color: boxBgLight
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: parent.color = slcColor
-                    onExited: parent.color = boxBgLight
+                TopBarButton {
+                    buttonText: modelData
+                    anchors.bottom: parent.bottom
                 }
             }
         }
 
-        // recurring transactions tab
-        Button {
-            id: recTabButton
-            width: topBar.buttonWidth
-            height: topBar.buttonHeight
-            anchors.bottom: topBar.bottom
-            anchors.left: trsTabButton.right
-            anchors.leftMargin: 10
 
-            Text {
-                text: "Recurring"
-                color: textColor
-                font.pointSize: title3
-                horizontalAlignment: Text.Center
-                verticalAlignment: Text.Center
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
-
-            background: Rectangle {
-                color: slcColor
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: parent.color = slcColor
-                    onExited: parent.color = slcColor
-                }
-            }
-        }
-
-        // categories tab
-        Button {
-            id: catTabButton
-            width: topBar.buttonWidth
-            height: topBar.buttonHeight
-            anchors.bottom: topBar.bottom
-            anchors.left: recTabButton.right
-            anchors.leftMargin: 10
-
-            Text {
-                text: "Categories"
-                color: textColor
-                font.pointSize: title3
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
-
-            background: Rectangle {
-                color: boxBgLight
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: parent.color = slcColor
-                    onExited: parent.color = boxBgLight
-                }
-            }
-        }
-
-        // account tab
-        Button {
-            id: accTabButton
-            width: topBar.buttonWidth
-            height: topBar.buttonHeight
-            anchors.bottom: topBar.bottom
-            anchors.left: catTabButton.right
-            anchors.leftMargin: 10
-
-            Text {
-                text: "Accounts"
-                color: textColor
-                font.pointSize: title3
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
-
-            background: Rectangle {
-                color: boxBgLight
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: parent.color = slcColor
-                    onExited: parent.color = boxBgLight
-                }
-            }
-        }
     }
 
     // transactions screen divider

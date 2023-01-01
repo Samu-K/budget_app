@@ -626,6 +626,7 @@ qrc_qml.cpp: ../ui_redesign/qml.qrc \
 		../ui_redesign/TrsInputField.qml \
 		../ui_redesign/transactions.qml \
 		../ui_redesign/LeftTabButton.qml \
+		../ui_redesign/TopBarButton.qml \
 		../ui_redesign/TrsBar.qml \
 		../ui_redesign/LeftTab.qml \
 		../ui_redesign/recurring_trs.qml \

@@ -17,5 +17,6 @@
         <file>LeftTab.qml</file>
         <file>LeftTabButton.qml</file>
         <file>TrsBar.qml</file>
+        <file>TopBarButton.qml</file>
     </qresource>
 </RCC>
