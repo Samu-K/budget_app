@@ -12,6 +12,7 @@ ApplicationWindow {
     color: Styling.app
 
     title: qsTr("Budgetor")
+
     width: screen.width
     height: screen.height
 

@@ -5,6 +5,7 @@ import "qrc:/."
 
 // left side tab
 Rectangle {
+    id: root
     width: parent.width*(1/8)
     height: parent.height
     color: Styling.darkBg
@@ -16,12 +17,12 @@ Rectangle {
     ColumnLayout {
         id: iconColumn
 
-        width: parent.width
-        spacing: 40
+        width: root.width
+        spacing: root.height*(0.075)
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: 35
+        anchors.topMargin: spacing*(0.5)
 
         // icons to show
         ListModel {
@@ -47,7 +48,7 @@ Rectangle {
             LeftTabButton {
                 text: model.text
                 iconSource: model.source
-                iconSize: 75
+                iconSize: root.height*(0.09)
             }
         }
     }
@@ -56,28 +57,25 @@ Rectangle {
     ColumnLayout {
         id: optionsTabIcons
         width: parent.width
-        spacing: 25
+        spacing: root.height*(0.015)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 25
-
-        // vars to keep things consistent
-        property int bgHeight: 85
+        anchors.bottomMargin: root.height*(0.015)
 
         // user button
         LeftTabButton {
             id: userButton
             iconSource: "qrc:/design/user_icon_colored.png"
-            bgHeight: 80
-            iconSize: 85
+            bgHeight: root.height*(0.12)
+            iconSize: bgHeight*(0.9)
         }
 
         // settings button
         LeftTabButton {
             id: stsButton
             iconSource: "qrc:/design/settings_white.png"
-            bgHeight: 80
-            iconSize: 70
+            bgHeight: root.height*(0.12)
+            iconSize: bgHeight*(0.6)
         }
     }
 
