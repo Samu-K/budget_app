@@ -19,6 +19,32 @@ ApplicationWindow {
         id: sideTab
     }
 
+    // component for listview buttons
+    Component {
+        id: listButton
+        Button {
+            width: parent.parent.width
+            height: 40
+            Text {
+                text: buttonText
+                color: Styling.txtColor
+                font.pointSize: Styling.title3
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            background: Rectangle {
+                color: Styling.darkBg
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.color = Styling.slcColor
+                    onExited: parent.color = Styling.darkBg
+                }
+            }
+        }
+    }
+
     // accounts text
     Text {
         id: actText
@@ -42,98 +68,50 @@ ApplicationWindow {
 
         model: [qsTr("Credit card"), qsTr("Investments"), qsTr("Savings")]
 
-        delegate: Button {
-            width: accountList.width
-            height: 40
-            Text {
-                text: modelData
-                color: Styling.txtColor
-                font.pointSize: Styling.title2
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
-
-            background: Rectangle {
-                color: Styling.darkBg
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: parent.color = Styling.slcColor
-                    onExited: parent.color = Styling.darkBg
-                }
-            }
+        delegate: Loader {
+            sourceComponent: listButton
+            property string buttonText: modelData
         }
     }
 
     // quick links
-    Text {
-        id: qckText
-        text: qsTr("Quick links")
-        font.pointSize: Styling.title2
-        color: Styling.txtColor
-        anchors.horizontalCenter: actText.horizontalCenter
-        anchors.top: accountList.bottom
-        anchors.topMargin: Styling.titleMargin
-
-        // settings for quick links
-        LeftTabButton {
-            iconSource: "qrc:/design/settings_white.png"
-            iconSize: 30
-
-            anchors.left: parent.right
-            anchors.leftMargin: 20
-            anchors.top: parent.top
-        }
-    }
-
-    // quick links buttons
     ListView {
         id: qckList
         width: 280
         height: 190
-        anchors.horizontalCenter: qckText.horizontalCenter
-        anchors.top: qckText.bottom
-        anchors.topMargin: 10
+        anchors.horizontalCenter: actText.horizontalCenter
+        anchors.top: accountList.bottom
 
         model: [qsTr("Add transaction"), qsTr("Add account"), qsTr("Export data")]
 
-        delegate: Button {
-            width: accountList.width
-            height: 40
-            Text {
-                text: modelData
-                color: Styling.txtColor
-                font.pointSize: Styling.title2
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
+        delegate: Loader {
+            sourceComponent: listButton
+            property string buttonText: modelData
+        }
 
-            background: Rectangle {
-                color: Styling.darkBg
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: parent.color = Styling.slcColor
-                    onExited: parent.color = Styling.darkBg
-                }
+        // label
+        Text {
+            id: qckText
+            text: qsTr("Quick links")
+            font.pointSize: Styling.title2
+            color: Styling.txtColor
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.top
+            anchors.bottomMargin: Styling.titleMargin
+
+            // settings for quick links
+            LeftTabButton {
+                iconSource: "qrc:/design/settings_white.png"
+                iconSize: 30
+
+                anchors.left: parent.right
+                anchors.leftMargin: 30
+                anchors.top: parent.top
             }
         }
     }
 
-    // Summary screen
-    Text {
-        id: sumText
-        text: qsTr("Summary")
-        font.pointSize: Styling.title2
-        color: Styling.txtColor
-
-        anchors.left: accountList.right
-        anchors.leftMargin: 25
-        anchors.verticalCenter: actText.verticalCenter
-
-    }
-
-    // Summary background
+    // Summary
     Rectangle {
         id: sumBg
         width: 860
@@ -143,6 +121,19 @@ ApplicationWindow {
         anchors.top: accountList.top
         anchors.bottom: qckList.bottom
         anchors.bottomMargin: 65
+
+        // Label
+        Text {
+            id: sumText
+            text: qsTr("Summary")
+            font.pointSize: Styling.title
+            color: Styling.txtColor
+
+            anchors.bottom: parent.top
+            anchors.bottomMargin: Styling.titleMargin
+            anchors.horizontalCenter: parent.horizontalCenter
+
+        }
 
         // bars
         ChartView {
@@ -217,7 +208,6 @@ ApplicationWindow {
         anchors.horizontalCenter: sumBg.horizontalCenter
         anchors.bottom: qckList.bottom
 
-        // quick links buttons
         RowLayout {
             id: dateButtons
             spacing: 30
@@ -231,6 +221,11 @@ ApplicationWindow {
                 model: ["3M","6M", "1Y", "3Y", "5Y", "Max"]
 
                 Button {
+                    font.pointSize: Styling.title2
+                    Layout.preferredWidth: 100
+                    Layout.preferredHeight: dateSelectBg.height
+
+                    // Label
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
@@ -238,14 +233,9 @@ ApplicationWindow {
                         color: Styling.txtColor
                         text: modelData
                     }
-                    font.pointSize: Styling.title2
-                    Layout.preferredWidth: 100
-                    Layout.preferredHeight: dateSelectBg.height
-
 
                     background: Rectangle {
                         color: Styling.darkBg
-
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true
@@ -258,35 +248,35 @@ ApplicationWindow {
         }
     }
 
-    // current  text
-    Rectangle {
-        id: crMonthText
-        width: (root.width-sideTab.width)/2 -80
-        height: 50
-        color: Styling.darkBg
-        anchors.top: dateSelectBg.bottom
-        anchors.topMargin: 25
-        anchors.right: sumBg.right
-
-        Text {
-            text: qsTr("Current month")
-            font.pointSize: Styling.title2
-            color: Styling.txtColor
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-        }
-    }
-
     // current month info
     Rectangle {
         id: crMonthBg
         width: crMonthText.width
-        height: 165
+        height: 190
         color: Styling.darkBg
 
-        anchors.top: crMonthText.bottom
-        anchors.topMargin: 10
-        anchors.horizontalCenter: crMonthText.horizontalCenter
+        anchors.top: trsBox.top
+        anchors.right: dateSelectBg.right
+
+
+        // Label
+        Rectangle {
+            id: crMonthText
+            width: (root.width-sideTab.width)/2 -80
+            height: 50
+            color: Styling.darkBg
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.top
+            anchors.bottomMargin: Styling.titleMargin*2
+
+            Text {
+                text: qsTr("Current month")
+                font.pointSize: Styling.title2
+                color: Styling.txtColor
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
 
         Component {
             id: infoBox
@@ -381,7 +371,7 @@ ApplicationWindow {
     Rectangle {
         id: trsBox
         width: trsText.width
-        height: 165
+        height: 190
         color: Styling.darkBg
 
         anchors.top: trsText.bottom
