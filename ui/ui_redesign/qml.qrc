@@ -21,5 +21,7 @@
         <file>pages/transactions/components/trsbar/TrsInputField.qml</file>
         <file>pages/shared/LeftTab.qml</file>
         <file>pages/shared/LeftTabButton.qml</file>
+        <file>Styling.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>
