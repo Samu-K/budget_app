@@ -6,6 +6,8 @@ import Qt.labs.qmlmodels 1.0
 import "qrc:/pages/transactions/components"
 import "qrc:/pages/transactions/components/trsbar"
 
+import "qrc:/."
+
 TransactionsTemplate {
     incomeData: TableModel {
         TableModelColumn { display: "Once every" }
@@ -79,14 +81,14 @@ TransactionsTemplate {
             anchors.bottomMargin: 150
             anchors.horizontalCenter: parent.horizontalCenter
 
-            font.pointSize: title3
+            font.pointSize: Styling.title3
 
             model: [ "Day", "Week", "Month" ]
 
             background:
                 Rectangle {
                     id: recBg
-                    color: boxBgLight
+                    color: Styling.lightBg
                     width: parent.width
                     height: parent.height+10
 
@@ -97,8 +99,8 @@ TransactionsTemplate {
             // label
             Text {
                 text: qsTr("Once every ")
-                font.pointSize: title3
-                color: textColor
+                font.pointSize: Styling.title3
+                color: Styling.txtColor
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.top

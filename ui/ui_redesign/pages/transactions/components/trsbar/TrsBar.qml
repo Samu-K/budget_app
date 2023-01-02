@@ -2,13 +2,14 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import "qrc:/."
 
 // transaction bar
 Rectangle {
     id: trsBar
     width: parent.width*(1/5)
     height: parent.height
-    color: "#2C3139"
+    color: Styling.darkBg
 
     anchors.right: parent.right
 
@@ -27,8 +28,8 @@ Rectangle {
 
         Text {
             text: "Expense"
-            color: textColor
-            font.pointSize: title1
+            color: Styling.txtColor
+            font.pointSize: Styling.title2
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
@@ -36,15 +37,15 @@ Rectangle {
 
         background: Rectangle {
             id: expButtonBg
-            color: "#FF0000"
+            color: Styling.expColor
             border.width: 3
-            border.color: boxBgLight
+            border.color: Styling.lightBg
 
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
-                onEntered: parent.color = "darkRed"
-                onExited: parent.color = "#FF0000"
+                onEntered: parent.color = Styling.expColor.darker(1.5)
+                onExited: parent.color = Styling.expColor
 
             }
         }
@@ -61,8 +62,8 @@ Rectangle {
 
         Text {
             text: "Income"
-            color: textColor
-            font.pointSize: title1
+            color: Styling.txtColor
+            font.pointSize: Styling.title2
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
@@ -70,15 +71,15 @@ Rectangle {
 
         background: Rectangle {
             id: incToggleBg
-            color: "green"
+            color: Styling.incColor
             border.width: 0
-            border.color: boxBgLight
+            border.color: Styling.lightBg
 
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
-                onEntered: parent.color = "darkGreen"
-                onExited: parent.color = "green"
+                onEntered: parent.color = Styling.incColor.darker(1.5)
+                onExited: parent.color = Styling.incColor
             }
         }
     }
@@ -122,7 +123,7 @@ Rectangle {
         anchors.topMargin: 70
         anchors.horizontalCenter: trsBar.horizontalCenter
 
-        font.pointSize: title3
+        font.pointSize: Styling.title3
 
 
         model: [ "School food", "Groceries", "Going out" ]
@@ -130,7 +131,7 @@ Rectangle {
         background:
             Rectangle {
                 id: catBg
-                color: boxBgLight
+                color: Styling.lightBg
                 width: parent.width
                 height: parent.height+10
 
@@ -141,8 +142,8 @@ Rectangle {
         // label
         Text {
             text: qsTr("Category")
-            font.pointSize: title3
-            color: textColor
+            font.pointSize: Styling.title3
+            color: Styling.txtColor
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.top
@@ -159,19 +160,19 @@ Rectangle {
 
         Text {
             text: "Add transaction"
-            color: textColor
-            font.pointSize: title2
+            color: Styling.txtColor
+            font.pointSize: Styling.title2
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
         }
 
         background: Rectangle {
-            color: boxBgLight
+            color: Styling.lightBg
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
-                onEntered: parent.color = slcColor
-                onExited: parent.color = boxBgLight
+                onEntered: parent.color = Styling.slcColor
+                onExited: parent.color = Styling.lightBg
             }
         }
     }

@@ -3,6 +3,8 @@ import QtQuick.Window 2.15
 import QtQuick.Controls
 import QtQuick.Shapes 1.4
 
+import "qrc:/."
+
 Window {
     // main login window
     width: 400
@@ -29,7 +31,7 @@ Window {
          id: userBg
          width: 130
          height: width
-         color: "#6E89A8"
+         color: Styling.lightBg
          border.color: "black"
          border.width: 1
          radius: width*0.5
@@ -52,8 +54,8 @@ Window {
     Text {
         id: unameText
         text: qsTr("Username")
-        color: "white"
-        font.pointSize: 32
+        color: Styling.txtColor
+        font.pointSize: Styling.title2
         anchors.verticalCenter: userBg.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenterOffset: 45
@@ -64,7 +66,7 @@ Window {
         width: 370
         height: 40
         radius: 8
-        border.color: "white"
+        border.color: Styling.txtColor
         border.width: 10
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: unameText.bottom
@@ -74,7 +76,7 @@ Window {
             id: unameInput
             anchors.fill: parent
             anchors.margins: 4
-            font.pointSize: 24
+            font.pointSize: Styling.title3
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
         }
@@ -85,7 +87,7 @@ Window {
         id: passText
         text: qsTr("Password")
         color: "white"
-        font.pointSize: 32
+        font.pointSize: Styling.title2
         anchors.verticalCenter: uInputBox.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenterOffset: 30
@@ -120,12 +122,12 @@ Window {
         background: Rectangle {
                 width: parent.width
                 height: parent.height
-                color: parent.down ? "#bbbbbb" :
-                        (parent.hovered ? "#515358" : "#202123")
+                color: parent.down ? Styling.darkBg.darker(1.5) :
+                        (parent.hovered ? Styling.slcColor : Styling.darkBg)
         }
 
         text: qsTr("LOGIN")
-        font.pixelSize: 24
+        font.pixelSize: Styling.title3
         font.bold: true
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
@@ -144,8 +146,8 @@ Window {
     Text {
         id: rmbText
         text: qsTr("Remember me?")
-        font.pointSize: 16
-        color: "white"
+        font.pointSize: Styling.footer
+        color: Styling.txtColor
         anchors.verticalCenter: rmbCheck.verticalCenter
         anchors.left: rmbCheck.right
         anchors.horizontalCenterOffset: 10
@@ -155,8 +157,8 @@ Window {
     Text {
         id: frtPass
         text: qsTr("Forget password?")
-        font.pointSize: 16
-        color: "white"
+        font.pointSize: Styling.footer
+        color: Styling.txtColor
         anchors.verticalCenter: rmbText.verticalCenter
         anchors.right: loginButton.right
     }

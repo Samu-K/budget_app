@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import "qrc:/."
+
 Button {
     Layout.preferredWidth: 200
     Layout.preferredHeight: 30
@@ -10,20 +12,20 @@ Button {
 
     Text {
         id: text
-        color: textColor
+        color: Styling.txtColor
 
-        font.pointSize: 24
+        font.pointSize: Styling.title3
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
     }
 
     background: Rectangle {
-        color: "#8E9EB8"
+        color: Styling.lightBg
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: parent.color = "#5E5E5E"
-            onExited: parent.color = "#8E9EB8"
+            onEntered: parent.color = Styling.slcColor
+            onExited: parent.color = Styling.lightBg
         }
     }
 }

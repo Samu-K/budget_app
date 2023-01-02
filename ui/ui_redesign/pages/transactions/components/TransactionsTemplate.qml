@@ -5,6 +5,7 @@ import Qt.labs.qmlmodels 1.0
 
 import "qrc:/pages/transactions/components/table"
 import "qrc:/pages/shared"
+import "qrc:/."
 
 ApplicationWindow {
     id: root
@@ -15,29 +16,9 @@ ApplicationWindow {
     property var expenseData
     property var columnTitles
 
-    // colors
-        // background color of entire app
-        property color appBg: "#236BAE"
-        // color of text
-        property color textColor: "white"
-        // color of area backgrounds (e.g side tab, boxes)
-        property color boxBg: "#2C3139"
-        // ligther version of box bg (e.g summary)
-        property color boxBgLight: "#8E9EB8"
-        // color when hovering a button
-        property color slcColor: "#5E5E5E"
-
-    // sizes
-        // title sizes
-        property int title1: 32
-        property int title2: 26
-        property int title3: 24
-        // normal text size
-        property int norm: 20
-
     width: screen.width
     height: screen.height
-    color: appBg
+    color: Styling.app
 
     // left tab
     LeftTab {
@@ -49,7 +30,7 @@ ApplicationWindow {
         id: topBar
         width: parent.width - sideTab.width - trsBar.width
         height: 50
-        color: boxBg
+        color: Styling.darkBg
 
         anchors.left: sideTab.right
         anchors.top: parent.top
@@ -80,7 +61,7 @@ ApplicationWindow {
         id: trsDiv
         width: topBar.width
         height: 10
-        color: boxBgLight
+        color: Styling.lightBg
 
         anchors.verticalCenter: sideTab.verticalCenter
         anchors.verticalCenterOffset: topBar.height/2
@@ -91,7 +72,7 @@ ApplicationWindow {
     Text {
         id: expTableTitle
         text: qsTr("Expenses")
-        font.pointSize: 38
+        font.pointSize: Styling.title
         font.bold: true
         color: "black"
 
@@ -102,7 +83,7 @@ ApplicationWindow {
     Text {
         id: incTableTitle
         text: qsTr("Income")
-        font.pointSize: 38
+        font.pointSize: Styling.title
         font.bold: true
         color: "black"
 

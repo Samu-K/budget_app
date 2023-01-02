@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Layouts
 
+import "qrc:/."
+
 Rectangle {
     // component vars
     property alias text: text.text
@@ -14,7 +16,7 @@ Rectangle {
     Layout.preferredHeight: bgHeight
     Layout.alignment: Qt.AlignCenter
 
-    color: "#2C3139"
+    color: Styling.darkBg
 
     Image {
         id: image
@@ -23,12 +25,12 @@ Rectangle {
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: 5
+        anchors.topMargin: Styling.titleMargin
 
         Text {
             id: text
-            font.pointSize: 24
-            color: "white"
+            font.pointSize: Styling.title3
+            color: Styling.txtColor
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.bottom
@@ -41,10 +43,10 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         onEntered: {
-            parent.color = "#5E5E5E"
+            parent.color = Styling.slcColor
         }
         onExited: {
-            parent.color = "#2C3139"
+            parent.color = Styling.darkBg
             }
         }
 }

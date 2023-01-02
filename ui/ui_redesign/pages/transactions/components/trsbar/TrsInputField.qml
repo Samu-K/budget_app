@@ -1,12 +1,14 @@
 import QtQuick 2.15
 import QtQuick.Layouts
 
+import "qrc:/."
+
 // label
 Text {
     id: text
 
-    color: "white"
-    font.pointSize: 24
+    color: Styling.txtColor
+    font.pointSize: Styling.title3
 
     Layout.alignment: Qt.AlignHCenter
 
@@ -16,12 +18,12 @@ Text {
     Rectangle {
         id: background
 
-        color: "#8E9EB8"
+        color: Styling.lightBg
         height: 35
         clip: true
 
         anchors.top: parent.bottom
-        anchors.topMargin: 5
+        anchors.topMargin: Styling.titleMargin
         anchors.horizontalCenter: parent.horizontalCenter
 
         // input
@@ -30,7 +32,7 @@ Text {
             width: parent.width
             Component.onCompleted: input.ensureVisible(0)
 
-            font.pointSize: 26
+            font.pointSize: Styling.title3
             color: text.color
 
             horizontalAlignment: Text.Center

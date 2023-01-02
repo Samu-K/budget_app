@@ -7,7 +7,7 @@ import "qrc:/."
 TableView {
     id: tableView
     height: 180
-    topMargin: 5
+    topMargin: Styling.titleMargin
 
     delegate: Rectangle {
         color: Styling.lightBg
@@ -17,8 +17,8 @@ TableView {
 
         Text {
             text: display
-            font.pointSize: 26
-            color: "white"
+            font.pointSize: Styling.title3
+            color: Styling.txtColor
             anchors.centerIn: parent
         }
     }

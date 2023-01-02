@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls
 
+import "qrc:/."
+
 HorizontalHeaderView {
     id: expHorizontalHeader
 
@@ -18,8 +20,8 @@ HorizontalHeaderView {
         color: "transparent"
         Text {
             text: modelData
-            font.pointSize: 24
-            color: "white"
+            font.pointSize: Styling.title3
+            color: Styling.txtColor
             anchors.centerIn: parent
         }
     }

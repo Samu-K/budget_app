@@ -1,26 +1,16 @@
 import QtQuick 2.15
 import QtQuick.Layouts
 
+import "qrc:/."
+
 // left side tab
 Rectangle {
     width: parent.width*(1/8)
     height: parent.height
+    color: Styling.darkBg
 
-    // background color of entire app
-    property color appBg: "#236BAE"
-    // color of text
-    property color textColor: "white"
-    // color of area backgrounds (e.g side tab, boxes)
-    property color boxBg: "#2C3139"
-    // ligther version of box bg (e.g summary)
-    property color boxBgLight: "#8E9EB8"
-    // color when hovering a button
-    property color slcColor: "#5E5E5E"
-
-    color: boxBg
-
-    anchors.left: root.left
-    anchors.top: root.top
+    anchors.left: parent.left
+    anchors.top: parent.top
 
     // sidetab icons
     ColumnLayout {

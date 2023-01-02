@@ -8,6 +8,9 @@ QtObject {
     property color txtColor: "white"
     // color of selected objects
     property color slcColor: "#5E5E5E"
+    // universal colors for expense and income
+    property color expColor: "#FF0000"
+    property color incColor: "green"
 
     // text pixelsizes
     property int title: 38

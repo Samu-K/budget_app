@@ -4,39 +4,12 @@ import QtQuick.Layouts
 import QtCharts
 import Qt.labs.qmlmodels 1.0
 import "qrc:/pages/shared"
+import "qrc:/."
 
 ApplicationWindow {
-    // set global variables
-    // these are treated as constant
-
-    // colors
-        // background color of entire app
-        // "#236BAE"
-        property color appBg: "#236BAE"
-        // color of text
-        // white
-        property color textColor: "white"
-        // color of area backgrounds (e.g side tab, boxes)
-        // "#2C3139"
-        property color boxBg: "#2C3139"
-        // ligther version of box bg (e.g summary)
-        // "#8E9EB8"
-        property color boxBgLight: "#8E9EB8"
-        // color when hovering a button
-        // "#5E5E5E"
-        property color slcColor: "#5E5E5E"
-
-    // sizes
-        // title sizes
-        property int title1: 32
-        property int title2: 26
-        property int title3: 24
-        // normal text size
-        property int norm: 20
-
     id: root
     visible: true
-    color: appBg
+    color: Styling.app
 
     title: qsTr("Budgetor")
     width: screen.width
@@ -50,8 +23,8 @@ ApplicationWindow {
     Text {
         id: actText
         text: qsTr("Accounts")
-        font.pointSize: title1
-        color: textColor
+        font.pointSize: Styling.title2
+        color: Styling.txtColor
         anchors.left: sideTab.right
         anchors.leftMargin: 100
         anchors.top: parent.top
@@ -74,19 +47,19 @@ ApplicationWindow {
             height: 40
             Text {
                 text: modelData
-                color: textColor
-                font.pointSize: title2
+                color: Styling.txtColor
+                font.pointSize: Styling.title2
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
 
             background: Rectangle {
-                color: boxBg
+                color: Styling.darkBg
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: parent.color = slcColor
-                    onExited: parent.color = boxBg
+                    onEntered: parent.color = Styling.slcColor
+                    onExited: parent.color = Styling.darkBg
                 }
             }
         }
@@ -96,11 +69,11 @@ ApplicationWindow {
     Text {
         id: qckText
         text: qsTr("Quick links")
-        font.pointSize: title1
-        color: textColor
+        font.pointSize: Styling.title2
+        color: Styling.txtColor
         anchors.horizontalCenter: actText.horizontalCenter
         anchors.top: accountList.bottom
-        anchors.topMargin: 5
+        anchors.topMargin: Styling.titleMargin
 
         // settings for quick links
         LeftTabButton {
@@ -129,19 +102,19 @@ ApplicationWindow {
             height: 40
             Text {
                 text: modelData
-                color: textColor
-                font.pointSize: title2
+                color: Styling.txtColor
+                font.pointSize: Styling.title2
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
 
             background: Rectangle {
-                color: boxBg
+                color: Styling.darkBg
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: parent.color = slcColor
-                    onExited: parent.color = boxBg
+                    onEntered: parent.color = Styling.slcColor
+                    onExited: parent.color = Styling.darkBg
                 }
             }
         }
@@ -151,8 +124,8 @@ ApplicationWindow {
     Text {
         id: sumText
         text: qsTr("Summary")
-        font.pointSize: title1
-        color: textColor
+        font.pointSize: Styling.title2
+        color: Styling.txtColor
 
         anchors.left: accountList.right
         anchors.leftMargin: 25
@@ -164,7 +137,7 @@ ApplicationWindow {
     Rectangle {
         id: sumBg
         width: 860
-        color: boxBgLight
+        color: Styling.lightBg
         anchors.left: accountList.right
         anchors.leftMargin: 25
         anchors.top: accountList.top
@@ -181,7 +154,7 @@ ApplicationWindow {
             antialiasing: true
             legend.visible: false
 
-            backgroundColor: boxBgLight
+            backgroundColor: Styling.lightBg
             BarSeries {
                 id: mySeries
                 barWidth: 1
@@ -205,7 +178,7 @@ ApplicationWindow {
             id: sumDateBg
             width: parent.width
             height: 25
-            color: boxBg
+            color: Styling.darkBg
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
@@ -226,8 +199,8 @@ ApplicationWindow {
 
                     Text {
                         text: modelData
-                        font.pointSize: norm
-                        color: textColor
+                        font.pointSize: Styling.norm
+                        color: Styling.txtColor
                     }
                 }
 
@@ -240,7 +213,7 @@ ApplicationWindow {
         id: dateSelectBg
         width: sumBg.width
         height: 50
-        color: boxBg
+        color: Styling.darkBg
         anchors.horizontalCenter: sumBg.horizontalCenter
         anchors.bottom: qckList.bottom
 
@@ -261,22 +234,22 @@ ApplicationWindow {
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
-                        font.pixelSize: title2
-                        color: textColor
+                        font.pixelSize: Styling.title2
+                        color: Styling.txtColor
                         text: modelData
                     }
-                    font.pointSize: title2
+                    font.pointSize: Styling.title2
                     Layout.preferredWidth: 100
                     Layout.preferredHeight: dateSelectBg.height
 
 
                     background: Rectangle {
-                        color: boxBg
+                        color: Styling.darkBg
 
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true
-                            onEntered: parent.color = slcColor
+                            onEntered: parent.color = Styling.slcColor
                             onExited: parent.color = dateSelectBg.color
                         }
                     }
@@ -290,15 +263,15 @@ ApplicationWindow {
         id: crMonthText
         width: (root.width-sideTab.width)/2 -80
         height: 50
-        color: boxBg
+        color: Styling.darkBg
         anchors.top: dateSelectBg.bottom
         anchors.topMargin: 25
         anchors.right: sumBg.right
 
         Text {
             text: qsTr("Current month")
-            font.pointSize: title1
-            color: textColor
+            font.pointSize: Styling.title2
+            color: Styling.txtColor
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
         }
@@ -309,7 +282,7 @@ ApplicationWindow {
         id: crMonthBg
         width: crMonthText.width
         height: 165
-        color: boxBg
+        color: Styling.darkBg
 
         anchors.top: crMonthText.bottom
         anchors.topMargin: 10
@@ -322,13 +295,13 @@ ApplicationWindow {
                 id: bg
                 width: 180
                 height: 50
-                color: boxBgLight
+                color: Styling.lightBg
 
                 Text {
                     id: label
                     text: labelText
-                    color: "white"
-                    font.pointSize: 24
+                    color: Styling.txtColor
+                    font.pointSize: Styling.title3
                     anchors.bottom: parent.top
                     anchors.bottomMargin: 5
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -337,8 +310,8 @@ ApplicationWindow {
                 Text {
                     id: amountTxt
                     text: amountText
-                    color: "white"
-                    font.pointSize: 32
+                    color: Styling.txtColor
+                    font.pointSize: Styling.title2
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
 
@@ -390,15 +363,15 @@ ApplicationWindow {
         id: trsText
         width: crMonthText.width
         height: crMonthText.height
-        color: boxBg
+        color: Styling.darkBg
         anchors.top: dateSelectBg.bottom
         anchors.topMargin: 25
         anchors.left: qckList.left
 
         Text {
             text: qsTr("Recent transactions")
-            font.pointSize: title1
-            color: textColor
+            font.pointSize: Styling.title2
+            color: Styling.txtColor
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
         }
@@ -409,7 +382,7 @@ ApplicationWindow {
         id: trsBox
         width: trsText.width
         height: 165
-        color: boxBg
+        color: Styling.darkBg
 
         anchors.top: trsText.bottom
         anchors.topMargin: 10
