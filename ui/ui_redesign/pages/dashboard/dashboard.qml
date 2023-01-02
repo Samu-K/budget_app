@@ -16,7 +16,7 @@ ApplicationWindow {
     height: screen.height
 
     LeftTab {
-        id: sideTab
+        id: leftTab
     }
 
     // component for listview buttons
@@ -45,26 +45,17 @@ ApplicationWindow {
         }
     }
 
-    // accounts text
-    Text {
-        id: actText
-        text: qsTr("Accounts")
-        font.pointSize: Styling.title2
-        color: Styling.txtColor
-        anchors.left: sideTab.right
-        anchors.leftMargin: 100
-        anchors.top: parent.top
-        anchors.topMargin: 35
-    }
-
     // accounts
     ListView {
         id: accountList
         width: 280
         height: 190
-        anchors.horizontalCenter: actText.horizontalCenter
-        anchors.top: actText.bottom
-        anchors.topMargin: 10
+        anchors.left: leftTab.right
+        anchors.leftMargin: 50
+
+        // root top
+        anchors.top: parent.top
+        anchors.topMargin: 85
 
         model: [qsTr("Credit card"), qsTr("Investments"), qsTr("Savings")]
 
@@ -72,14 +63,26 @@ ApplicationWindow {
             sourceComponent: listButton
             property string buttonText: modelData
         }
+
+        // label
+        Text {
+            id: accountLabel
+            text: qsTr("Accounts")
+            font.pointSize: Styling.title2
+            color: Styling.txtColor
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.top
+            anchors.bottomMargin: Styling.titleMargin
+        }
     }
 
     // quick links
     ListView {
-        id: qckList
+        id: linkList
         width: 280
         height: 190
-        anchors.horizontalCenter: actText.horizontalCenter
+        anchors.horizontalCenter: accountList.horizontalCenter
         anchors.top: accountList.bottom
 
         model: [qsTr("Add transaction"), qsTr("Add account"), qsTr("Export data")]
@@ -91,7 +94,7 @@ ApplicationWindow {
 
         // label
         Text {
-            id: qckText
+            id: linkLabel
             text: qsTr("Quick links")
             font.pointSize: Styling.title2
             color: Styling.txtColor
@@ -119,12 +122,12 @@ ApplicationWindow {
         anchors.left: accountList.right
         anchors.leftMargin: 25
         anchors.top: accountList.top
-        anchors.bottom: qckList.bottom
+        anchors.bottom: linkList.bottom
         anchors.bottomMargin: 65
 
         // Label
         Text {
-            id: sumText
+            id: sumLabel
             text: qsTr("Summary")
             font.pointSize: Styling.title
             color: Styling.txtColor
@@ -147,7 +150,7 @@ ApplicationWindow {
 
             backgroundColor: Styling.lightBg
             BarSeries {
-                id: mySeries
+                id: expSeries
                 barWidth: 1
 
                 axisX: BarCategoryAxis {
@@ -166,7 +169,7 @@ ApplicationWindow {
 
         // date axis
         Rectangle {
-            id: sumDateBg
+            id: dateBg
             width: parent.width
             height: 25
             color: Styling.darkBg
@@ -175,7 +178,7 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
 
             RowLayout {
-                id: sumDates
+                id: dateRow
                 spacing: 100
                 height: parent.height
 
@@ -206,7 +209,7 @@ ApplicationWindow {
         height: 50
         color: Styling.darkBg
         anchors.horizontalCenter: sumBg.horizontalCenter
-        anchors.bottom: qckList.bottom
+        anchors.bottom: linkList.bottom
 
         RowLayout {
             id: dateButtons
@@ -250,8 +253,8 @@ ApplicationWindow {
 
     // current month info
     Rectangle {
-        id: crMonthBg
-        width: crMonthText.width
+        id: monthBg
+        width: (root.width-leftTab.width)/2 - 80
         height: 190
         color: Styling.darkBg
 
@@ -261,8 +264,8 @@ ApplicationWindow {
 
         // Label
         Rectangle {
-            id: crMonthText
-            width: (root.width-sideTab.width)/2 -80
+            id: monthLabel
+            width: parent.width
             height: 50
             color: Styling.darkBg
             anchors.horizontalCenter: parent.horizontalCenter
@@ -280,7 +283,6 @@ ApplicationWindow {
 
         Component {
             id: infoBox
-
             Rectangle {
                 id: bg
                 width: 180
@@ -310,26 +312,26 @@ ApplicationWindow {
         }
 
         Loader {
-            id: expenseBox
+            id: expBox
             sourceComponent: infoBox
             property string labelText: "Expenses"
             property string amountText: "150€"
 
-            anchors.left: crMonthBg.left
+            anchors.left: monthBg.left
             anchors.leftMargin: 40
-            anchors.top: crMonthBg.top
+            anchors.top: monthBg.top
             anchors.topMargin: 40
         }
 
         Loader {
-            id: incomeBox
+            id: incBox
             sourceComponent: infoBox
             property string labelText: "Income"
             property string amountText: "350€"
 
-            anchors.right: crMonthBg.right
+            anchors.right: monthBg.right
             anchors.rightMargin: 40
-            anchors.top: crMonthBg.top
+            anchors.top: monthBg.top
             anchors.topMargin: 40
         }
 
@@ -341,46 +343,47 @@ ApplicationWindow {
             property string amountText: "+ 200€"
 
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: crMonthBg.bottom
+            anchors.bottom: monthBg.bottom
             anchors.bottomMargin: 10
 
         }
 
     }
 
-    // recent transactions text
-    Rectangle {
-        id: trsText
-        width: crMonthText.width
-        height: crMonthText.height
-        color: Styling.darkBg
-        anchors.top: dateSelectBg.bottom
-        anchors.topMargin: 25
-        anchors.left: qckList.left
-
-        Text {
-            text: qsTr("Recent transactions")
-            font.pointSize: Styling.title2
-            color: Styling.txtColor
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-        }
-    }
-
     // recent transactions bg
     Rectangle {
         id: trsBox
-        width: trsText.width
+        width: trsLabel.width
         height: 190
         color: Styling.darkBg
 
-        anchors.top: trsText.bottom
-        anchors.topMargin: 10
-        anchors.horizontalCenter: trsText.horizontalCenter
+        anchors.top: dateSelectBg.bottom
+        anchors.topMargin: 80
+        anchors.left: linkList.left
 
-        // expense table
+        // recent transactions text
+        Rectangle {
+            id: trsLabel
+            width: monthLabel.width
+            height: monthLabel.height
+            color: Styling.darkBg
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.top
+            anchors.bottomMargin: Styling.titleMargin*2
+
+            Text {
+                text: qsTr("Recent transactions")
+                font.pointSize: Styling.title2
+                color: Styling.txtColor
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+
+        // trs table
         TableView {
-            id: expGrid
+            id: trsTable
             width: parent.width
             height: parent.height
 
@@ -420,6 +423,7 @@ ApplicationWindow {
             }
 
             model: trsList
+
             delegate: Rectangle {
                 color: "transparent"
                 implicitHeight: 35
