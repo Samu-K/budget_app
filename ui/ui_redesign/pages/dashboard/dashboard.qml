@@ -24,8 +24,9 @@ ApplicationWindow {
     Component {
         id: listButton
         Button {
-            width: parent.parent.width
-            height: 40
+            width: accountList.width
+            height: root.height*(0.05)
+
             Text {
                 text: buttonText
                 color: Styling.txtColor
@@ -49,14 +50,15 @@ ApplicationWindow {
     // accounts
     ListView {
         id: accountList
-        width: 280
-        height: 190
+        width: root.width*(0.2)
+        height: root.height*(0.3)
+
         anchors.left: leftTab.right
-        anchors.leftMargin: 50
+        anchors.leftMargin: root.width*(0.025)
 
         // root top
         anchors.top: parent.top
-        anchors.topMargin: 85
+        anchors.topMargin: root.height*(0.07)
 
         model: [qsTr("Credit card"), qsTr("Investments"), qsTr("Savings")]
 
@@ -81,8 +83,9 @@ ApplicationWindow {
     // quick links
     ListView {
         id: linkList
-        width: 280
-        height: 190
+        width: accountList.width
+        height: accountList.height
+
         anchors.horizontalCenter: accountList.horizontalCenter
         anchors.top: accountList.bottom
 
@@ -106,10 +109,10 @@ ApplicationWindow {
             // settings for quick links
             LeftTabButton {
                 iconSource: "qrc:/design/settings_white.png"
-                iconSize: 30
+                iconSize: root.height*(0.045)
 
                 anchors.left: parent.right
-                anchors.leftMargin: 30
+                anchors.leftMargin: accountList.width*(0.1)
                 anchors.top: parent.top
             }
         }
@@ -118,13 +121,15 @@ ApplicationWindow {
     // Summary
     Rectangle {
         id: sumBg
-        width: 860
+        width: root.width*(0.6)
         color: Styling.lightBg
+
         anchors.left: accountList.right
-        anchors.leftMargin: 25
+        anchors.leftMargin: root.width*(0.017)
+
         anchors.top: accountList.top
         anchors.bottom: linkList.bottom
-        anchors.bottomMargin: 65
+        anchors.bottomMargin: root.height*(0.075)
 
         // Label
         Text {
@@ -172,7 +177,7 @@ ApplicationWindow {
         Rectangle {
             id: dateBg
             width: parent.width
-            height: 25
+            height: root.height*(0.035)
             color: Styling.darkBg
 
             anchors.horizontalCenter: parent.horizontalCenter
@@ -180,7 +185,7 @@ ApplicationWindow {
 
             RowLayout {
                 id: dateRow
-                spacing: 100
+                spacing: parent.width*(1/6)
                 height: parent.height
 
                 anchors.left: parent.left
@@ -207,26 +212,28 @@ ApplicationWindow {
     Rectangle {
         id: dateSelectBg
         width: sumBg.width
-        height: 50
+        height: root.height*(0.065)
+
         color: Styling.darkBg
         anchors.horizontalCenter: sumBg.horizontalCenter
         anchors.bottom: linkList.bottom
 
         RowLayout {
             id: dateButtons
-            spacing: 30
+            height: dateSelectBg.height
+
             anchors.left: parent.left
             anchors.leftMargin: spacing
             anchors.right: parent.right
             anchors.rightMargin: spacing
+            spacing: 0
 
-            height: dateSelectBg.height
             Repeater {
                 model: ["3M","6M", "1Y", "3Y", "5Y", "Max"]
 
                 Button {
                     font.pointSize: Styling.title2
-                    Layout.preferredWidth: 100
+                    Layout.preferredWidth: dateButtons.width*(1/6)
                     Layout.preferredHeight: dateSelectBg.height
 
                     // Label
@@ -255,8 +262,8 @@ ApplicationWindow {
     // current month info
     Rectangle {
         id: monthBg
-        width: (root.width-leftTab.width)/2 - 80
-        height: 190
+        width: (root.width-leftTab.width)/2 - root.width*(0.04)
+        height: root.height*(0.21)
         color: Styling.darkBg
 
         anchors.top: trsBox.top
@@ -267,8 +274,9 @@ ApplicationWindow {
         Rectangle {
             id: monthLabel
             width: parent.width
-            height: 50
+            height: root.height*(0.06)
             color: Styling.darkBg
+
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.top
             anchors.bottomMargin: Styling.titleMargin*2
@@ -286,8 +294,8 @@ ApplicationWindow {
             id: infoBox
             Rectangle {
                 id: bg
-                width: 180
-                height: 50
+                width: root.width*(0.135)
+                height: root.height*(0.06)
                 color: Styling.lightBg
 
                 Text {
@@ -296,7 +304,7 @@ ApplicationWindow {
                     color: Styling.txtColor
                     font.pointSize: Styling.title3
                     anchors.bottom: parent.top
-                    anchors.bottomMargin: 5
+                    anchors.bottomMargin: Styling.titleMargin
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
 
@@ -319,9 +327,9 @@ ApplicationWindow {
             property string amountText: "150€"
 
             anchors.left: monthBg.left
-            anchors.leftMargin: 40
+            anchors.leftMargin: root.width*(0.02)
             anchors.top: monthBg.top
-            anchors.topMargin: 40
+            anchors.topMargin: root.height*(0.055)
         }
 
         Loader {
@@ -331,21 +339,21 @@ ApplicationWindow {
             property string amountText: "350€"
 
             anchors.right: monthBg.right
-            anchors.rightMargin: 40
+            anchors.rightMargin: root.width*(0.02)
             anchors.top: monthBg.top
-            anchors.topMargin: 40
+            anchors.topMargin: root.height*(0.055)
         }
 
         Loader {
             id: savingsBox
             sourceComponent: infoBox
-            width: 250
+            width: root.width*(0.18)
             property string labelText: "Savings"
             property string amountText: "+ 200€"
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: monthBg.bottom
-            anchors.bottomMargin: 10
+            anchors.bottomMargin: Styling.titleMargin*2
 
         }
 
@@ -355,11 +363,11 @@ ApplicationWindow {
     Rectangle {
         id: trsBox
         width: trsLabel.width
-        height: 190
+        height: monthBg.height
         color: Styling.darkBg
 
         anchors.top: dateSelectBg.bottom
-        anchors.topMargin: 80
+        anchors.topMargin: root.height*(0.1)
         anchors.left: linkList.left
 
         // recent transactions text
@@ -390,7 +398,7 @@ ApplicationWindow {
 
             anchors.horizontalCenter: trsBox.horizontalCenter
             anchors.top: trsBox.top
-            anchors.topMargin: 20
+            anchors.topMargin: root.height*(0.02)
 
             interactive: false
 
@@ -427,8 +435,8 @@ ApplicationWindow {
 
             delegate: Rectangle {
                 color: "transparent"
-                implicitHeight: 35
-                implicitWidth: 100
+                implicitHeight: parent.height*(1/5)
+                implicitWidth: parent.width*(1/6)
 
                 Text {
                     text: date
