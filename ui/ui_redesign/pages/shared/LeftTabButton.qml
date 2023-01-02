@@ -8,12 +8,12 @@ Rectangle {
     property alias text: text.text
     property alias iconSource: image.source
 
-    property int bgHeight: parent.width*(0.08)
+    property int bgHeight: parent.parent.height*(0.16)
     property int iconSize
-
 
     Layout.preferredWidth:  parent.width
     Layout.preferredHeight: bgHeight
+
     Layout.alignment: Qt.AlignCenter
 
     color: Styling.darkBg
