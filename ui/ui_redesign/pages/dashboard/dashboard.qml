@@ -266,9 +266,9 @@ ApplicationWindow {
         height: root.height*(0.21)
         color: Styling.darkBg
 
-        anchors.top: trsBox.top
+        anchors.top: dateSelectBg.bottom
+        anchors.topMargin: root.height*(0.1)
         anchors.right: dateSelectBg.right
-
 
         // Label
         Rectangle {
@@ -366,8 +366,7 @@ ApplicationWindow {
         height: monthBg.height
         color: Styling.darkBg
 
-        anchors.top: dateSelectBg.bottom
-        anchors.topMargin: root.height*(0.1)
+        anchors.top: monthBg.top
         anchors.left: linkList.left
 
         // recent transactions text
