@@ -8,7 +8,7 @@ Rectangle {
     property alias text: text.text
     property alias iconSource: image.source
 
-    property int bgHeight: 120
+    property int bgHeight: parent.width*(0.08)
     property int iconSize
 
 
@@ -34,7 +34,7 @@ Rectangle {
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.bottom
-            anchors.topMargin: 10
+            anchors.topMargin: Styling.titleMargin*2
         }
     }
 
