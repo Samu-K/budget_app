@@ -621,6 +621,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_qml.cpp
 qrc_qml.cpp: ../ui_redesign/qml.qrc \
 		/Users/SamuK/Qt/6.3.1/macos/libexec/rcc \
+		../ui_redesign/qmldir \
+		../ui_redesign/Styling.qml \
 		../ui_redesign/pages/shared/LeftTabButton.qml \
 		../ui_redesign/pages/shared/LeftTab.qml \
 		../ui_redesign/pages/login/login.qml \

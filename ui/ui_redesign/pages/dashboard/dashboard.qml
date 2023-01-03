@@ -30,7 +30,7 @@ ApplicationWindow {
             Text {
                 text: buttonText
                 color: Styling.txtColor
-                font.pointSize: Styling.title3
+                font.pixelSize: Styling.title3
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -71,7 +71,7 @@ ApplicationWindow {
         Text {
             id: accountLabel
             text: qsTr("Accounts")
-            font.pointSize: Styling.title2
+            font.pixelSize: Styling.title2
             color: Styling.txtColor
 
             anchors.horizontalCenter: parent.horizontalCenter
@@ -100,7 +100,7 @@ ApplicationWindow {
         Text {
             id: linkLabel
             text: qsTr("Quick links")
-            font.pointSize: Styling.title2
+            font.pixelSize: Styling.title2
             color: Styling.txtColor
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.top
@@ -135,7 +135,7 @@ ApplicationWindow {
         Text {
             id: sumLabel
             text: qsTr("Summary")
-            font.pointSize: Styling.title
+            font.pixelSize: Styling.title
             color: Styling.txtColor
 
             anchors.bottom: parent.top
@@ -199,7 +199,7 @@ ApplicationWindow {
 
                     Text {
                         text: modelData
-                        font.pointSize: Styling.norm
+                        font.pixelSize: Styling.norm
                         color: Styling.txtColor
                     }
                 }
@@ -232,7 +232,7 @@ ApplicationWindow {
                 model: ["3M","6M", "1Y", "3Y", "5Y", "Max"]
 
                 Button {
-                    font.pointSize: Styling.title2
+                    font.pixelSize: Styling.title2
                     Layout.preferredWidth: dateButtons.width*(1/6)
                     Layout.preferredHeight: dateSelectBg.height
 
@@ -283,7 +283,7 @@ ApplicationWindow {
 
             Text {
                 text: qsTr("Current month")
-                font.pointSize: Styling.title2
+                font.pixelSize: Styling.title2
                 color: Styling.txtColor
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
@@ -302,7 +302,7 @@ ApplicationWindow {
                     id: label
                     text: labelText
                     color: Styling.txtColor
-                    font.pointSize: Styling.title3
+                    font.pixelSize: Styling.title3
                     anchors.bottom: parent.top
                     anchors.bottomMargin: Styling.titleMargin
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -312,7 +312,7 @@ ApplicationWindow {
                     id: amountTxt
                     text: amountText
                     color: Styling.txtColor
-                    font.pointSize: Styling.title2
+                    font.pixelSize: Styling.title2
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
 
@@ -382,7 +382,7 @@ ApplicationWindow {
 
             Text {
                 text: qsTr("Recent transactions")
-                font.pointSize: Styling.title2
+                font.pixelSize: Styling.title2
                 color: Styling.txtColor
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
@@ -398,6 +398,7 @@ ApplicationWindow {
             anchors.horizontalCenter: trsBox.horizontalCenter
             anchors.top: trsBox.top
             anchors.topMargin: root.height*(0.02)
+            columnSpacing: 0
 
             interactive: false
 
@@ -439,28 +440,28 @@ ApplicationWindow {
 
                 Text {
                     text: date
-                    font.pointSize: 20
+                    font.pixelSize: 20
                     color: "white"
                     anchors.left: parent.left
                     anchors.leftMargin: parent.width*(1/2)
                 }
                 Text {
                     text: amount
-                    font.pointSize: 20
+                    font.pixelSize: 20
                     color: "white"
                     anchors.left: parent.left
                     anchors.leftMargin: parent.width*2
                 }
                 Text {
                     text: vendor
-                    font.pointSize: 20
+                    font.pixelSize: 20
                     color: "white"
                     anchors.left: parent.left
                     anchors.leftMargin: parent.width*3
                 }
                 Text {
                     text: category
-                    font.pointSize: 20
+                    font.pixelSize: 20
                     color: "white"
                     anchors.left: parent.left
                     anchors.leftMargin: parent.width*4
