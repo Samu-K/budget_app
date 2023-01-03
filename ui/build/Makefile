@@ -626,6 +626,7 @@ qrc_qml.cpp: ../ui_redesign/qml.qrc \
 		../ui_redesign/pages/shared/LeftTabButton.qml \
 		../ui_redesign/pages/shared/LeftTab.qml \
 		../ui_redesign/pages/login/login.qml \
+		../ui_redesign/pages/transactions/categories.qml \
 		../ui_redesign/pages/transactions/transactions.qml \
 		../ui_redesign/pages/transactions/recurring_trs.qml \
 		../ui_redesign/pages/transactions/components/TransactionsTemplate.qml \

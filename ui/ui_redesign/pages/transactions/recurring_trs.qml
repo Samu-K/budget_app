@@ -21,7 +21,7 @@ TransactionsTemplate {
                 "Once every": "month",
                 "Next charge": "31.1.2022",
                 "Amount": "300€",
-                "Vendor": "Uniter Retail",
+                "Vendor": "United Retail",
                 "Category": "salary"
             },
             {

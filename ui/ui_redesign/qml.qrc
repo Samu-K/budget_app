@@ -23,5 +23,6 @@
         <file>pages/shared/LeftTabButton.qml</file>
         <file>Styling.qml</file>
         <file>qmldir</file>
+        <file>pages/transactions/categories.qml</file>
     </qresource>
 </RCC>
