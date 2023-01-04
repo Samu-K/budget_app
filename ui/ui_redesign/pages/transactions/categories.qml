@@ -94,6 +94,56 @@ ApplicationWindow {
         anchors.topMargin: 10
     }
 
+    // categories
+    Component {
+        id: catTable
+        GridLayout {
+            id: grid
+            columns: 4
+            columnSpacing: 60
+
+            Repeater {
+                model: cats
+
+                Text {
+                    text: modelData
+                    font.pixelSize: Styling.title3
+                    color: Styling.txtColor
+                }
+
+                Button {
+                    id: remove
+                    // TODO: remove button here
+                }
+
+                Rectangle {
+                    id: bg
+                    // background for cells here
+                }
+            }
+        }
+    }
+
+    Loader {
+        id: incTable
+        sourceComponent: catTable
+        property var cats: ["Social benefits","Salary","Loans","Payback"]
+
+        anchors.top: incTableTitle.bottom
+        anchors.topMargin: 25
+        anchors.horizontalCenter: incTableTitle.horizontalCenter
+    }
+
+    Loader {
+        id: expTable
+        sourceComponent: catTable
+        property var cats: ["Groceries","Going out","Shopping","Rent","Books","Subscriptions"]
+
+        anchors.top: expTableTitle.bottom
+        anchors.topMargin: 25
+        anchors.horizontalCenter: expTableTitle.horizontalCenter
+    }
+
 }
 
 /*
