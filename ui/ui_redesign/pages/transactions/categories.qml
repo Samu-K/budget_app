@@ -78,6 +78,18 @@ ApplicationWindow {
         anchors.leftMargin: 30
         anchors.top: topBar.bottom
         anchors.topMargin: 10
+
+        // add new category
+        LeftTabButton {
+            id: newInc
+            iconSource: "qrc:/design/plus.png"
+            bgHeight: 120
+            iconSize: 35
+
+            anchors.left: parent.right
+            anchors.leftMargin: 30
+            anchors.top: parent.top
+        }
     }
     Text {
         id: incTableTitle
@@ -90,6 +102,18 @@ ApplicationWindow {
         anchors.leftMargin: 30
         anchors.top: trsDiv.bottom
         anchors.topMargin: 10
+
+        // add new category
+        LeftTabButton {
+            id: newExp
+            iconSource: "qrc:/design/plus.png"
+            bgHeight: 120
+            iconSize: 35
+
+            anchors.left: parent.right
+            anchors.leftMargin: 30
+            anchors.top: parent.top
+        }
     }
 
     // categories

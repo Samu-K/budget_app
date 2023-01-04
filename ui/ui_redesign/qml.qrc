@@ -24,5 +24,6 @@
         <file>Styling.qml</file>
         <file>qmldir</file>
         <file>pages/transactions/categories.qml</file>
+        <file>design/plus.png</file>
     </qresource>
 </RCC>
