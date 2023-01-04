@@ -44,7 +44,7 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
 
             Repeater {
-                model:["All transactions", "Recurring", "Accounts", "Categories"]
+                model:["All transactions", "Recurring", "Categories", "Accounts"]
 
                 TopBarButton {
                     buttonText: modelData

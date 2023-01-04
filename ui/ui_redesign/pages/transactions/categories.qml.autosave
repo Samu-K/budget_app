@@ -93,6 +93,17 @@ ApplicationWindow {
         anchors.top: trsDiv.bottom
         anchors.topMargin: 10
     }
+    
+    // categories
+    Component {
+        id: catView
+        
+        GridView {
+            id: gridview
+            
+            
+        }
+    }
 
 }
 
