@@ -14,10 +14,6 @@ ApplicationWindow {
     visible: true
     title: qsTr("Budgetor")
 
-    property var incomeData
-    property var expenseData
-    property var columnTitles
-
     width: screen.width
     height: screen.height
     color: Styling.app
@@ -74,22 +70,24 @@ ApplicationWindow {
     Text {
         id: expTableTitle
         text: qsTr("Expense categories")
-        font.pointSize: Styling.title
+        font.pointSize: Styling.title2
         font.bold: true
-        color: "black"
+        color: Styling.txtColor
 
-        anchors.horizontalCenter: trsDiv.horizontalCenter
+        anchors.left: sideTab.right
+        anchors.leftMargin: 30
         anchors.top: topBar.bottom
         anchors.topMargin: 10
     }
     Text {
         id: incTableTitle
         text: qsTr("Income categories")
-        font.pointSize: Styling.title
+        font.pointSize: Styling.title2
         font.bold: true
-        color: "black"
+        color: Styling.txtColor
 
-        anchors.horizontalCenter: trsDiv.horizontalCenter
+        anchors.left: sideTab.right
+        anchors.leftMargin: 30
         anchors.top: trsDiv.bottom
         anchors.topMargin: 10
     }
@@ -99,26 +97,44 @@ ApplicationWindow {
         id: catTable
         GridLayout {
             id: grid
-            columns: 4
-            columnSpacing: 60
+            columns: root.width*(1/205)
+            columnSpacing: 50
+            rowSpacing: 30
 
             Repeater {
                 model: cats
 
                 Text {
+                    id: txt
                     text: modelData
                     font.pixelSize: Styling.title3
                     color: Styling.txtColor
-                }
 
-                Button {
-                    id: remove
-                    // TODO: remove button here
-                }
+                    Button {
+                        id: delButton
+                        implicitWidth: 20
+                        implicitHeight: implicitWidth
 
-                Rectangle {
-                    id: bg
-                    // background for cells here
+                        anchors.left: parent.right
+                        anchors.leftMargin: 5
+
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        background: Rectangle {
+                            anchors.fill: parent
+                            radius: parent.implicitWidth
+                            color: "black"
+
+                            Rectangle {
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                implicitWidth: delButton.implicitWidth-10
+                                implicitHeight: delButton.implicitHeight/5
+                                color: "white"
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -127,21 +143,25 @@ ApplicationWindow {
     Loader {
         id: incTable
         sourceComponent: catTable
-        property var cats: ["Social benefits","Salary","Loans","Payback"]
+        property var cats: ["Social benefits","Salary","Loans","Payback","Social benefits","Salary","Loans","Payback","Social benefits","Salary","Loans","Payback","Social benefits","Salary","Loans","Payback"]
 
         anchors.top: incTableTitle.bottom
+        anchors.bottom: trsDiv.top
+
         anchors.topMargin: 25
-        anchors.horizontalCenter: incTableTitle.horizontalCenter
+        anchors.left: incTableTitle.left
     }
 
     Loader {
         id: expTable
         sourceComponent: catTable
-        property var cats: ["Groceries","Going out","Shopping","Rent","Books","Subscriptions"]
+        property var cats: ["Groceries","Going out","Shopping","Rent","Books","Subscriptions","Groceries","Going out","Shopping","Rent","Books","Subscriptions","Groceries","Going out","Shopping","Rent","Books","Subscriptions","Groceries","Going out","Shopping","Rent","Books","Subscriptions"]
 
         anchors.top: expTableTitle.bottom
+        anchors.bottom: root.bottom
+
         anchors.topMargin: 25
-        anchors.horizontalCenter: expTableTitle.horizontalCenter
+        anchors.left: expTableTitle.left
     }
 
 }

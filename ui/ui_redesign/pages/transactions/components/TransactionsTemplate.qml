@@ -76,7 +76,8 @@ ApplicationWindow {
         font.bold: true
         color: "black"
 
-        anchors.horizontalCenter: trsDiv.horizontalCenter
+        anchors.left: sideTab.right
+        anchors.leftMargin: 30
         anchors.top: topBar.bottom
         anchors.topMargin: 10
     }
@@ -87,7 +88,8 @@ ApplicationWindow {
         font.bold: true
         color: "black"
 
-        anchors.horizontalCenter: trsDiv.horizontalCenter
+        anchors.left: sideTab.right
+        anchors.leftMargin: 30
         anchors.top: trsDiv.bottom
         anchors.topMargin: 10
     }
