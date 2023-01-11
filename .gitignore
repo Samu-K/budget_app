@@ -1,6 +1,7 @@
 */node_modules
-build-*/
-DS*
+build*/
+DS_STORE.
+.qtc_*
 keys/
 sqltools*
 .venv
