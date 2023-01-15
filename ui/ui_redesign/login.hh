@@ -15,38 +15,25 @@ struct login_info {
 class Login : public QObject
 {
         Q_OBJECT
-        Q_PROPERTY(QString uname READ uname WRITE setUname NOTIFY unameChanged)
-        Q_PROPERTY(QString pass READ pass WRITE setPass NOTIFY passChanged)
         QML_ELEMENT
 
 public:
     explicit Login(QObject *parent = nullptr
     );
 
+    // deconstructor
+    ~Login();
+
     void setupUi(QQmlApplicationEngine &engine);
 
-    QString uname();
-    QString pass();
-
-    void setUname(const QString &uname);
-    void setPass(const QString &pass);
-
-    // deconstructor
-
-    ~Login();
 public slots:
-    void testSlot(const QString &msg);
+    void onLoginClicked(QString uname, QString pass);
 
 signals:
     void unameChanged();
     void passChanged();
 
 private:
-    // qml obj
-    //QQuickItem* obj_;
-
-    QString m_uname;
-    QString m_pass;
 };
 
 #endif // LOGIN_HH

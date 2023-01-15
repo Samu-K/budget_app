@@ -87,9 +87,6 @@ Window {
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-
-            // relate info to backend
-            onEditingFinished: lgn.uname = text;
         }
 
     }
@@ -124,8 +121,6 @@ Window {
             font.pointSize: 24
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-
-            onEditingFinished: lgn.pass = text;
         }
     }
 
@@ -142,7 +137,7 @@ Window {
                         (parent.hovered ? Styling.slcColor : Styling.darkBg)
         }
 
-        signal qmlSignal(msg: string)
+        signal loginClicked(uname: string, pass: string)
 
         text: qsTr("LOGIN")
         font.pixelSize: Styling.title3
@@ -151,7 +146,7 @@ Window {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 50
 
-        onClicked: loginButton.qmlSignal("Test")
+        onClicked: loginButton.loginClicked(unameInput.text,passInput.text)
     }
 
     // remember me checkbox
