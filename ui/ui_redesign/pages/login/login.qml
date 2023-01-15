@@ -86,6 +86,7 @@ Window {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
 
+            // relate info to backend
             onEditingFinished: lgn.uname = text;
         }
 
@@ -120,6 +121,8 @@ Window {
             font.pointSize: 24
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
+
+            onEditingFinished: lgn.pass = text;
         }
     }
 

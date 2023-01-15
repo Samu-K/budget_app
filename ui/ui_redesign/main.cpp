@@ -1,21 +1,15 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 
+#include "login.hh"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
-    const QUrl url(QStringLiteral("qrc:/pages/login/login.qml"));
 
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
-
-    engine.load(url);
+    Login login;
+    login.setupUi(engine, app);
 
     return app.exec();
 }

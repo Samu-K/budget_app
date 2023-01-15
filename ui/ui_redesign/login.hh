@@ -2,7 +2,14 @@
 #define LOGIN_HH
 
 #include <QObject>
+#include <QQmlApplicationEngine>
+#include <QApplication>
+
 #include <qqml.h>
+
+struct login_info {
+    QString username, password;
+};
 
 class Login : public QObject
 {
@@ -12,7 +19,10 @@ class Login : public QObject
         QML_ELEMENT
 
 public:
-    explicit Login(QObject *parent = nullptr);
+    explicit Login(QObject *parent = nullptr
+    );
+
+    void setupUi(QQmlApplicationEngine &engine, QApplication &app);
 
     QString uname();
     QString pass();
