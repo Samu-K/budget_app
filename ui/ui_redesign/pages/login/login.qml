@@ -68,6 +68,7 @@ Window {
 
     Rectangle {
         id: uInputBox
+        objectName: "unameBox"
         width: 370
         height: 40
         radius: 8
@@ -79,6 +80,7 @@ Window {
 
         TextInput {
             id: unameInput
+            objectName: "unameInput"
             anchors.fill: parent
             anchors.margins: 4
             font.pointSize: Styling.title3
@@ -116,6 +118,7 @@ Window {
 
         TextInput {
             id: passInput
+            objectName: "passInput"
             anchors.fill: parent
             anchors.margins: 4
             font.pointSize: 24
@@ -129,6 +132,7 @@ Window {
     // login button
     Button {
         id: loginButton
+        objectName: "loginButton"
         width: 390
         height: 45
         background: Rectangle {
@@ -138,12 +142,16 @@ Window {
                         (parent.hovered ? Styling.slcColor : Styling.darkBg)
         }
 
+        signal qmlSignal(msg: string)
+
         text: qsTr("LOGIN")
         font.pixelSize: Styling.title3
         font.bold: true
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 50
+
+        onClicked: loginButton.qmlSignal("Test")
     }
 
     // remember me checkbox

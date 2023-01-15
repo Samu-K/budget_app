@@ -13,6 +13,9 @@ void Login::setupUi(QQmlApplicationEngine &engine) {
     QQmlComponent component(&engine, url);
     QObject *obj_ = component.create();
 
+    QObject* lgButton = obj_->findChild<QObject *>("loginButton",Qt::FindChildrenRecursively);
+
+    QObject::connect(lgButton, SIGNAL(qmlSignal(QString)),this,SLOT(testSlot(QString)));
 }
 
 QString Login::uname() {
@@ -41,4 +44,9 @@ void Login::setPass(const QString &pass) {
 
 Login::~Login() {
     //delete obj_;
+}
+
+void Login::testSlot(const QString &msg)
+{
+    std::cout << msg.toStdString() << std::endl;
 }

@@ -32,14 +32,18 @@ public:
     void setPass(const QString &pass);
 
     // deconstructor
+
     ~Login();
+public slots:
+    void testSlot(const QString &msg);
 
 signals:
     void unameChanged();
     void passChanged();
+
 private:
     // qml obj
-    QObject* obj_;
+    //QQuickItem* obj_;
 
     QString m_uname;
     QString m_pass;
