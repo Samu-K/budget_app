@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     Login login;
-    login.setupUi(engine, app);
+    login.setupUi(engine);
 
     return app.exec();
 }

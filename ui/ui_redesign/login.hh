@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QQmlApplicationEngine>
+#include <QQmlComponent>
 #include <QApplication>
 
 #include <qqml.h>
@@ -22,7 +23,7 @@ public:
     explicit Login(QObject *parent = nullptr
     );
 
-    void setupUi(QQmlApplicationEngine &engine, QApplication &app);
+    void setupUi(QQmlApplicationEngine &engine);
 
     QString uname();
     QString pass();
@@ -30,10 +31,16 @@ public:
     void setUname(const QString &uname);
     void setPass(const QString &pass);
 
+    // deconstructor
+    ~Login();
+
 signals:
     void unameChanged();
     void passChanged();
 private:
+    // qml obj
+    QObject* obj_;
+
     QString m_uname;
     QString m_pass;
 };

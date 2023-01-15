@@ -6,18 +6,13 @@ Login::Login(QObject *parent) :
 {
 }
 
-void Login::setupUi(QQmlApplicationEngine &engine, QApplication &app) {
+void Login::setupUi(QQmlApplicationEngine &engine) {
     // path to login qml file
     const QUrl url(QStringLiteral("qrc:/pages/login/login.qml"));
 
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
+    QQmlComponent component(&engine, url);
+    QObject *obj_ = component.create();
 
-    // load the ui
-    engine.load(url);
 }
 
 QString Login::uname() {
@@ -42,4 +37,8 @@ void Login::setPass(const QString &pass) {
     }
     m_pass = pass;
     emit passChanged();
+}
+
+Login::~Login() {
+    //delete obj_;
 }
