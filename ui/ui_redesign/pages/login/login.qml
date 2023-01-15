@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls
 import QtQuick.Shapes 1.4
+import com.budget.login 1.0
 
 import "qrc:/."
 
@@ -11,6 +12,10 @@ Window {
     height: 500
     visible: true
     title: qsTr("Login")
+
+    Login {
+        id: lgn
+    }
 
     Rectangle {
         id: gradient
@@ -63,6 +68,7 @@ Window {
 
     Rectangle {
         id: uInputBox
+        objectName: "unameBox"
         width: 370
         height: 40
         radius: 8
@@ -74,12 +80,15 @@ Window {
 
         TextInput {
             id: unameInput
+            objectName: "unameInput"
             anchors.fill: parent
             anchors.margins: 4
             font.pointSize: Styling.title3
+
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
         }
+
     }
 
     // Password field
@@ -106,6 +115,7 @@ Window {
 
         TextInput {
             id: passInput
+            objectName: "passInput"
             anchors.fill: parent
             anchors.margins: 4
             font.pointSize: 24
@@ -117,6 +127,7 @@ Window {
     // login button
     Button {
         id: loginButton
+        objectName: "loginButton"
         width: 390
         height: 45
         background: Rectangle {
@@ -126,12 +137,16 @@ Window {
                         (parent.hovered ? Styling.slcColor : Styling.darkBg)
         }
 
+        signal loginClicked(uname: string, pass: string)
+
         text: qsTr("LOGIN")
         font.pixelSize: Styling.title3
         font.bold: true
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 50
+
+        onClicked: loginButton.loginClicked(unameInput.text,passInput.text)
     }
 
     // remember me checkbox
