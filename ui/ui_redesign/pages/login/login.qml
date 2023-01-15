@@ -79,7 +79,6 @@ Window {
 
         TextInput {
             id: unameInput
-            text: lgn.uname
             anchors.fill: parent
             anchors.margins: 4
             font.pointSize: Styling.title3
@@ -89,6 +88,7 @@ Window {
 
             onEditingFinished: lgn.uname = text;
         }
+
     }
 
     // Password field
