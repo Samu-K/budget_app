@@ -24,6 +24,6 @@ void Login::setupUi(QQmlApplicationEngine &engine) {
 
 void Login::onLoginClicked(QString uname, QString pass)
 {
-    std::cout << uname.toStdString() << std::endl;
-    std::cout << pass.toStdString() << std::endl;
+    uname_ = uname;
+    pass_ = pass;
 }

@@ -34,6 +34,8 @@ signals:
     void passChanged();
 
 private:
+    QString uname_;
+    QString pass_;
 };
 
 #endif // LOGIN_HH
