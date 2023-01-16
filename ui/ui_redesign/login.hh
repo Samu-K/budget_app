@@ -8,10 +8,6 @@
 
 #include <qqml.h>
 
-struct login_info {
-    QString username, password;
-};
-
 class Login : public QObject
 {
         Q_OBJECT

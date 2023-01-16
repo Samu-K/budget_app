@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 
 #include "login.hh"
+#include "dashboard.hh"
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +10,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     Login login;
-    login.setupUi(engine);
+    Dashboard dash;
+    dash.setupUi(engine);
 
     return app.exec();
 }
