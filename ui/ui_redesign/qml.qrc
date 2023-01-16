@@ -25,5 +25,6 @@
         <file>qmldir</file>
         <file>pages/transactions/categories.qml</file>
         <file>design/plus.png</file>
+        <file>main.qml</file>
     </qresource>
 </RCC>
