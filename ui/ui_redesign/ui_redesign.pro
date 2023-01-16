@@ -6,7 +6,8 @@ QT += quick
 
 SOURCES += \
         login.cpp \
-        main.cpp
+        main.cpp \
+        program.cpp
 
 RESOURCES += qml.qrc
 
@@ -31,6 +32,7 @@ DISTFILES += \
     components/dateButton.qml
 
 HEADERS += \
-    login.hh
+    login.hh \
+    program.hh
 
 INCLUDEPATH += com/budget/login

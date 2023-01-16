@@ -8,34 +8,18 @@
 
 #include <qqml.h>
 
-struct login_info {
-    QString username, password;
-};
-
 class Login : public QObject
 {
         Q_OBJECT
         QML_ELEMENT
 
 public:
-    explicit Login(QObject *parent = nullptr
-    );
+    explicit Login(QObject *parent = nullptr);
+
+    QObject* setupUi(QQmlApplicationEngine &engine);
 
     // deconstructor
     ~Login();
-
-    void setupUi(QQmlApplicationEngine &engine);
-
-public slots:
-    void onLoginClicked(QString uname, QString pass);
-
-signals:
-    void unameChanged();
-    void passChanged();
-
-private:
-    QString uname_;
-    QString pass_;
 };
 
 #endif // LOGIN_HH

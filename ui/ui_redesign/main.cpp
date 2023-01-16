@@ -1,15 +1,15 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlComponent>
 
-#include "login.hh"
+#include "program.hh"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    Login login;
-    login.setupUi(engine);
+    Program prog(engine);
 
     return app.exec();
 }
