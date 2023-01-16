@@ -7,7 +7,8 @@ import com.budget.login 1.0
 import "qrc:/."
 
 Window {
-    // main login window
+    id: root
+    objectName: "root"
     width: 400
     height: 500
     visible: true
