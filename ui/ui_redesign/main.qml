@@ -34,4 +34,13 @@ ApplicationWindow {
         anchors.left: leftTab.right
         anchors.top: parent.top
     }
+
+    Loader {
+        source: "qrc:/pages/dashboard/dashboard.qml"
+        focus: true
+
+        anchors.left: leftTab.right
+        anchors.leftMargin: screen.width*0.015
+        anchors.top: topBar.bottom
+    }
 }
