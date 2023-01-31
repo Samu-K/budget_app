@@ -28,7 +28,7 @@ ApplicationWindow {
     Loader {
         id: ldr
         width: parent.width-(leftTab.width)
-        source: "qrc:/pages/transactions/transactions.qml"
+        source: "qrc:/pages/transactions/recurring_trs.qml"
         focus: true
 
         anchors.left: leftTab.right

@@ -69,6 +69,7 @@ TransactionsTemplate {
 
     TrsBar{
         id: trsBar
+        anchors.right: parent.right
 
         // recurring picker
         ComboBox {
