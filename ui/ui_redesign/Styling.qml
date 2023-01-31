@@ -21,4 +21,9 @@ QtObject {
 
     // margin between label and object
     property int titleMargin: 5
+    // margin for template and loader
+    property int loaderMargin: 40
+    // constants
+    property int topBarHeight: 60
+
 }

@@ -5,8 +5,8 @@ import QtQuick.Layouts
 import "qrc:/."
 
 Button {
-    Layout.preferredWidth: 200
-    Layout.preferredHeight: 30
+    Layout.preferredWidth: 250
+    Layout.preferredHeight: 40
 
     property alias buttonText: text.text
 

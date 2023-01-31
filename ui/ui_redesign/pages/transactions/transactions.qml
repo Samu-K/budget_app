@@ -7,6 +7,8 @@ import "qrc:/pages/transactions/components"
 import "qrc:/pages/transactions/components/trsbar"
 
 TransactionsTemplate {
+    anchors.left: parent.left
+
     incomeData: TableModel {
            TableModelColumn { display: "Date" }
            TableModelColumn { display: "Amount" }
@@ -63,7 +65,7 @@ TransactionsTemplate {
                    "Category": "Going out"
                },
            ]
-       }
+    }
     expenseData: TableModel {
         TableModelColumn { display: "Date" }
         TableModelColumn { display: "Amount" }
@@ -131,6 +133,6 @@ TransactionsTemplate {
     // right side tab
     TrsBar {
         id: trsBar
+        anchors.right: parent.right;
     }
-
 }
