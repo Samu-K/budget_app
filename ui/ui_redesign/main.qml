@@ -25,13 +25,15 @@ ApplicationWindow {
         id: leftTab
     }
 
-    Rectangle {
-        id: topBar
-        width: parent.width - leftTab.width
-        height: screen.height*0.03
-        color: Styling.darkBg
+    Loader {
+        id: ldr
+        width: parent.width-(leftTab.width)
+        source: "qrc:/pages/transactions/categories.qml"
+        focus: true
 
         anchors.left: leftTab.right
-        anchors.top: parent.top
+        anchors.top: screen.top
+        anchors.topMargin: Styling.topBarHeight
     }
+
 }

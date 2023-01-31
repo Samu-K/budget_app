@@ -6,19 +6,13 @@ import Qt.labs.qmlmodels 1.0
 import "qrc:/pages/shared"
 import "qrc:/."
 
-ApplicationWindow {
+Rectangle {
     id: root
     visible: true
     color: Styling.app
 
-    title: qsTr("Budgetor")
-
     width: screen.width
     height: screen.height
-
-    LeftTab {
-        id: leftTab
-    }
 
     // component for listview buttons
     Component {
@@ -51,10 +45,7 @@ ApplicationWindow {
     ListView {
         id: accountList
         width: root.width*(0.2)
-        height: root.height*(0.3)
-
-        anchors.left: leftTab.right
-        anchors.leftMargin: root.width*(0.025)
+        height: root.height*(0.275)
 
         // root top
         anchors.top: parent.top
@@ -121,7 +112,7 @@ ApplicationWindow {
     // Summary
     Rectangle {
         id: sumBg
-        width: root.width*(0.6)
+        width: root.width*(0.63)
         color: Styling.lightBg
 
         anchors.left: accountList.right
@@ -129,7 +120,7 @@ ApplicationWindow {
 
         anchors.top: accountList.top
         anchors.bottom: linkList.bottom
-        anchors.bottomMargin: root.height*(0.075)
+        //anchors.bottomMargin: root.height*(0.075)
 
         // Label
         Text {
@@ -203,7 +194,6 @@ ApplicationWindow {
                         color: Styling.txtColor
                     }
                 }
-
             }
         }
     }
@@ -263,7 +253,7 @@ ApplicationWindow {
     Rectangle {
         id: monthBg
         width: (root.width-leftTab.width)/2 - root.width*(0.04)
-        height: root.height*(0.21)
+        height: root.height*(0.20)
         color: Styling.darkBg
 
         anchors.top: dateSelectBg.bottom
@@ -329,7 +319,7 @@ ApplicationWindow {
             anchors.left: monthBg.left
             anchors.leftMargin: root.width*(0.02)
             anchors.top: monthBg.top
-            anchors.topMargin: root.height*(0.055)
+            anchors.topMargin: root.height*(0.04)
         }
 
         Loader {
@@ -341,7 +331,7 @@ ApplicationWindow {
             anchors.right: monthBg.right
             anchors.rightMargin: root.width*(0.02)
             anchors.top: monthBg.top
-            anchors.topMargin: root.height*(0.055)
+            anchors.topMargin: expBox.anchors.topMargin
         }
 
         Loader {
@@ -353,7 +343,7 @@ ApplicationWindow {
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: monthBg.bottom
-            anchors.bottomMargin: Styling.titleMargin*2
+            anchors.bottomMargin: root.height*(0.015)
 
         }
 
@@ -443,28 +433,28 @@ ApplicationWindow {
                     font.pixelSize: 20
                     color: "white"
                     anchors.left: parent.left
-                    anchors.leftMargin: parent.width*(1/2)
+                    anchors.leftMargin: trsBox.width*(1/20)
                 }
                 Text {
                     text: amount
                     font.pixelSize: 20
                     color: "white"
                     anchors.left: parent.left
-                    anchors.leftMargin: parent.width*2
+                    anchors.leftMargin: trsBox.width*(1/3)
                 }
                 Text {
                     text: vendor
                     font.pixelSize: 20
                     color: "white"
                     anchors.left: parent.left
-                    anchors.leftMargin: parent.width*3
+                    anchors.leftMargin: trsBox.width*(1/3)*1.75
                 }
                 Text {
                     text: category
                     font.pixelSize: 20
                     color: "white"
                     anchors.left: parent.left
-                    anchors.leftMargin: parent.width*4
+                    anchors.leftMargin: trsBox.width*(8/10)
                 }
             }
         }

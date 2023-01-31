@@ -9,28 +9,21 @@ import "qrc:/pages/transactions/components"
 import "qrc:/pages/transactions/components/table"
 import "qrc:/pages/transactions/components/trsbar"
 
-ApplicationWindow {
+Rectangle {
     id: root
     visible: true
-    title: qsTr("Budgetor")
 
     width: screen.width
     height: screen.height
     color: Styling.app
 
-    // left tab
-    LeftTab {
-        id: sideTab
-    }
-
     // top bar
     Rectangle {
         id: topBar
-        width: parent.width - sideTab.width
-        height: 50
+        width: parent.width
+        height: Styling.topBarHeight
         color: Styling.darkBg
 
-        anchors.left: sideTab.right
         anchors.top: parent.top
 
         RowLayout {
@@ -61,7 +54,7 @@ ApplicationWindow {
         height: 10
         color: Styling.lightBg
 
-        anchors.verticalCenter: sideTab.verticalCenter
+        anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: topBar.height/2
         anchors.left: topBar.left
     }
@@ -74,8 +67,8 @@ ApplicationWindow {
         font.bold: true
         color: Styling.txtColor
 
-        anchors.left: sideTab.right
-        anchors.leftMargin: 30
+        anchors.left: parent.left
+        anchors.leftMargin: Styling.loaderMargin
         anchors.top: topBar.bottom
         anchors.topMargin: 10
 
@@ -98,8 +91,8 @@ ApplicationWindow {
         font.bold: true
         color: Styling.txtColor
 
-        anchors.left: sideTab.right
-        anchors.leftMargin: 30
+        anchors.left: parent.left
+        anchors.leftMargin: Styling.loaderMargin
         anchors.top: trsDiv.bottom
         anchors.topMargin: 10
 
@@ -123,7 +116,7 @@ ApplicationWindow {
             id: grid
             columns: root.width*(1/205)
             columnSpacing: 50
-            rowSpacing: 30
+            //rowSpacing: 10
 
             Repeater {
                 model: cats
@@ -170,7 +163,7 @@ ApplicationWindow {
         property var cats: ["Social benefits","Salary","Loans","Payback","Social benefits","Salary","Loans","Payback","Social benefits","Salary","Loans","Payback","Social benefits","Salary","Loans","Payback"]
 
         anchors.top: incTableTitle.bottom
-        anchors.bottom: trsDiv.top
+        anchors.bottom: root.bottom
 
         anchors.topMargin: 25
         anchors.left: incTableTitle.left
@@ -182,7 +175,7 @@ ApplicationWindow {
         property var cats: ["Groceries","Going out","Shopping","Rent","Books","Subscriptions","Groceries","Going out","Shopping","Rent","Books","Subscriptions","Groceries","Going out","Shopping","Rent","Books","Subscriptions","Groceries","Going out","Shopping","Rent","Books","Subscriptions"]
 
         anchors.top: expTableTitle.bottom
-        anchors.bottom: root.bottom
+        anchors.bottom: trsDiv.top
 
         anchors.topMargin: 25
         anchors.left: expTableTitle.left

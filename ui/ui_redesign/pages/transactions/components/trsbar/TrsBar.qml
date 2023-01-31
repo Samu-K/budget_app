@@ -11,10 +11,8 @@ Rectangle {
     height: parent.height
     color: Styling.darkBg
 
-    anchors.right: parent.right
-
     // vars for type buttons
-    property int buttonHeight: 45
+    property int buttonHeight: 60
 
     // expense button
     Button {
@@ -24,7 +22,7 @@ Rectangle {
 
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.topMargin: 50
+        anchors.topMargin: Styling.topBarHeight
 
         Text {
             text: "Expense"

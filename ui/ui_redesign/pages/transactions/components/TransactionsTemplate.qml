@@ -7,10 +7,9 @@ import "qrc:/pages/transactions/components/table"
 import "qrc:/pages/shared"
 import "qrc:/."
 
-ApplicationWindow {
+Rectangle {
     id: root
     visible: true
-    title: qsTr("Budgetor")
 
     property var incomeData
     property var expenseData
@@ -20,27 +19,22 @@ ApplicationWindow {
     height: screen.height
     color: Styling.app
 
-    // left tab
-    LeftTab {
-        id: sideTab
-    }
-
     // top bar
     Rectangle {
         id: topBar
-        width: parent.width - sideTab.width - trsBar.width
-        height: 50
+        width: parent.width - trsBar.width
+        height: Styling.topBarHeight
         color: Styling.darkBg
 
-        anchors.left: sideTab.right
         anchors.top: parent.top
 
         RowLayout {
             id: topButtons
             height: parent.height
 
-            spacing: 5
+            spacing: 10
             anchors.left: parent.left
+            anchors.leftMargin: Styling.loaderMargin
             anchors.bottom: parent.bottom
 
             Repeater {
@@ -52,8 +46,6 @@ ApplicationWindow {
                 }
             }
         }
-
-
     }
 
     // transactions screen divider
@@ -63,7 +55,7 @@ ApplicationWindow {
         height: 10
         color: Styling.lightBg
 
-        anchors.verticalCenter: sideTab.verticalCenter
+        anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: topBar.height/2
         anchors.left: topBar.left
     }
@@ -76,8 +68,8 @@ ApplicationWindow {
         font.bold: true
         color: "black"
 
-        anchors.left: sideTab.right
-        anchors.leftMargin: 30
+        anchors.left: parent.left
+        anchors.leftMargin: 30+Styling.loaderMargin
         anchors.top: topBar.bottom
         anchors.topMargin: 10
     }
@@ -88,8 +80,8 @@ ApplicationWindow {
         font.bold: true
         color: "black"
 
-        anchors.left: sideTab.right
-        anchors.leftMargin: 30
+        anchors.left: parent.left
+        anchors.leftMargin: 30+Styling.loaderMargin
         anchors.top: trsDiv.bottom
         anchors.topMargin: 10
     }
@@ -103,11 +95,11 @@ ApplicationWindow {
     }
     TrsTable {
         id: expTable
-        anchors.left: sideTab.right
-        anchors.leftMargin: 60
 
-        anchors.right: trsBar.left
-        anchors.rightMargin: 60
+        anchors.left: topBar.left
+        anchors.right: topBar.right
+        anchors.leftMargin: Styling.loaderMargin
+        anchors.rightMargin: Styling.loaderMargin
 
         anchors.top: expTableTitle.bottom
         anchors.topMargin: 40
@@ -125,11 +117,10 @@ ApplicationWindow {
     TrsTable {
         id: incTable
 
-        anchors.left: sideTab.right
-        anchors.leftMargin: 60
-
-        anchors.right: trsBar.left
-        anchors.rightMargin: 60
+        anchors.left: topBar.left
+        anchors.right: topBar.right
+        anchors.leftMargin: Styling.loaderMargin
+        anchors.rightMargin: Styling.loaderMargin
 
         anchors.top: incTableTitle.bottom
         anchors.topMargin: 40

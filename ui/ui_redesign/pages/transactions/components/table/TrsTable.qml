@@ -11,8 +11,8 @@ TableView {
 
     delegate: Rectangle {
         color: Styling.lightBg
-        implicitWidth: 180
-        implicitHeight: 40
+        implicitWidth: 250
+        implicitHeight: 60
         border.width: 1
 
         Text {
