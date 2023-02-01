@@ -28,7 +28,7 @@ ApplicationWindow {
     Loader {
         id: ldr
         width: parent.width-(leftTab.width)
-        source: "qrc:/pages/transactions/categories.qml"
+        source: "qrc:/pages/dashboard/dashboard.qml"
         focus: true
 
         anchors.left: leftTab.right
