@@ -20,12 +20,12 @@ Window {
 
     Rectangle {
         id: gradient
-        width: parent.height*1.5
+        width: screen.width*1.5
         height: width
         radius: width
         gradient: RadialGradient {
-            GradientStop { position: 0.0; color: "#1da544" }
-            GradientStop { position: 1.0; color: "#144B24" }
+            GradientStop { position: 0.0; color: "#0b5428" }
+            GradientStop { position: 1.0; color: "#10ee68" }
         }
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -35,7 +35,7 @@ Window {
     // user icon background
     Rectangle {
          id: userBg
-         width: 130
+         width: root.width*0.1
          height: width
          color: Styling.lightBg
          border.color: "black"
@@ -62,9 +62,9 @@ Window {
         text: qsTr("Username")
         color: Styling.txtColor
         font.pointSize: Styling.title2
-        anchors.verticalCenter: userBg.bottom
+        anchors.top: userBg.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenterOffset: 45
+        anchors.topMargin: root.height*0.015
     }
 
     Rectangle {
@@ -76,8 +76,8 @@ Window {
         border.color: Styling.txtColor
         border.width: 10
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: unameText.bottom
-        anchors.verticalCenterOffset: 25
+        anchors.top: unameText.bottom
+        anchors.topMargin: root.height*0.01
 
         TextInput {
             id: unameInput
@@ -98,9 +98,9 @@ Window {
         text: qsTr("Password")
         color: "white"
         font.pointSize: Styling.title2
-        anchors.verticalCenter: uInputBox.bottom
+        anchors.top: uInputBox.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenterOffset: 30
+        anchors.topMargin: root.height*0.015
     }
 
     Rectangle {
@@ -111,8 +111,8 @@ Window {
         border.color: "white"
         border.width: 10
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: passText.bottom
-        anchors.verticalCenterOffset: 25
+        anchors.top: passText.bottom
+        anchors.topMargin: root.height*0.01
 
         TextInput {
             id: passInput
@@ -145,7 +145,7 @@ Window {
         font.bold: true
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 50
+        anchors.bottomMargin: root.height*0.18
 
         onClicked: loginButton.loginClicked(unameInput.text,passInput.text)
     }
