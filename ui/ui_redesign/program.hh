@@ -15,6 +15,8 @@ public:
 
 public slots:
     void onLoginClicked(QString uname, QString pass);
+    void onPageClicked(QString pageName);
+
 private:
     // handle login screen closing
     // and opening main program

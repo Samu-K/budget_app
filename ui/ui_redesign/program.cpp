@@ -34,9 +34,24 @@ void Program::onLoginClicked(QString uname, QString pass)
     setupUi();
 }
 
+void Program::onPageClicked(QString pageName)
+{
+    std::cout << "trig" << std::endl;
+    std::cout << pageName.toStdString() << std::endl;
+}
+
 void Program::setupUi()
 {
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QQmlComponent component(engine_, url);
     rootObject_ = component.create();
+
+    QObject* pageButton = rootObject_->findChild<QObject *>("pageButton",Qt::FindChildrenRecursively);
+
+    QObject::connect(
+        pageButton,
+        SIGNAL(pageClicked(QString)),
+        this,
+        SLOT(onPageClicked(QString))
+    );
 }

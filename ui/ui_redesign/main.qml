@@ -23,6 +23,7 @@ ApplicationWindow {
 
     LeftTab {
         id: leftTab
+        objectName: "leftTab"
     }
 
     Loader {

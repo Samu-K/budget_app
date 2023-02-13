@@ -4,6 +4,9 @@ import QtQuick.Layouts
 import "qrc:/."
 
 Rectangle {
+    id: pageButtonRoot
+    objectName: "pageButton"
+
     // component vars
     property alias text: text.text
     property alias iconSource: image.source
@@ -18,6 +21,8 @@ Rectangle {
 
     color: Styling.darkBg
 
+    signal pageClicked(pageName: string)
+
     Image {
         id: image
         width: iconSize
@@ -28,7 +33,8 @@ Rectangle {
         anchors.topMargin: Styling.titleMargin
 
         Text {
-            id: text
+            id: imgLabel
+
             font.pointSize: Styling.title3
             color: Styling.txtColor
 
@@ -36,6 +42,8 @@ Rectangle {
             anchors.top: parent.bottom
             anchors.topMargin: Styling.titleMargin*2
         }
+
+
     }
 
     MouseArea {
@@ -47,6 +55,9 @@ Rectangle {
         }
         onExited: {
             parent.color = Styling.darkBg
-            }
         }
+        onClicked: {
+            pageButtonRoot.pageClicked("test")
+        }
+    }
 }
