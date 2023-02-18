@@ -5,10 +5,13 @@ import QtQuick.Layouts
 import "qrc:/."
 
 Button {
+    id: root
     Layout.preferredWidth: 250
     Layout.preferredHeight: 40
 
     property alias buttonText: text.text
+
+    signal trsButtonClicked(buttonName: string)
 
     Text {
         id: text
@@ -19,13 +22,20 @@ Button {
         anchors.verticalCenter: parent.verticalCenter
     }
 
+    onClicked: trsButtonClicked(text.text)
+
     background: Rectangle {
+        id: bg
         color: Styling.lightBg
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: parent.color = Styling.slcColor
-            onExited: parent.color = Styling.lightBg
+            onEntered: {
+                parent.color = Styling.slcColor
+            }
+            onExited: {
+                parent.color = Styling.lightBg
+            }
         }
     }
 }

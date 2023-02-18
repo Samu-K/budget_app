@@ -35,10 +35,31 @@ void Program::onLoginClicked(QString uname, QString pass)
     setupUi();
 }
 
+void Program::onTrsButtonClicked(QString buttonName) {
+    std::cout << "trig" << std::endl;
+    std::cout << "Pressed " << buttonName.toStdString() << std::endl;
+}
+
 void Program::onPageClicked(QString pageName)
 {
     QString url = "qrc:/pages/"+pageName+"/"+pageName+".qml";
     rootObject_->findChild<QObject *>("loader")->setProperty("source",url);
+
+    if (pageName == "transactions") {
+        QObject* modelObject = rootObject_->findChild<QObject *>("buttonLayout",Qt::FindChildrenRecursively);
+        auto buttons = modelObject->findChildren<QObject *>(Qt::FindChildrenRecursively);
+        for (auto button : buttons) {
+            if (button->objectName().toStdString().empty() == false) {
+                std::cout << "Connecting " << button->objectName().toStdString() << std::endl;
+                QObject::connect(
+                    button,
+                    SIGNAL(trsButtonClicked(QString)),
+                    this,
+                    SLOT(onTrsButtonClicked(QString))
+                );
+            }
+        }
+    }
 }
 
 void Program::setupUi()
