@@ -14,6 +14,16 @@ Rectangle {
     width: screen.width
     height: screen.height
 
+    // top bar
+    Rectangle {
+        id: topBar
+        width: parent.width
+        height: Styling.topBarHeight
+        color: Styling.darkBg
+
+        anchors.top: parent.top
+    }
+
     // component for listview buttons
     Component {
         id: listButton
@@ -48,8 +58,10 @@ Rectangle {
         height: root.height*(0.275)
 
         // root top
-        anchors.top: parent.top
-        anchors.topMargin: root.height*(0.07)
+        anchors.top: root.top
+        anchors.topMargin: root.height*(0.05)+Styling.topBarHeight
+        anchors.left: parent.left
+        anchors.leftMargin: Styling.loaderMargin
 
         model: [qsTr("Credit card"), qsTr("Investments"), qsTr("Savings")]
 
@@ -112,7 +124,7 @@ Rectangle {
     // Summary
     Rectangle {
         id: sumBg
-        width: root.width*(0.63)
+        width: root.width*(0.72)
         color: Styling.lightBg
 
         anchors.left: accountList.right

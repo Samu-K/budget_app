@@ -4,6 +4,8 @@
 #include <QQmlApplicationEngine>
 #include <iostream>
 
+#include <qqml.h>
+
 class Program : public QObject
 {
     Q_OBJECT
@@ -15,6 +17,8 @@ public:
 
 public slots:
     void onLoginClicked(QString uname, QString pass);
+    void onPageClicked(QString pageName);
+
 private:
     // handle login screen closing
     // and opening main program

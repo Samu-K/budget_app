@@ -23,12 +23,14 @@ ApplicationWindow {
 
     LeftTab {
         id: leftTab
+        objectName: "leftTab"
     }
 
     Loader {
         id: ldr
+        objectName: "loader"
         width: parent.width-(leftTab.width)
-        source: "qrc:/pages/transactions/categories.qml"
+        source: "qrc:/pages/dashboard/dashboard.qml"
         focus: true
 
         anchors.left: leftTab.right
