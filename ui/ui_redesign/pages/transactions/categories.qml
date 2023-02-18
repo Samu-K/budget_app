@@ -27,20 +27,34 @@ Rectangle {
         anchors.top: parent.top
 
         RowLayout {
+            objectName: "buttonLayout"
             id: topButtons
             height: parent.height
 
-            spacing: 5
+            spacing: 10
             anchors.left: parent.left
+            anchors.leftMargin: Styling.loaderMargin
             anchors.bottom: parent.bottom
 
-            Repeater {
-                model:["All transactions", "Recurring", "Categories", "Accounts"]
-
-                TopBarButton {
-                    buttonText: modelData
-                    Layout.alignment: Qt.AlignBottom
-                }
+            TopBarButton {
+                objectName: "allTrsButton"
+                buttonText: "all transactions"
+                Layout.alignment: Qt.AlignBottom
+            }
+            TopBarButton {
+                objectName: "recTrsButton"
+                buttonText: "recurring"
+                Layout.alignment: Qt.AlignBottom
+            }
+            TopBarButton {
+                objectName: "catButton"
+                buttonText: "categories"
+                Layout.alignment: Qt.AlignBottom
+            }
+            TopBarButton {
+                objectName: "accButton"
+                buttonText: "accounts"
+                Layout.alignment: Qt.AlignBottom
             }
         }
 
@@ -182,69 +196,3 @@ Rectangle {
     }
 
 }
-
-/*
-TableModel {
-        TableModelColumn {display: "c1"}
-        TableModelColumn {display: "c2"}
-        TableModelColumn {display: "c3"}
-        TableModelColumn {display: "c4"}
-
-        rows: [
-            {
-                "c1": "Groceries",
-                "c2": "Going out",
-                "c3": "Shopping",
-                "c4": "Rent"
-            },
-            {
-                "c1": "Books",
-                "c2": "Subscriptions",
-                "c3": "",
-                "c4": ""
-            },
-        ]
-}
-TableModel {
-        TableModelColumn {display: "c1"}
-        TableModelColumn {display: "c2"}
-        TableModelColumn {display: "c3"}
-        TableModelColumn {display: "c4"}
-
-        rows: [
-            {
-                "c1": "Social benefits",
-                "c2": "Salary",
-                "c3": "Loans",
-                "c4": "Payback"
-            },
-            {
-                "c1": "Other",
-                "c2": "",
-                "c3": "",
-                "c4": ""
-            },
-        ]
-    }
-    expenseData: TableModel {
-        TableModelColumn {display: "c1"}
-        TableModelColumn {display: "c2"}
-        TableModelColumn {display: "c3"}
-        TableModelColumn {display: "c4"}
-
-        rows: [
-            {
-                "c1": "Groceries",
-                "c2": "Going out",
-                "c3": "Shopping",
-                "c4": "Rent"
-            },
-            {
-                "c1": "Books",
-                "c2": "Subscriptions",
-                "c3": "",
-                "c4": ""
-            },
-        ]
-}
-*/

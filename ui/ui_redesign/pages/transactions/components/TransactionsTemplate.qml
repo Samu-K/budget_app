@@ -40,22 +40,22 @@ Rectangle {
 
             TopBarButton {
                 objectName: "allTrsButton"
-                buttonText: "All transactions"
+                buttonText: "all transactions"
                 Layout.alignment: Qt.AlignBottom
             }
             TopBarButton {
                 objectName: "recTrsButton"
-                buttonText: "Recurring"
+                buttonText: "recurring"
                 Layout.alignment: Qt.AlignBottom
             }
             TopBarButton {
                 objectName: "catButton"
-                buttonText: "Categories"
+                buttonText: "categories"
                 Layout.alignment: Qt.AlignBottom
             }
             TopBarButton {
                 objectName: "accButton"
-                buttonText: "Accounts"
+                buttonText: "accounts"
                 Layout.alignment: Qt.AlignBottom
             }
         }

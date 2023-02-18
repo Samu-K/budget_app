@@ -36,16 +36,34 @@ void Program::onLoginClicked(QString uname, QString pass)
 }
 
 void Program::onTrsButtonClicked(QString buttonName) {
-    std::cout << "trig" << std::endl;
     std::cout << "Pressed " << buttonName.toStdString() << std::endl;
+    QString pageName;
+
+    if (buttonName == "all transactions") {
+        pageName = "transactions";
+    } else if (buttonName == "recurring") {
+        pageName = "recurring_trs.qml";
+    } else if (buttonName == "categories") {
+        pageName = "categories.qml";
+    }
+
+    onPageClicked(pageName);
 }
 
 void Program::onPageClicked(QString pageName)
 {
-    QString url = "qrc:/pages/"+pageName+"/"+pageName+".qml";
+    rootObject_->disconnect(this,nullptr,nullptr,nullptr);
+    QString url;
+
+    if (pageName == "recurring_trs.qml" || pageName=="categories.qml") {
+        url = "qrc:/pages/transactions/"+pageName;
+    } else {
+        url = "qrc:/pages/"+pageName+"/"+pageName+".qml";
+    }
+
     rootObject_->findChild<QObject *>("loader")->setProperty("source",url);
 
-    if (pageName == "transactions") {
+    if (pageName != "dashboard" && pageName != "analytics") {
         QObject* modelObject = rootObject_->findChild<QObject *>("buttonLayout",Qt::FindChildrenRecursively);
         auto buttons = modelObject->findChildren<QObject *>(Qt::FindChildrenRecursively);
         for (auto button : buttons) {
