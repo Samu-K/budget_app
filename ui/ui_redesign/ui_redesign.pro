@@ -24,15 +24,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-CONFIG += qmltypes
-QML_IMPORT_NAME = com.budget.login
-QML_IMPORT_MAJOR_VERSION = 1
-
-DISTFILES += \
-    components/dateButton.qml
-
 HEADERS += \
     login.hh \
     program.hh
 
-INCLUDEPATH += com/budget/login

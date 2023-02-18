@@ -2,7 +2,6 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls
 import QtQuick.Shapes 1.4
-import com.budget.login 1.0
 
 import "qrc:/."
 
@@ -13,10 +12,6 @@ Window {
     height: 500
     visible: true
     title: qsTr("Login")
-
-    Login {
-        id: lgn
-    }
 
     Rectangle {
         id: gradient

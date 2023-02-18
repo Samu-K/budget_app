@@ -4,6 +4,8 @@
 #include <QQmlApplicationEngine>
 #include <iostream>
 
+#include <qqml.h>
+
 class Program : public QObject
 {
     Q_OBJECT

@@ -28,6 +28,7 @@ ApplicationWindow {
 
     Loader {
         id: ldr
+        objectName: "loader"
         width: parent.width-(leftTab.width)
         source: "qrc:/pages/dashboard/dashboard.qml"
         focus: true

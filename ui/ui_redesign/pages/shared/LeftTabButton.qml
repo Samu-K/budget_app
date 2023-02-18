@@ -5,10 +5,9 @@ import "qrc:/."
 
 Rectangle {
     id: pageButtonRoot
-    objectName: "pageButton"
 
     // component vars
-    property alias text: text.text
+    property alias text: imgLabel.text
     property alias iconSource: image.source
 
     property int bgHeight: parent.parent.height*(0.16)
@@ -57,7 +56,7 @@ Rectangle {
             parent.color = Styling.darkBg
         }
         onClicked: {
-            pageButtonRoot.pageClicked("test")
+            pageButtonRoot.pageClicked(imgLabel.text)
         }
     }
 }

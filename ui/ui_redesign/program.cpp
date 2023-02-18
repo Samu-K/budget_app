@@ -1,6 +1,7 @@
 #include "program.hh"
 
 #include "login.hh"
+#include <QFile>
 
 Program::Program(QQmlApplicationEngine &engine, QObject *parent) :
     QObject(parent)
@@ -36,22 +37,28 @@ void Program::onLoginClicked(QString uname, QString pass)
 
 void Program::onPageClicked(QString pageName)
 {
-    std::cout << "trig" << std::endl;
-    std::cout << pageName.toStdString() << std::endl;
+    QString url = "qrc:/pages/"+pageName+"/"+pageName+".qml";
+    rootObject_->findChild<QObject *>("loader")->setProperty("source",url);
 }
 
 void Program::setupUi()
 {
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QQmlComponent component(engine_, url);
-    rootObject_ = component.create();
+    rootObject_ = component.create(engine_->rootContext());
 
-    QObject* pageButton = rootObject_->findChild<QObject *>("pageButton",Qt::FindChildrenRecursively);
+    QObject* modelObject = rootObject_->findChild<QObject *>("iconModel",Qt::FindChildrenRecursively);
+    auto icons = modelObject->findChildren<QObject *>(Qt::FindChildrenRecursively);
+    for (auto child : icons) {
+        if (child->objectName().toStdString().empty() == false) {
+            QObject::connect(
+                child,
+                SIGNAL(pageClicked(QString)),
+                this,
+                SLOT(onPageClicked(QString))
+            );
+        }
+    }
 
-    QObject::connect(
-        pageButton,
-        SIGNAL(pageClicked(QString)),
-        this,
-        SLOT(onPageClicked(QString))
-    );
+
 }

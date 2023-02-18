@@ -16,6 +16,7 @@ Rectangle {
     // sidetab icons
     ColumnLayout {
         id: iconColumn
+        objectName: "iconModel"
 
         width: root.width
         spacing: root.height*(0.075)
@@ -24,38 +25,33 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: spacing*(0.5)
 
-        // icons to show
-        ListModel {
-            id: iconList
-
-            ListElement {
-                text: "dashboard"
-                source: "qrc:/design/dash.png"
-            }
-            ListElement {
-                text: "transactions"
-                source: "qrc:/design/transaction.png"
-            }
-            ListElement {
-                text: "analytics"
-                source: "qrc:/design/analytics.png"
-            }
+        LeftTabButton {
+            objectName: "dashButton"
+            text: "dashboard"
+            iconSource: "qrc:/design/dash.png"
+            iconSize: root.height*(0.09)
         }
 
-        Repeater {
-            model: iconList
-
-            LeftTabButton {
-                text: model.text
-                iconSource: model.source
-                iconSize: root.height*(0.09)
-            }
+        LeftTabButton {
+            objectName: "trsButton"
+            text: "transactions"
+            iconSource: "qrc:/design/transaction.png"
+            iconSize: root.height*(0.09)
         }
+
+        LeftTabButton {
+            objectName: "anlButton"
+            text: "analytics"
+            iconSource: "qrc:/design/analytics.png"
+            iconSize: root.height*(0.09)
+        }
+
     }
 
     // options and account
     ColumnLayout {
         id: optionsTabIcons
+
         width: parent.width
         spacing: root.height*(0.015)
         anchors.horizontalCenter: parent.horizontalCenter
@@ -64,6 +60,7 @@ Rectangle {
 
         // user button
         LeftTabButton {
+            objectName: "rep4"
             id: userButton
             iconSource: "qrc:/design/user_icon_colored.png"
             bgHeight: root.height*(0.12)
@@ -72,6 +69,7 @@ Rectangle {
 
         // settings button
         LeftTabButton {
+            objectName: "rep5"
             id: stsButton
             iconSource: "qrc:/design/settings_white.png"
             bgHeight: root.height*(0.12)
