@@ -1,7 +1,7 @@
 #include "program.hh"
+#include <QFile>
 
 #include "login.hh"
-#include <QFile>
 
 Program::Program(QQmlApplicationEngine &engine, QObject *parent) :
     QObject(parent)
@@ -18,6 +18,9 @@ Program::Program(QQmlApplicationEngine &engine, QObject *parent) :
          this,
          SLOT(onLoginClicked(QString,QString))
     );
+
+    // setup our database
+    Database db_ = Database();
 }
 
 Program::~Program()
@@ -26,9 +29,7 @@ Program::~Program()
 
 void Program::onLoginClicked(QString uname, QString pass)
 {
-    uname_ = uname;
-    pass_ = pass;
-
+    db_.db_connect(pass.toStdString(),uname.toStdString());
     // close the login window
     login_obj_->deleteLater();
     // open the main program

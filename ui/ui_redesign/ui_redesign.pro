@@ -7,11 +7,13 @@ QT += quick
 SOURCES += \
         login.cpp \
         main.cpp \
-        program.cpp
+        program.cpp \
+        database.cpp
 
 RESOURCES += qml.qrc
 
-QT += charts
+QT += charts \
+      sql
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -26,5 +28,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     login.hh \
-    program.hh
+    program.hh \
+    database.hh
 

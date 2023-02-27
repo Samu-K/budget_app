@@ -6,6 +6,8 @@
 
 #include <qqml.h>
 
+#include "database.hh"
+
 class Program : public QObject
 {
     Q_OBJECT
@@ -28,8 +30,7 @@ private:
     // opens the main program
     void setupUi();
 
-    QString uname_;
-    QString pass_;
+    Database db_;
 
     QObject* login_obj_;
     QObject* rootObject_;
