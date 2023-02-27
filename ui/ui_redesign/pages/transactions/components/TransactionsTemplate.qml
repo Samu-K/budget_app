@@ -29,6 +29,7 @@ Rectangle {
         anchors.top: parent.top
 
         RowLayout {
+            objectName: "buttonLayout"
             id: topButtons
             height: parent.height
 
@@ -37,13 +38,25 @@ Rectangle {
             anchors.leftMargin: Styling.loaderMargin
             anchors.bottom: parent.bottom
 
-            Repeater {
-                model:["All transactions", "Recurring", "Categories", "Accounts"]
-
-                TopBarButton {
-                    buttonText: modelData
-                    Layout.alignment: Qt.AlignBottom
-                }
+            TopBarButton {
+                objectName: "allTrsButton"
+                buttonText: "all transactions"
+                Layout.alignment: Qt.AlignBottom
+            }
+            TopBarButton {
+                objectName: "recTrsButton"
+                buttonText: "recurring"
+                Layout.alignment: Qt.AlignBottom
+            }
+            TopBarButton {
+                objectName: "catButton"
+                buttonText: "categories"
+                Layout.alignment: Qt.AlignBottom
+            }
+            TopBarButton {
+                objectName: "accButton"
+                buttonText: "accounts"
+                Layout.alignment: Qt.AlignBottom
             }
         }
     }
